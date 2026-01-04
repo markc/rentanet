@@ -1017,6 +1017,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
 .bg-image-section::before {
     content: "";
     position: absolute;
@@ -1026,24 +1028,38 @@
     bottom: 0;
     background: rgba(0, 0, 0, 0.5);
     z-index: 0;
+}
+
 .bg-image-section .section-header {
     position: relative;
     z-index: 1;
+}
+
 .bg-image-section .section-title {
-    color: white;
+    color: white !important;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
 .bg-image-section .section-subtitle {
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
 /* Content sections with solid background */
 .content-section {
     background: var(--bg-secondary);
     padding: 4rem 5%;
+}
+
 html.light .content-section {
     background: #ffffff;
+}
+
 /* Hero with background image */
 .hero-bg {
     background: url('/Server_Room_Dark.webp') center center / cover fixed;
     position: relative;
+}
+
 .hero-bg::before {
     content: "";
     position: absolute;
@@ -1053,13 +1069,19 @@ html.light .content-section {
     bottom: 0;
     background: rgba(0, 0, 0, 0.6);
     z-index: 0;
+}
+
 .hero-bg .hero-content {
     position: relative;
     z-index: 1;
+}
+
 /* Page hero (smaller than home hero) */
 .page-hero {
     min-height: 50vh;
     padding-top: 100px;
+}
+
 /* Professional 4-column footer */
 .footer-main {
     background: var(--bg-secondary);
