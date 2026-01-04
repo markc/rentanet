@@ -209,7 +209,8 @@
             -webkit-text-fill-color: #BF0000 !important;
             -webkit-background-clip: unset !important;
             background-clip: unset !important;
-            font-weight: 700;
+            font-weight: 800;
+            margin-left: 0.1em;
         }
 
         .nav-right {
