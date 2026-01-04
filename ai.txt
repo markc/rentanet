@@ -38,15 +38,6 @@ ABN: 69 851 855 459
 
 ## Pricing
 
-Base price: $20/year per service (email forwarding, PHP & Static site, or IMAP mailbox)
-
-### Bulk Discounts
-- 1 item: $20/year
-- 5 items: $10/year each
-- 10 items: $7.20/year each
-- 20 items: $5.15/year each
-- 50 items: $3.30/year each
-
 ### VPS Hosting Tiers (Proxmox)
 - Lite (CT, 1GB RAM, 10GB storage): $72/year
 - Starter (VM, 1GB RAM, 20GB storage): $96/year
