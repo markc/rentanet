@@ -47,6 +47,20 @@ Base price: $20/year per service (email forwarding, PHP & Static site, or IMAP m
 - 20 items: $5.15/year each
 - 50 items: $3.30/year each
 
+### VPS Hosting Tiers (Proxmox)
+- Lite (CT, 1GB RAM, 10GB storage): $72/year
+- Starter (VM, 1GB RAM, 20GB storage): $96/year
+- Standard (VM, 2GB RAM, 40GB storage): $144/year
+- Pro (VM, 4GB RAM, 80GB storage): $192/year
+- BYO Maintenance: $120/year
+- Extra Storage: $10/GB/year
+
+CT = LXC Container (lightweight, shares host kernel, fast startup)
+VM = Virtual Machine (full isolation, dedicated kernel, run any OS)
+BYO = Bring your own VPS, we handle maintenance/updates/backups
+
+All tiers include: Debian/Ubuntu, managed updates, daily backups, SSL, email support
+
 ### Linux Support Rates
 - Quick questions: Free (phone/email)
 - Remote support: $60/hour via Zoom
