@@ -31,6 +31,7 @@ if ($event !== 'push') {
 
 // Run git pull
 chdir(__DIR__);
+putenv('HOME=/srv/renta.net');
 $output = [];
 $return = 0;
 exec('git pull 2>&1', $output, $return);
