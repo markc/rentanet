@@ -191,6 +191,7 @@
             font-size: 1.8rem;
             font-weight: 700;
             color: #ffffff;
+            -webkit-text-fill-color: #ffffff;
             text-decoration: none;
             letter-spacing: 1px;
             animation: logo-glow 3s ease-in-out infinite;
@@ -202,10 +203,8 @@
         }
 
         .logo span {
-            background: linear-gradient(135deg, var(--accent-light), var(--highlight));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #ef4444;
+            -webkit-text-fill-color: #ef4444;
         }
 
         .nav-right {
@@ -371,12 +370,8 @@
         }
 
         .hero h1 .gradient-text {
-            background: linear-gradient(135deg, var(--accent-light) 0%, var(--highlight) 50%, var(--accent-light) 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradient-shift 4s ease infinite;
+            color: #ef4444;
+            -webkit-text-fill-color: #ef4444;
         }
 
         @keyframes gradient-shift {
@@ -474,10 +469,8 @@
 
         .section-tag {
             display: inline-block;
-            background: linear-gradient(135deg, var(--accent), var(--highlight));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #ef4444;
+            -webkit-text-fill-color: #ef4444;
             font-weight: 600;
             font-size: 0.9rem;
             letter-spacing: 2px;
@@ -608,12 +601,9 @@
             font-family: "Quicksand", sans-serif;
             font-size: 4rem;
             font-weight: 700;
-            background: linear-gradient(135deg, var(--accent), var(--highlight));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #ef4444;
+            -webkit-text-fill-color: #ef4444;
             line-height: 1;
-            animation: price-pulse 2s ease-in-out infinite;
         }
 
         @keyframes price-pulse {
@@ -879,10 +869,8 @@
         }
 
         .footer-brand span {
-            background: linear-gradient(135deg, var(--accent-light), var(--highlight));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #ef4444;
+            -webkit-text-fill-color: #ef4444;
         }
 
         .footer-info {
@@ -1105,10 +1093,8 @@ html.light .content-section {
     margin-bottom: 1rem;
     color: var(--text-primary);
 .footer-col .footer-brand span {
-    background: linear-gradient(135deg, var(--accent-light), var(--highlight));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #ef4444;
+    -webkit-text-fill-color: #ef4444;
 
 /* Professional 4-column footer */
 .footer-main {
@@ -1134,10 +1120,8 @@ html.light .content-section {
 }
 
 .footer-col .footer-brand span {
-    background: linear-gradient(135deg, var(--accent-light), var(--highlight));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #ef4444;
+    -webkit-text-fill-color: #ef4444;
 }
 
 .footer-col h4 {
@@ -1259,8 +1243,6 @@ html nav:not(.scrolled) .nav-links a::after {
 }
 
 .hero .gradient-text {
-    background: linear-gradient(135deg, #f87171, #ef4444) !important;
-    -webkit-background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    background-clip: text !important;
+    color: #ef4444 !important;
+    -webkit-text-fill-color: #ef4444 !important;
 }
