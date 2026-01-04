@@ -193,7 +193,7 @@
             color: #ffffff;
             -webkit-text-fill-color: #ffffff;
             text-decoration: none;
-            letter-spacing: 1px;
+            letter-spacing: 0;
             animation: logo-glow 3s ease-in-out infinite;
         }
 
