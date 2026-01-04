@@ -1,0 +1,66 @@
+# RentaNet - Australian Web & Email Hosting
+
+Australian owned and operated since 1998.
+ABN: 69 851 855 459
+
+## Contact
+
+- Phone: 0419 530 037
+- Email: admin@renta.net
+- Hours: 10am - 6pm AEST
+- Webmail: https://mail.renta.net
+- Client Portal: https://my.spiderweb.com.au
+
+## Services
+
+### WordPress Hosting
+- Managed WordPress with daily backups
+- SSL certificates included
+- 99.9% uptime
+
+### Email Hosting
+- Custom domain email (you@yourdomain.com)
+- IMAP/POP3 access
+- Spam protection
+- Webmail included
+
+### Domain Names
+- .com.au from $12/year
+- .com from $20/year
+- Free DNS hosting
+
+### Linux Consulting
+- Server administration (Debian, Ubuntu, Alpine, CentOS, Rocky)
+- VPS/cloud provisioning and migration
+- Mail systems (Postfix, Dovecot, SPF/DKIM/DMARC)
+- Security hardening, firewall, SSL/TLS
+- CachyOS/KDE Plasma desktop support
+
+## Pricing
+
+Base price: $20/year per service (email forwarding, WordPress site, or IMAP mailbox)
+
+### Bulk Discounts
+- 1 item: $20/year
+- 5 items: $10/year each
+- 10 items: $7.20/year each
+- 20 items: $5.15/year each
+- 50 items: $3.30/year each
+
+### Linux Support Rates
+- Quick questions: Free (phone/email)
+- Remote support: $60/hour via Zoom
+- Installation help: $60 guided setup
+
+## Email Server Settings
+
+- IMAP: mail.renta.net, Port 993 (SSL)
+- SMTP: mail.renta.net, Port 465 (SSL)
+- Webmail: https://mail.renta.net
+
+## Technology Stack
+
+Web: Nginx, Apache, Caddy, PHP-FPM
+Database: MariaDB, PostgreSQL, SQLite, Redis
+DevOps: Docker, Git, CI/CD, Ansible
+DNS/Network: PowerDNS, WireGuard VPN, IPv4/IPv6, BGP
