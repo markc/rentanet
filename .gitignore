@@ -8,3 +8,5 @@ Thumbs.db
 .env
 phpinfo.php
 public/
+node_modules/
+package-lock.json
