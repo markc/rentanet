@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="RentaNet Linux Services - Expert Linux server administration, CachyOS desktop support, and system consulting for Australian businesses.">
+    <title>Linux Services - RentaNet</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/rentanet.css">
+    <style>
+        .install-guide { max-width: 800px; margin: 0 auto; }
+        .install-step { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; }
+        .install-step h3 { font-family: "Quicksand", sans-serif; font-size: 1.3rem; margin-bottom: 1rem; color: var(--accent-light); }
+        .install-step ol, .install-step ul { padding-left: 1.5rem; color: var(--text-secondary); }
+        .install-step li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .install-step p { color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem; }
+        .install-step code { background: var(--bg-tertiary); padding: 0.2rem 0.5rem; border-radius: 4px; font-family: monospace; color: var(--accent-light); }
+        .install-step strong { color: var(--text-primary); }
+        .warning-box { background: rgba(239, 68, 68, 0.1); border: 1px solid var(--accent); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; }
+        .warning-box p { color: var(--text-primary); margin: 0; }
+        .tip-box { background: rgba(34, 197, 94, 0.1); border: 1px solid #22c55e; border-radius: 12px; padding: 1rem 1.5rem; margin-top: 1rem; }
+        .tip-box p { color: var(--text-secondary); margin: 0; font-size: 0.95rem; }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+
+    <nav id="navbar">
+        <a href="/" class="logo">Renta<span>Net</span></a>
+        <div class="nav-right">
+            <ul class="nav-links">
+                <li><a href="/services/">Services</a></li>
+                <li><a href="/pricing/">Pricing</a></li>
+                <li><a href="/linux/">Linux</a></li>
+                <li><a href="/settings/">Settings</a></li>
+                <li><a href="https://mail.renta.net" target="_blank">Webmail</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle" title="Toggle theme" aria-label="Toggle dark/light mode">
+                <svg class="sun-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="5"/>
+                    <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                </svg>
+                <svg class="moon-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </button>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero hero-bg page-hero">
+        <div class="hero-content">
+            <div class="section-header">
+                <span class="section-tag">Expert Solutions</span>
+                <h1 class="section-title" style="font-size: clamp(2.5rem, 8vw, 4rem);">Linux Services</h1>
+                <p class="section-subtitle" style="color: rgba(255,255,255,0.9);">Professional server administration and desktop support with 25+ years experience</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="section-header" style="margin-bottom: 3rem;">
+            <span class="section-tag">Server Expertise</span>
+            <h2 class="section-title">Server Administration</h2>
+            <p class="section-subtitle">Enterprise-grade Linux server management</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <span class="service-icon">🐧</span>
+                <h3>Server Administration</h3>
+                <ul>
+                    <li>Debian & Ubuntu</li>
+                    <li>Alpine Linux</li>
+                    <li>CentOS & Rocky</li>
+                    <li>Security hardening</li>
+                </ul>
+            </div>
+            <div class="service-card reveal">
+                <span class="service-icon">☁️</span>
+                <h3>VPS & Cloud</h3>
+                <ul>
+                    <li>VPS provisioning</li>
+                    <li>Cloud migration</li>
+                    <li>Load balancing</li>
+                    <li>High availability</li>
+                </ul>
+            </div>
+            <div class="service-card reveal">
+                <span class="service-icon">📬</span>
+                <h3>Mail Systems</h3>
+                <ul>
+                    <li>Postfix & Dovecot</li>
+                    <li>SPF/DKIM/DMARC</li>
+                    <li>Spam filtering</li>
+                    <li>Mail migration</li>
+                </ul>
+            </div>
+            <div class="service-card reveal">
+                <span class="service-icon">🔒</span>
+                <h3>Security & Monitoring</h3>
+                <ul>
+                    <li>Firewall setup</li>
+                    <li>Intrusion detection</li>
+                    <li>SSL/TLS certificates</li>
+                    <li>Backup solutions</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-image-section">
+        <div class="section-header">
+            <span class="section-tag">Desktop Support</span>
+            <h2 class="section-title">CachyOS & KDE Plasma</h2>
+            <p class="section-subtitle">Cutting-edge Linux desktop support for power users</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div style="max-width: 900px; margin: 0 auto;">
+            <div class="service-card reveal" style="margin-bottom: 2rem; padding: 2.5rem;">
+                <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">About CachyOS</h3>
+                <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
+                    CachyOS is a lightweight, Arch Linux-based distribution that emphasizes performance, security, and user-friendliness. 
+                    Built with optimized kernels and modern tooling, it delivers exceptional speed while maintaining full compatibility 
+                    with the extensive Arch User Repository (AUR). Combined with KDE Plasma, it offers a sleek and highly customizable 
+                    desktop experience perfect for both professionals and enthusiasts.
+                </p>
+                <p style="color: var(--text-secondary); line-height: 1.8;">
+                    We provide full support for CachyOS with KDE Plasma desktop environments, helping you get the most out of your 
+                    Linux workstation with performance tuning, software installation, and system optimization.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-header" style="margin: 3rem 0;">
+            <h3 class="section-title" style="font-size: 1.8rem;">Why Use a Linux Desktop?</h3>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <span class="service-icon">💰</span>
+                <h3>Cost-Effective</h3>
+                <ul>
+                    <li>Free to download and use</li>
+                    <li>No licensing fees</li>
+                    <li>Runs on older hardware</li>
+                </ul>
+            </div>
+            <div class="service-card reveal">
+                <span class="service-icon">🔓</span>
+                <h3>Open Source</h3>
+                <ul>
+                    <li>Full transparency</li>
+                    <li>Community-driven</li>
+                    <li>Endless customization</li>
+                </ul>
+            </div>
+            <div class="service-card reveal">
+                <span class="service-icon">🛡️</span>
+                <h3>Security & Privacy</h3>
+                <ul>
+                    <li>Built-in protections</li>
+                    <li>Less malware targeted</li>
+                    <li>No user tracking</li>
+                </ul>
+            </div>
+            <div class="service-card reveal">
+                <span class="service-icon">⚡</span>
+                <h3>Performance</h3>
+                <ul>
+                    <li>Efficient resource use</li>
+                    <li>Optimized kernels</li>
+                    <li>No bloatware</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-image-section">
+        <div class="section-header">
+            <span class="section-tag">Step by Step</span>
+            <h2 class="section-title">How to Install CachyOS</h2>
+            <p class="section-subtitle">Simple guide to replace Windows with CachyOS</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="install-guide">
+            <div class="warning-box reveal">
+                <p><strong>⚠️ Back up everything important</strong> — photos, documents, anything you want to keep. Copy them to an external drive or cloud storage. Installing CachyOS will erase Windows.</p>
+            </div>
+
+            <div class="install-step reveal">
+                <h3>Before You Start</h3>
+                <p><strong>You'll need:</strong></p>
+                <ul>
+                    <li>A USB stick (8GB or larger)</li>
+                    <li>About 30-60 minutes</li>
+                </ul>
+            </div>
+
+            <div class="install-step reveal">
+                <h3>Step 1: Download CachyOS</h3>
+                <ol>
+                    <li>Go to <strong>cachyos.org</strong></li>
+                    <li>Click <strong>Download</strong></li>
+                    <li>Choose <strong>KDE Plasma</strong> (it's the most Windows-like)</li>
+                    <li>Save the <code>.iso</code> file somewhere easy to find</li>
+                </ol>
+                <div class="tip-box">
+                    <p><strong>Tip:</strong> The file will save to your <strong>Downloads</strong> folder. It'll be called something like <code>cachyos-kde-linux-250601.iso</code></p>
+                </div>
+            </div>
+
+            <div class="install-step reveal">
+                <h3>Step 2: Create a Bootable USB</h3>
+                <ol>
+                    <li>Download <strong>Rufus</strong> from rufus.ie (it's free)</li>
+                    <li>Plug in your USB stick</li>
+                    <li>Open Rufus</li>
+                    <li>Click <strong>SELECT</strong> and choose the CachyOS <code>.iso</code> you downloaded</li>
+                    <li>Click <strong>START</strong> and accept any prompts</li>
+                    <li>Wait for it to finish (a few minutes)</li>
+                </ol>
+            </div>
+
+            <div class="install-step reveal">
+                <h3>Step 3: Boot from the USB</h3>
+                <ol>
+                    <li>Restart your computer with the USB plugged in</li>
+                    <li>As it starts, repeatedly tap <strong>F12</strong>, <strong>F2</strong>, or <strong>Del</strong> (depends on your computer) to get the boot menu</li>
+                    <li>Select your USB stick from the list</li>
+                    <li>CachyOS will load — this takes a minute or two</li>
+                </ol>
+            </div>
+
+            <div class="install-step reveal">
+                <h3>Step 4: Install CachyOS</h3>
+                <ol>
+                    <li>Once loaded, click <strong>Install CachyOS</strong></li>
+                    <li>Choose your language and location</li>
+                    <li>Choose your keyboard layout</li>
+                    <li>When asked about disk/partitioning, select <strong>Erase disk</strong> (the simple option)</li>
+                    <li>Create your username and password</li>
+                    <li>Click through to start installation</li>
+                    <li>Wait 10-20 minutes for it to finish</li>
+                    <li>Click <strong>Restart</strong> and remove the USB when prompted</li>
+                </ol>
+            </div>
+
+            <div class="install-step reveal">
+                <h3>Step 5: First Boot</h3>
+                <p>Your computer will restart into CachyOS. Log in with the password you created.</p>
+                <p><strong>Finding your way around:</strong></p>
+                <ul>
+                    <li><strong>Bottom-left corner</strong> = Start menu equivalent</li>
+                    <li><strong>Dolphin</strong> = File manager (like File Explorer)</li>
+                    <li><strong>Firefox</strong> = Web browser</li>
+                    <li><strong>Software center</strong> = For installing new apps</li>
+                </ul>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Need help with installation? We're here for you.</p>
+                <a href="tel:0419530037" class="cta-btn primary">📱 Call 0419 530 037</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-image-section">
+        <div class="section-header">
+            <span class="section-tag">Technologies</span>
+            <h2 class="section-title">Our Stack</h2>
+            <p class="section-subtitle">Modern, battle-tested open source technologies</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <span class="service-icon">🌐</span>
+                <h3>Web Servers</h3>
+                <ul>
+                    <li>Nginx</li>
+                    <li>Apache</li>
+                    <li>Caddy</li>
+                    <li>PHP-FPM</li>
+                </ul>
+            </div>
+            <div class="service-card reveal">
+                <span class="service-icon">🗄️</span>
+                <h3>Databases</h3>
+                <ul>
+                    <li>MariaDB / MySQL</li>
+                    <li>PostgreSQL</li>
+                    <li>SQLite</li>
+                    <li>Redis</li>
+                </ul>
+            </div>
+            <div class="service-card reveal">
+                <span class="service-icon">🔧</span>
+                <h3>DevOps</h3>
+                <ul>
+                    <li>Docker containers</li>
+                    <li>Git workflows</li>
+                    <li>CI/CD pipelines</li>
+                    <li>Ansible automation</li>
+                </ul>
+            </div>
+            <div class="service-card reveal">
+                <span class="service-icon">🌍</span>
+                <h3>DNS & Networking</h3>
+                <ul>
+                    <li>PowerDNS</li>
+                    <li>WireGuard VPN</li>
+                    <li>IPv4 & IPv6</li>
+                    <li>BGP peering</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-image-section">
+        <div class="section-header">
+            <span class="section-tag">Get Help</span>
+            <h2 class="section-title">Linux Support Options</h2>
+            <p class="section-subtitle">From quick questions to full remote assistance</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="pricing-grid" style="max-width: 900px; margin: 0 auto;">
+            <div class="pricing-card reveal">
+                <h3>Quick Questions</h3>
+                <div class="price">Free</div>
+                <div class="period">Phone or email</div>
+            </div>
+            <div class="pricing-card reveal">
+                <h3>Remote Support</h3>
+                <div class="price">$60</div>
+                <div class="period">per hour via Zoom</div>
+            </div>
+            <div class="pricing-card reveal">
+                <h3>Installation Help</h3>
+                <div class="price">$60</div>
+                <div class="period">guided setup</div>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="mailto:admin@renta.net" class="cta-btn primary">✉️ Email for Support</a>
+        </div>
+    </section>
+
+    <footer class="footer-main">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="footer-brand">Renta<span>Net</span></div>
+                <p>Australian owned and operated since 1998</p>
+                <p style="margin-top: 0.5rem;">ABN: 69 851 855 459</p>
+            </div>
+            <div class="footer-col">
+                <h4>📞 Contact</h4>
+                <div class="contact-line">
+                    <span class="emoji">📱</span>
+                    <a href="tel:0419530037">0419 530 037</a>
+                </div>
+                <div class="contact-line">
+                    <span class="emoji">✉️</span>
+                    <a href="mailto:admin@renta.net">admin@renta.net</a>
+                </div>
+                <div class="contact-line">
+                    <span class="emoji">🕐</span>
+                    <span>10am – 6pm AEST</span>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>🔗 Quick Links</h4>
+                <a href="/services/">Services</a>
+                <a href="/pricing/">Pricing</a>
+                <a href="/linux/">Linux Support</a>
+                <a href="/settings/">Email Settings</a>
+            </div>
+            <div class="footer-col">
+                <h4>🌐 Resources</h4>
+                <a href="https://mail.renta.net" target="_blank">Webmail</a>
+                <a href="https://my.spiderweb.com.au" target="_blank">Client Portal</a>
+                <a href="https://spiderweb.com.au" target="_blank">Spiderweb Cloud</a>
+                <a href="https://spiderweb.com.au/privacy-policy" target="_blank">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            &copy; 2025 RentaNet. Proudly serving businesses and individuals across Australia.
+        </div>
+    </footer>
+
+    <script src="/rentanet.js"></script>
+</body>
+</html>

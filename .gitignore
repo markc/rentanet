@@ -1,0 +1,10 @@
+.DS_Store
+Thumbs.db
+*.log
+*.swp
+*~
+.idea/
+.vscode/
+.env
+phpinfo.php
+public/
