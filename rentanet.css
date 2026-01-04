@@ -3,7 +3,7 @@
             --bg-primary: #0a0a0f;
             --bg-secondary: #12121a;
             --bg-tertiary: #1a1a24;
-            --accent: #ef4444;
+            --accent: #BF0000;
             --accent-light: #f87171;
             --accent-glow: rgba(239, 68, 68, 0.4);
             --highlight: #bc0000;
@@ -24,7 +24,7 @@
             --bg-secondary: #faf8f8;
             --bg-tertiary: #f5f0f0;
             --accent: #dc2626;
-            --accent-light: #ef4444;
+            --accent-light: #BF0000;
             --accent-glow: rgba(220, 38, 38, 0.3);
             --highlight: #b91c1c;
             --highlight-light: #dc2626;
@@ -45,7 +45,7 @@
                 --bg-secondary: #faf8f8;
                 --bg-tertiary: #f5f0f0;
                 --accent: #dc2626;
-                --accent-light: #ef4444;
+                --accent-light: #BF0000;
                 --accent-glow: rgba(220, 38, 38, 0.3);
                 --highlight: #b91c1c;
                 --highlight-light: #dc2626;
@@ -65,7 +65,7 @@
             --bg-primary: #0a0a0f;
             --bg-secondary: #12121a;
             --bg-tertiary: #1a1a24;
-            --accent: #ef4444;
+            --accent: #BF0000;
             --accent-light: #f87171;
             --accent-glow: rgba(239, 68, 68, 0.4);
             --highlight: #bc0000;
@@ -203,8 +203,8 @@
         }
 
         .logo span {
-            color: #ef4444;
-            -webkit-text-fill-color: #ef4444;
+            color: #BF0000;
+            -webkit-text-fill-color: #BF0000;
         }
 
         .nav-right {
@@ -237,13 +237,13 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: #ef4444;
+            background: #BF0000;
             transition: width 0.3s ease;
             border-radius: 2px;
         }
 
         .nav-links a:hover {
-            color: #ef4444;
+            color: #BF0000;
         }
 
         .nav-links a:hover::after {
@@ -370,8 +370,8 @@
         }
 
         .hero h1 .gradient-text {
-            color: #ef4444;
-            -webkit-text-fill-color: #ef4444;
+            color: #BF0000;
+            -webkit-text-fill-color: #BF0000;
         }
 
         @keyframes gradient-shift {
@@ -428,7 +428,7 @@
         }
 
         .cta-btn.primary {
-            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            background: #BF0000;
             color: white;
             box-shadow: 0 4px 20px var(--accent-glow);
         }
@@ -469,8 +469,8 @@
 
         .section-tag {
             display: inline-block;
-            color: #ef4444;
-            -webkit-text-fill-color: #ef4444;
+            color: #BF0000;
+            -webkit-text-fill-color: #BF0000;
             font-weight: 600;
             font-size: 0.9rem;
             letter-spacing: 2px;
@@ -528,7 +528,7 @@
             left: 0;
             right: 0;
             height: 3px;
-            background: linear-gradient(90deg, var(--accent), var(--highlight));
+            background: #BF0000;
             opacity: 0;
             transition: opacity 0.3s ease;
         }
@@ -601,8 +601,8 @@
             font-family: "Quicksand", sans-serif;
             font-size: 4rem;
             font-weight: 700;
-            color: #ef4444;
-            -webkit-text-fill-color: #ef4444;
+            color: #BF0000;
+            -webkit-text-fill-color: #BF0000;
             line-height: 1;
         }
 
@@ -704,7 +704,7 @@
         }
 
         .bulk-table h4 {
-            background: linear-gradient(135deg, var(--accent), var(--highlight));
+            background: #BF0000;
             padding: 1rem;
             font-family: "Quicksand", sans-serif;
             font-weight: 600;
@@ -869,8 +869,8 @@
         }
 
         .footer-brand span {
-            color: #ef4444;
-            -webkit-text-fill-color: #ef4444;
+            color: #BF0000;
+            -webkit-text-fill-color: #BF0000;
         }
 
         .footer-info {
@@ -1093,8 +1093,8 @@ html.light .content-section {
     margin-bottom: 1rem;
     color: var(--text-primary);
 .footer-col .footer-brand span {
-    color: #ef4444;
-    -webkit-text-fill-color: #ef4444;
+    color: #BF0000;
+    -webkit-text-fill-color: #BF0000;
 
 /* Professional 4-column footer */
 .footer-main {
@@ -1120,8 +1120,8 @@ html.light .content-section {
 }
 
 .footer-col .footer-brand span {
-    color: #ef4444;
-    -webkit-text-fill-color: #ef4444;
+    color: #BF0000;
+    -webkit-text-fill-color: #BF0000;
 }
 
 .footer-col h4 {
@@ -1224,11 +1224,11 @@ html nav:not(.scrolled) .nav-links a {
 }
 
 html nav:not(.scrolled) .nav-links a:hover {
-    color: #ef4444 !important;
+    color: #BF0000 !important;
 }
 
 html nav:not(.scrolled) .nav-links a::after {
-    background: #ef4444 !important;
+    background: #BF0000 !important;
 }
 
 /* Force white hero/page-hero text regardless of theme */
@@ -1243,6 +1243,6 @@ html nav:not(.scrolled) .nav-links a::after {
 }
 
 .hero .gradient-text {
-    color: #ef4444 !important;
-    -webkit-text-fill-color: #ef4444 !important;
+    color: #BF0000 !important;
+    -webkit-text-fill-color: #BF0000 !important;
 }

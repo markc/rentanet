@@ -10,3 +10,5 @@ phpinfo.php
 public/
 node_modules/
 package-lock.json
+screenshot.js
+screenshot.png
