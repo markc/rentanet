@@ -43,21 +43,17 @@ Static files served directly - no build step required.
 1. Clone the repo on the server:
    ```bash
    cd /srv/renta.net/web/app
-   git clone git@github.com:YOUR_ORG/rentanet.git public
+   git clone git@github.com:markc/rentanet.git public
    ```
 
-2. Create `.env` from example:
+2. Create `.env` with the webhook secret (must match GitHub webhook config):
    ```bash
    cd public
    cp .env.example .env
-   sed -i "s/generate-with-openssl-rand-hex-32/$(openssl rand -hex 32)/" .env
+   nano .env  # set DEPLOY_SECRET to match webhook
    ```
 
-3. Configure GitHub webhook:
-   - URL: `https://renta.net/deploy.php`
-   - Content type: `application/json`
-   - Secret: value from `.env` (cat .env)
-   - Events: Just the push event
+3. GitHub webhook is pre-configured (push events to `https://renta.net/deploy.php`)
 
 ### Workflow
 
