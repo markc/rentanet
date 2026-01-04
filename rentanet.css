@@ -190,7 +190,7 @@
             font-family: "Quicksand", sans-serif;
             font-size: 1.8rem;
             font-weight: 700;
-            color: var(--text-primary);
+            color: #ffffff;
             text-decoration: none;
             letter-spacing: 1px;
             animation: logo-glow 3s ease-in-out infinite;
@@ -490,6 +490,11 @@
             font-size: clamp(2rem, 5vw, 3rem);
             font-weight: 700;
             margin-bottom: 1rem;
+        }
+
+        .hero-bg .section-title,
+        .page-hero .section-title {
+            color: #ffffff !important;
         }
 
         .section-subtitle {
