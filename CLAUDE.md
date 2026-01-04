@@ -14,6 +14,11 @@ This is a vanilla HTML/CSS/JavaScript static site with no build system or framew
 - **rentanet.css** - All styles (CSS custom properties for theming, responsive design)
 - **rentanet.js** - Theme toggle, particles animation, scroll effects, mobile menu
 - **Subpages** - Each subdirectory (`/services/`, `/pricing/`, `/linux/`, `/settings/`) contains its own `index.html`
+- **CONTEXT.txt** - AI-readable site summary (served as `text/plain` at `https://renta.net/CONTEXT.txt`)
+
+## CONTEXT.txt
+
+Machine-readable summary of site content for AI agents. Contains business info, services, pricing, contact details, and technical specs. Served as `text/plain` so remote AI clients can fetch full site context without parsing HTML.
 
 ## Key Patterns
 
