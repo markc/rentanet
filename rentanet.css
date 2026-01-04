@@ -1219,34 +1219,38 @@ html.light .content-section {
 }
 
 /* Nav over dark hero background (before scroll) */
-nav:not(.scrolled) .logo {
+html nav:not(.scrolled) .logo {
     color: #ffffff !important;
 }
 
-nav:not(.scrolled) .logo span {
-    -webkit-text-fill-color: #ffffff !important;
+html nav:not(.scrolled) .logo span {
     background: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: #ffffff !important;
+    background-clip: unset !important;
 }
 
-nav:not(.scrolled) .nav-links a {
+html nav:not(.scrolled) .nav-links a {
     color: #ffffff !important;
 }
 
-nav:not(.scrolled) .nav-links a:hover {
+html nav:not(.scrolled) .nav-links a:hover {
     color: #ef4444 !important;
 }
 
-nav:not(.scrolled) .nav-links a::after {
-    background: #ef4444;
+html nav:not(.scrolled) .nav-links a::after {
+    background: #ef4444 !important;
 }
 
-/* Force white hero text regardless of theme */
+/* Force white hero/page-hero text regardless of theme */
 .hero h1,
-.hero h1 span:not(.gradient-text),
 .hero p,
-.hero .section-title,
-.page-hero .section-title {
+.page-hero .section-title,
+.page-hero .section-subtitle,
+.hero-bg .section-title,
+.hero-bg .section-subtitle {
     color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
 }
 
 .hero .gradient-text {
