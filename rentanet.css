@@ -1218,9 +1218,8 @@ html.light .content-section {
     }
 }
 
-/* Force white nav/logo over dark hero background (before scroll) */
-nav:not(.scrolled) .logo,
-nav:not(.scrolled) .nav-links a {
+/* Nav over dark hero background (before scroll) */
+nav:not(.scrolled) .logo {
     color: #ffffff !important;
 }
 
@@ -1229,10 +1228,24 @@ nav:not(.scrolled) .logo span {
     background: none !important;
 }
 
+nav:not(.scrolled) .nav-links a {
+    color: #ffffff !important;
+}
+
+nav:not(.scrolled) .nav-links a:hover {
+    color: #ef4444 !important;
+}
+
+nav:not(.scrolled) .nav-links a::after {
+    background: #ef4444;
+}
+
 /* Force white hero text regardless of theme */
 .hero h1,
 .hero h1 span:not(.gradient-text),
-.hero p {
+.hero p,
+.hero .section-title,
+.page-hero .section-title {
     color: #ffffff !important;
 }
 
