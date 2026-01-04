@@ -13,8 +13,8 @@ ABN: 69 851 855 459
 
 ## Services
 
-### WordPress Hosting
-- Managed WordPress with daily backups
+### PHP & Static Hosting
+- Managed PHP & Static with daily backups
 - SSL certificates included
 - 99.9% uptime
 
@@ -38,7 +38,7 @@ ABN: 69 851 855 459
 
 ## Pricing
 
-Base price: $20/year per service (email forwarding, WordPress site, or IMAP mailbox)
+Base price: $20/year per service (email forwarding, PHP & Static site, or IMAP mailbox)
 
 ### Bulk Discounts
 - 1 item: $20/year
