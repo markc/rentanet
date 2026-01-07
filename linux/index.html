@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,6 +24,18 @@
         .tip-box { background: rgba(34, 197, 94, 0.1); border: 1px solid #22c55e; border-radius: 12px; padding: 1rem 1.5rem; margin-top: 1rem; }
         .tip-box p { color: var(--text-secondary); margin: 0; font-size: 0.95rem; }
     </style>
+    <!-- Theme init in head to prevent flash -->
+    <script>
+        (function() {
+            const stored = localStorage.getItem("renta-theme");
+            if (stored) {
+                document.documentElement.className = stored;
+            } else {
+                const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+                document.documentElement.className = prefersDark ? "dark" : "light";
+            }
+        })();
+    </script>
 </head>
 <body>
     <div class="particles" id="particles"></div>
@@ -397,7 +409,7 @@
             </div>
         </div>
         <div class="footer-copyright">
-            &copy; 2025 RentaNet. Proudly serving businesses and individuals across Australia.
+            © <span id="year"></span> RentaNet. Proudly serving businesses and individuals across Australia.
         </div>
     </footer>
 
