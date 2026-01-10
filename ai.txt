@@ -1,4 +1,4 @@
-# RentaNet - Web & Email Hosting
+# RentaNet - Australian Web & Email Hosting
 
 Australian owned and operated since 1998.
 ABN: 69 851 855 459
@@ -8,64 +8,159 @@ ABN: 69 851 855 459
 - Phone: 0419 530 037
 - Email: admin@renta.net
 - Hours: 10am - 6pm AEST
-- Webmail: https://mail.renta.net
 - Client Portal: https://my.spiderweb.com.au
+- Spiderweb Cloud: https://spiderweb.com.au
 
-## Services
+## Hosting Platforms
 
-### PHP & Static Hosting
-- Managed PHP & Static with daily backups
-- SSL certificates included
-- 99.9% uptime
+### Alpine Linux LXC Containers
+- Ultra-lightweight (~130MB disk footprint)
+- 128MB RAM minimum, 1-3% overhead vs bare metal
+- Instant deployment on Proxmox VE
+- Ideal for static sites, PHP applications, email hosting
 
-### Email Hosting
-- Custom domain email (you@yourdomain.com)
-- IMAP/POP3 access
-- Spam protection
-- Webmail included
+### Full Virtual Machines (Debian 12)
+- Dedicated kernel with complete isolation
+- WordPress optimized
+- Custom OS support available
+- Suitable for demanding applications
 
-### Domain Names
-- .com.au from $12/year
-- .com from $20/year
-- Free DNS hosting
+### Combined Web + Email
+- Single server for both services
+- Shared SSL certificate
+- Simplified management
+- Cost-effective bundle
 
-### Linux Consulting
-- Server administration (Debian, Ubuntu, Alpine, CentOS, Rocky)
-- VPS/cloud provisioning and migration
-- Mail systems (Postfix, Dovecot, SPF/DKIM/DMARC)
-- Security hardening, firewall, SSL/TLS
-- CachyOS/KDE Plasma desktop support
+## Hosting Plans
 
-## Pricing
+### Business Class Hosting
+- Lite: $79/year — Alpine LXC, 1GB RAM, 10GB NVMe
+- Small: $149/year — Debian VM, 2GB RAM, 20GB NVMe
+- Medium: $199/year — Debian VM, 4GB RAM, 40GB NVMe
+- Large: $249/year — Debian VM, 8GB RAM, 80GB NVMe
+- Managed BYO: $120/year + your VPS cost
 
-### VPS Hosting Tiers (Proxmox)
-- Lite (CT, 1GB RAM, 10GB storage): $72/year
-- Starter (VM, 1GB RAM, 20GB storage): $96/year
-- Standard (VM, 2GB RAM, 40GB storage): $144/year
-- Pro (VM, 4GB RAM, 80GB storage): $192/year
-- BYO Maintenance: $120/year
-- Extra Storage: $10/GB/year
+### Resource Add-ons
+- +1GB RAM: $20/year
+- +1 Dedicated IP: $20/year
+- +10GB NVMe Storage: $20/year
+- +25GB HDD Storage: $20/year
 
-CT = LXC Container (lightweight, shares host kernel, fast startup)
-VM = Virtual Machine (full isolation, dedicated kernel, run any OS)
-BYO = Bring your own VPS, we handle maintenance/updates/backups
+### What's Included
+- Australian datacenter (Sydney)
+- NVMe SSD storage
+- Daily automated backups
+- 99.9% uptime SLA
+- Let's Encrypt SSL certificates with auto-renewal
+- SSH key authentication
+- Regular security updates
+- Email support (10am-6pm AEST)
+- 28+ years Linux experience
 
-All tiers include: Debian/Ubuntu, managed updates, daily backups, SSL, email support
+## Software Stack
+
+### Web Services
+- Nginx + PHP-FPM (PHP 8.3 with OPcache)
+- Laravel & Symfony ready
+- Static HTML/CSS/JS hosting
+
+### Email Services
+- Postfix (SMTP)
+- Dovecot (IMAP)
+- SpamProbe (spam filtering)
+- SPF/DKIM/DMARC configured
+
+### Databases
+- MariaDB / MySQL
+- PostgreSQL
+- SQLite
+- Redis
+
+### Operating Systems
+- Debian 12 (Bookworm) for VMs
+- Alpine Linux for containers
+
+## Linux Consulting Services
+
+### Server Administration
+- Debian, Ubuntu, Alpine, CentOS, Rocky Linux
+- VPS provisioning and cloud migration
+- Load balancing and high availability
+- Security hardening and firewall setup
+- Intrusion detection and monitoring
+- SSL/TLS certificate management
+- Backup solutions
+
+### DevOps
+- Docker containers
+- Git workflows
+- CI/CD pipelines
+- Ansible automation
+
+### DNS & Networking
+- PowerDNS
+- WireGuard VPN
+- IPv4 & IPv6
+- BGP peering
 
 ### Linux Support Rates
 - Quick questions: Free (phone/email)
 - Remote support: $60/hour via Zoom
-- Installation help: $60 guided setup
+- Installation help: $60/hour guided setup
 
-## Email Server Settings
+## CachyOS Desktop Support
 
-- IMAP: mail.renta.net, Port 993 (SSL)
-- SMTP: mail.renta.net, Port 465 (SSL)
-- Webmail: https://mail.renta.net
+We recommend and support CachyOS with KDE Plasma for Linux desktop users.
 
-## Technology Stack
+### Why CachyOS?
+- Arch Linux-based with performance focus
+- Packages compiled with x86-64-v3/v4 instruction sets
+- LTO, PGO, and BOLT optimizations for faster performance
+- Full Arch User Repository (AUR) compatibility
+- Runs beautifully on older hardware
+- No telemetry, no mandatory cloud accounts
+- Privacy-respecting by design
 
-Web: Nginx, Apache, Caddy, PHP-FPM
-Database: MariaDB, PostgreSQL, SQLite, Redis
-DevOps: Docker, Git, CI/CD, Ansible
-DNS/Network: PowerDNS, WireGuard VPN, IPv4/IPv6, BGP
+### KDE Plasma 6.5 Desktop
+- Wayland by default (82% adoption)
+- Familiar Windows-like interface
+- HDR and multi-monitor support
+- Automatic light/dark theme switching
+- Fingerprint authentication
+- Floating panels and virtual desktops
+- Extensive customization options
+
+### ZFS Filesystem Support
+- Available directly from Calamares graphical installer
+- Built-in RAID with self-healing (RAID-Z)
+- Instant snapshots using copy-on-write
+- Transparent compression
+- ARC cache for fast read times
+- System rollback capability
+
+### Why Switch from Windows?
+- Windows 11 hardware requirements leave older PCs behind
+- No Microsoft data collection or forced updates
+- No licensing fees or subscriptions
+- Thousands of free applications
+- Familiar keyboard shortcuts work
+- Files transfer seamlessly
+
+## Domain Names
+
+- .com.au from $12/year
+- .com from $20/year
+- Free DNS hosting included
+
+## Infrastructure
+
+- Powered by Proxmox VE virtualization
+- Australian datacenter (Sydney)
+- BinaryLane VPS partnership available
+- Enterprise-grade infrastructure
+
+## About
+
+RentaNet provides secure, cost-effective web and email hosting for Australian businesses and individuals. No complexity, no hidden fees — just straightforward hosting that works. With 28+ years of Linux experience, we offer expert support from someone who actually knows the systems inside and out.
+
+Website: https://renta.net
