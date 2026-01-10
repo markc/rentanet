@@ -552,7 +552,7 @@ section {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
 }
 
@@ -562,7 +562,7 @@ section {
     background: var(--glass);
     backdrop-filter: blur(10px);
     border: 1px solid var(--glass-border);
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: 20px;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
