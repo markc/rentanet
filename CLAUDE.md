@@ -1,65 +1,57 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Project guidance for Claude Code when working with this repository.
 
 ## Project Overview
 
-RentaNet is a static marketing website for an Australian web and email hosting company. The site promotes WordPress hosting, email services, domain registration, and Linux consulting services.
+RentaNet is a static marketing website for an Australian web and email hosting company (renta.net). Promotes PHP/static hosting, email services, domain registration, and Linux consulting.
 
-## Architecture
+## File Structure
 
-This is a vanilla HTML/CSS/JavaScript static site with no build system or framework:
-
-- **index.html** - Homepage
-- **rentanet.css** - All styles (CSS custom properties for theming, responsive design)
-- **rentanet.js** - Theme toggle, particles animation, scroll effects, mobile menu
-- **Subpages** - Each subdirectory (`/services/`, `/pricing/`, `/linux/`, `/settings/`) contains its own `index.html`
-- **ai.txt** - AI-readable site summary (served as `text/plain` at `https://renta.net/ai.txt`)
-
-## ai.txt
-
-Like `robots.txt` but for AI agents. Machine-readable summary of site content containing business info, services, pricing, contact details, and technical specs. Served as `text/plain` so any AI client can fetch full site context without parsing HTML.
+```
+rentanet/
+├── index.html          # Homepage
+├── rentanet.css        # All styles (CSS custom properties, responsive)
+├── rentanet.js         # Theme toggle, particles, scroll effects, mobile menu
+├── ai.txt              # AI-readable site summary (like robots.txt for AI agents)
+├── deploy.php          # Webhook handler for auto-deploy
+├── Server_Room_Dark.webp  # Hero background image
+├── services/index.html # Services page
+├── pricing/index.html  # Pricing page
+├── linux/index.html    # Linux support page
+├── settings/index.html # Email settings page
+└── .env.example        # Webhook secret template
+```
 
 ## Key Patterns
 
 ### Theming
-- Dark mode is default (`html.dark` class)
-- Theme toggled via JavaScript, persisted to localStorage (`renta-theme` key)
-- CSS uses custom properties (e.g., `--bg-primary`, `--accent`, `--text-primary`) for theme switching
-- System preference (`prefers-color-scheme`) respected when no stored preference
+- Dark mode default (`html.dark` class)
+- Theme persisted to localStorage (`renta-theme` key)
+- CSS custom properties: `--bg-primary`, `--accent`, `--text-primary`, etc.
+- Respects `prefers-color-scheme` when no stored preference
+
+### Styling
+- Glass morphism via `backdrop-filter` and semi-transparent backgrounds
+- Brand color: `#BF0000` (dark red)
+- Responsive breakpoints: 1024px, 900px, 768px, 600px
+- No build step - vanilla HTML/CSS/JS
 
 ### Shared Components
-- Navigation, footer, and particle effects are duplicated in each HTML file (no templating)
-- All pages link to the same `/rentanet.css` and `/rentanet.js`
-- Background image: `Server_Room_Dark.webp` used for hero and section backgrounds
+- Navigation, footer, particles duplicated in each HTML file (no templating)
+- All pages link to `/rentanet.css` and `/rentanet.js`
 
-### CSS Architecture
-- Glass morphism effects using `backdrop-filter` and semi-transparent backgrounds
-- CSS animations for particles, gradients, hover effects
-- Responsive breakpoints at 1024px, 768px, 900px, 600px
-- Brand color: `#BF0000` (dark red) used consistently
+## Development
+
+```bash
+# Local dev server
+python -m http.server 8080
+# or
+npx serve -p 8080
+```
 
 ## Deployment
 
-Static files served directly - no build step required.
+Push to `main` branch triggers GitHub webhook to `https://renta.net/deploy.php` which runs `git pull`.
 
-### Server Setup (mrn:/srv/renta.net/web/app/public)
-
-1. Clone the repo on the server:
-   ```bash
-   cd /srv/renta.net/web/app
-   git clone git@github.com:markc/rentanet.git public
-   ```
-
-2. Create `.env` with the webhook secret (must match GitHub webhook config):
-   ```bash
-   cd public
-   cp .env.example .env
-   nano .env  # set DEPLOY_SECRET to match webhook
-   ```
-
-3. GitHub webhook is pre-configured (push events to `https://renta.net/deploy.php`)
-
-### Workflow
-
-Push to main branch -> GitHub sends webhook -> `deploy.php` runs `git pull` -> site updated
+Server path: `mrn:/srv/renta.net/web/app/public`
