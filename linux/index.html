@@ -138,26 +138,41 @@
     <section class="content-section">
         <div style="max-width: 1280px; margin: 0 auto;">
             <div class="service-card reveal" style="margin-bottom: 2rem; padding: 2.5rem;">
-                <h3 style="font-size: 1.5rem; margin-bottom: 1rem;"><i data-lucide="terminal" class="lucide-icon" style="width: 1.5em; height: 1.5em; color: var(--accent); vertical-align: -0.3em;"></i> About CachyOS</h3>
+                <span class="service-icon"><i data-lucide="terminal" class="lucide-icon"></i></span>
+                <h3>About CachyOS</h3>
                 <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
                     <strong>Ready to break free from Windows?</strong> CachyOS is a lightweight, Arch Linux-based distribution that emphasizes performance, security, and user-friendliness.
                     Built with optimized kernels and modern tooling, it delivers exceptional speed while maintaining full compatibility
-                    with the extensive Arch User Repository (AUR). Combined with KDE Plasma, it offers a sleek and highly customizable
-                    desktop experience that feels familiar to Windows users while being vastly more powerful.
+                    with the extensive Arch User Repository (AUR). All packages are compiled with x86-64-v3/v4 instruction sets and LTO optimization,
+                    with core packages further enhanced using PGO and BOLT — resulting in measurably faster performance than generic Linux distributions.
                 </p>
                 <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
                     <strong>Why make the switch?</strong> Windows 11's hardware requirements have left millions of perfectly good computers behind.
                     Microsoft's aggressive data collection, forced updates, and built-in advertising have frustrated users worldwide.
                     Meanwhile, CachyOS runs beautifully on older hardware, respects your privacy completely, and puts you in control of your own computer.
+                    No telemetry, no mandatory cloud accounts, no subscriptions — just a fast, stable operating system that works for you.
                 </p>
                 <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
-                    <strong>It's easier than you think.</strong> Modern Linux distributions like CachyOS install in under an hour and come with everything you need:
-                    web browsing, office documents, email, photo editing, and thousands of free applications. No subscriptions, no licensing fees, no bloatware.
+                    <strong>KDE Plasma: The modern desktop.</strong> We recommend the KDE Plasma edition of CachyOS — now at version 6.5, it's the most polished and feature-rich
+                    Linux desktop available. Plasma offers a familiar Windows-like experience with a taskbar, start menu, and system tray, but with far greater customization.
+                    Wayland is now the default display protocol, bringing smooth animations, HDR support, and excellent multi-monitor handling. Features like automatic
+                    light-to-dark theme switching, fingerprint authentication, floating panels, and virtual desktops make it a joy to use daily. Over 82% of KDE users
+                    now run Wayland, and the experience is rock-solid.
+                </p>
+                <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
+                    <strong>Enterprise-grade ZFS filesystem.</strong> CachyOS is one of the few distributions offering ZFS directly from the Calamares graphical installer — no command-line required.
+                    ZFS brings features previously found only in enterprise storage: built-in RAID with self-healing (RAID-Z), instant snapshots using copy-on-write,
+                    transparent compression to save disk space, and the legendary ARC cache that delivers blazing-fast read times on frequently accessed files.
+                    Roll back your entire system to any previous snapshot in seconds. For users who value their data, ZFS is the gold standard.
+                </p>
+                <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
+                    <strong>It's easier than you think.</strong> CachyOS installs in under an hour using the friendly Calamares installer and comes with everything you need:
+                    Firefox for browsing, LibreOffice for documents, and thousands of free applications one click away. No subscriptions, no licensing fees, no bloatware.
                     Your familiar keyboard shortcuts work, your files transfer seamlessly, and the learning curve is minimal.
                 </p>
                 <p style="color: var(--text-secondary); line-height: 1.8;">
-                    <strong>We're here to help.</strong> We provide full support for CachyOS with KDE Plasma desktop environments — from initial installation
-                    to ongoing maintenance. Whether you need help migrating from Windows, setting up specific software, or just want guidance as you
+                    <strong>We're here to help.</strong> We provide full support for CachyOS with KDE Plasma — from initial installation
+                    to ongoing maintenance. Whether you need help migrating from Windows, setting up ZFS snapshots, configuring specific software, or just want guidance as you
                     explore your new system, we've got 25+ years of Linux experience ready to assist you.
                 </p>
             </div>
