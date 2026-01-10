@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="RentaNet Pricing - Affordable VPS hosting with Proxmox containers and virtual machines starting from $72/year.">
+    <meta name="description" content="RentaNet Pricing - Australian VPS and managed hosting from $79/year. Debian VMs, Alpine containers, WordPress hosting, and expert Linux support.">
     <title>Pricing - RentaNet</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,8 +35,6 @@
                 <li><a href="/services/">Services</a></li>
                 <li><a href="/pricing/">Pricing</a></li>
                 <li><a href="/linux/">Linux</a></li>
-                <li><a href="/settings/">Settings</a></li>
-                <li><a href="https://mail.renta.net" target="_blank">Webmail</a></li>
             </ul>
             <button class="theme-toggle" id="themeToggle" title="Toggle theme" aria-label="Toggle dark/light mode">
                 <svg class="sun-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -60,63 +58,183 @@
             <div class="section-header">
                 <span class="section-tag">Simple & Transparent</span>
                 <h1 class="section-title" style="font-size: clamp(2.5rem, 8vw, 4rem);">Pricing</h1>
-                <p class="section-subtitle" style="color: rgba(255,255,255,0.9);">Simple, transparent pricing for all your hosting needs</p>
+                <p class="section-subtitle" style="color: rgba(255,255,255,0.9);">Australian-hosted plans for every need</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="section-header reveal">
+            <span class="section-tag">All Plans</span>
+            <h2 class="section-title">Hosting Plans</h2>
+            <p class="section-subtitle">From lightweight containers to fully managed Debian VMs</p>
+        </div>
+
+        <div class="bulk-table reveal" style="margin: 2rem auto; max-width: 1280px;">
+            <h4>Business Class Hosting</h4>
+            <div class="bulk-row">
+                <span><strong>Lite</strong> — Alpine LXC, 1GB RAM, 10GB NVMe</span>
+                <span>$79/year</span>
+            </div>
+            <div class="bulk-row">
+                <span><strong>Small</strong> — Debian VM, 2GB RAM, 20GB NVMe</span>
+                <span>$149/year</span>
+            </div>
+            <div class="bulk-row">
+                <span><strong>Medium</strong> — Debian VM, 4GB RAM, 40GB NVMe</span>
+                <span>$199/year</span>
+            </div>
+            <div class="bulk-row">
+                <span><strong>Large</strong> — Debian VM, 8GB RAM, 80GB NVMe</span>
+                <span>$249/year</span>
+            </div>
+            <div class="bulk-row">
+                <span><strong>Managed BYO</strong> — Your VPS, our management</span>
+                <span>$120/year + VPS</span>
+            </div>
+        </div>
+
+        <div class="bulk-table reveal" style="margin: 2rem auto; max-width: 1280px;">
+            <h4>Resource Add-ons</h4>
+            <div class="bulk-row">
+                <span>+1GB RAM</span>
+                <span>$20/year</span>
+            </div>
+            <div class="bulk-row">
+                <span>+1 Dedicated IP</span>
+                <span>$20/year</span>
+            </div>
+            <div class="bulk-row">
+                <span>+10GB NVMe Storage</span>
+                <span>$20/year</span>
+            </div>
+            <div class="bulk-row">
+                <span>+25GB HDD Storage</span>
+                <span>$20/year</span>
             </div>
         </div>
     </section>
 
     <section class="bg-image-section">
         <div class="section-header">
-            <span class="section-tag">Dedicated Resources</span>
-            <h2 class="section-title">VPS Hosting Tiers</h2>
-            <p class="section-subtitle">Proxmox-powered containers and virtual machines</p>
+            <span class="section-tag">Plan Details</span>
+            <h2 class="section-title">What You Get</h2>
+            <p class="section-subtitle">Dedicated resources with full management included</p>
         </div>
     </section>
 
     <section class="content-section">
-        <div class="bulk-table reveal" style="margin: 0 auto; max-width: 700px;">
-            <h4>Hosting Tiers</h4>
-            <div class="bulk-row">
-                <span>Lite (CT, 1GB, 10GB)</span>
-                <span>$72/year</span>
+        <div class="pricing-details-grid">
+            <div class="server-card reveal">
+                <h3><i data-lucide="container" class="lucide-icon"></i> Lite Container</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1rem;">$79/year</p>
+                <p style="color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem;">
+                    Ultra-lightweight Alpine Linux LXC container on Proxmox VE. Perfect for static sites, small WordPress installations, or email-only hosting. Shares the host kernel for maximum efficiency with 1GB RAM and 10GB NVMe storage. Includes Nginx, PHP-FPM, MariaDB, Postfix/Dovecot mail stack, and automatic SSL via Let's Encrypt.
+                </p>
             </div>
-            <div class="bulk-row">
-                <span>Starter (VM, 1GB, 20GB)</span>
-                <span>$96/year</span>
+
+            <div class="server-card reveal">
+                <h3><i data-lucide="server" class="lucide-icon"></i> Small VM</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1rem;">$149/year</p>
+                <p style="color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem;">
+                    Full Debian 12 virtual machine with dedicated kernel and complete isolation. 2GB RAM and 20GB NVMe storage. Ideal for growing WordPress sites, small web applications, or businesses needing dedicated resources. Includes the complete multi-service stack: Postfix/Dovecot/SpamProbe for email, Nginx/PHP-FPM for web, and MariaDB for databases.
+                </p>
             </div>
-            <div class="bulk-row">
-                <span>Standard (VM, 2GB, 40GB)</span>
-                <span>$144/year</span>
+
+            <div class="server-card reveal">
+                <h3><i data-lucide="server-cog" class="lucide-icon"></i> Medium VM</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1rem;">$199/year</p>
+                <p style="color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem;">
+                    Production-ready Debian 12 VM with 4GB RAM and 40GB NVMe. Suitable for busier WordPress sites with WooCommerce, multiple domains, or applications with moderate traffic. Full root access available on request. All updates, security patches, and backups handled for you.
+                </p>
             </div>
-            <div class="bulk-row">
-                <span>Pro (VM, 4GB, 80GB)</span>
-                <span>$192/year</span>
+
+            <div class="server-card reveal">
+                <h3><i data-lucide="database" class="lucide-icon"></i> Large VM</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1rem;">$249/year</p>
+                <p style="color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem;">
+                    High-performance Debian 12 VM with 8GB RAM and 80GB NVMe storage. Built for demanding applications, high-traffic sites, or businesses consolidating multiple services. Ample headroom for caching, large databases, and concurrent users. Includes all managed services plus priority support.
+                </p>
             </div>
-            <div class="bulk-row">
-                <span>BYO Maintenance</span>
-                <span>$120/year</span>
+
+            <div class="server-card reveal">
+                <h3><i data-lucide="settings" class="lucide-icon"></i> Managed BYO</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1rem;">$120/year + your VPS cost</p>
+                <p style="color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem;">
+                    Already have a VPS at BinaryLane, Vultr, DigitalOcean, or elsewhere? We'll take over management. You pay your provider directly for the VPS, and we handle all the Linux administration: OS updates, security hardening, service configuration, monitoring, backups, and troubleshooting. Perfect for developers who want to focus on code, not sysadmin.
+                </p>
             </div>
-            <div class="bulk-row">
-                <span>Extra Storage</span>
-                <span>$10/GB/year</span>
+
+            <div class="server-card reveal">
+                <h3><i data-lucide="puzzle" class="lucide-icon"></i> Scale As You Grow</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1rem;">Flexible add-ons</p>
+                <p style="color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem;">
+                    Need more resources? Add RAM, storage, or dedicated IPs at any time without migrating. Each add-on is just $20/year: +1GB RAM for memory-hungry apps, +10GB NVMe for growing databases, or +1 dedicated IP for SSL certificates or mail reputation. Upgrades are applied within 24 hours.
+                </p>
             </div>
         </div>
+    </section>
 
-        <div style="max-width: 700px; margin: 2rem auto 0;">
-            <div class="service-card reveal" style="padding: 2rem;">
-                <h3 style="margin-bottom: 1rem;">What's Included</h3>
-                <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem;">
-                    <strong>CT (Container)</strong> — Lightweight LXC container sharing the host kernel. Ideal for web hosting, email, and lightweight services. Fast startup, efficient resource usage.
-                </p>
-                <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem;">
-                    <strong>VM (Virtual Machine)</strong> — Full virtual machine with dedicated kernel. Complete isolation, run any OS, ideal for applications requiring full system access or custom kernels.
-                </p>
-                <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem;">
-                    <strong>BYO Maintenance</strong> — Already have your own VPS elsewhere? We'll manage updates, security, backups, and troubleshooting for a flat annual fee.
-                </p>
-                <p style="color: var(--text-secondary); line-height: 1.8;">
-                    All tiers include: Debian/Ubuntu, managed updates, daily backups, SSL certificates, and email support.
-                </p>
+    <section class="bg-image-section">
+        <div class="section-header">
+            <span class="section-tag">Everything You Need</span>
+            <h2 class="section-title">Included With All Plans</h2>
+            <p class="section-subtitle">Managed updates, daily backups, and Australian support</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <span class="service-icon"><i data-lucide="server" class="lucide-icon"></i></span>
+                <h3>Infrastructure</h3>
+                <ul>
+                    <li>Australian datacenter (Sydney)</li>
+                    <li>NVMe SSD storage</li>
+                    <li>Daily automated backups</li>
+                    <li>99.9% uptime SLA</li>
+                </ul>
+            </div>
+            <div class="service-card reveal">
+                <span class="service-icon"><i data-lucide="layers" class="lucide-icon"></i></span>
+                <h3>Software Stack</h3>
+                <ul>
+                    <li>Debian 12 or Alpine Linux</li>
+                    <li>Nginx + PHP-FPM</li>
+                    <li>MariaDB / SQLite</li>
+                    <li>Postfix + Dovecot + SpamProbe</li>
+                </ul>
+            </div>
+            <div class="service-card reveal">
+                <span class="service-icon"><i data-lucide="shield-check" class="lucide-icon"></i></span>
+                <h3>Security & SSL</h3>
+                <ul>
+                    <li>Let's Encrypt SSL certificates</li>
+                    <li>Automatic renewals</li>
+                    <li>SSH key authentication</li>
+                    <li>Regular security updates</li>
+                </ul>
+            </div>
+            <div class="service-card reveal">
+                <span class="service-icon"><i data-lucide="headphones" class="lucide-icon"></i></span>
+                <h3>Support</h3>
+                <ul>
+                    <li>Email support included</li>
+                    <li>10am – 6pm AEST</li>
+                    <li>Australian-based</li>
+                    <li>28+ years experience</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-image-section">
+        <div class="section-header">
+            <span class="section-tag">Ready to Start?</span>
+            <h2 class="section-title">Get in Touch</h2>
+            <p class="section-subtitle">No lock-in contracts. Pay annually. Cancel anytime.</p>
+            <div style="margin-top: 2rem;">
+                <a href="tel:0419530037" class="cta-btn primary"><i data-lucide="phone-call" class="lucide-icon"></i> Call 0419 530 037</a>
             </div>
         </div>
     </section>
@@ -148,11 +266,9 @@
                 <a href="/services/">Services</a>
                 <a href="/pricing/">Pricing</a>
                 <a href="/linux/">Linux Support</a>
-                <a href="/settings/">Email Settings</a>
             </div>
             <div class="footer-col">
                 <h4><i data-lucide="globe" class="lucide-icon"></i> Resources</h4>
-                <a href="https://mail.renta.net" target="_blank">Webmail</a>
                 <a href="https://my.spiderweb.com.au" target="_blank">Client Portal</a>
                 <a href="https://spiderweb.com.au" target="_blank">Spiderweb Cloud</a>
                 <a href="https://spiderweb.com.au/privacy-policy" target="_blank">Privacy Policy</a>

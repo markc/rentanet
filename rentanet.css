@@ -1043,6 +1043,22 @@ section {
     }
 }
 
+/* Pricing page 2-column detail grid */
+.pricing-details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+@media (max-width: 768px) {
+    .pricing-details-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* ============================================
    LUCIDE ICONS
    ============================================ */
