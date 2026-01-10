@@ -268,7 +268,7 @@ html.light nav:not(.scrolled) .nav-links li:not(.nav-indicator) a {
 }
 
 html.light nav:not(.scrolled) .nav-links li:not(.nav-indicator) a:hover {
-    color: #fff;
+    color: #000;
 }
 
 html.light nav:not(.scrolled) .theme-toggle {
@@ -285,6 +285,10 @@ html.light nav:not(.scrolled) .menu-toggle span {
 
 .nav-links li:not(.nav-indicator) a:hover {
     color: #fff;
+}
+
+html.light .nav-links li:not(.nav-indicator) a:hover {
+    color: #000;
 }
 
 /* Theme Toggle */
