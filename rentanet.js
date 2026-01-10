@@ -60,6 +60,37 @@ function handleScroll() {
 window.addEventListener("scroll", handleScroll);
 
 // ============================================
+// SLIDING NAV INDICATOR
+// ============================================
+
+const navLinksContainer = document.querySelector(".nav-links");
+const navIndicator = document.querySelector(".nav-indicator");
+const navIndicatorInner = document.querySelector(".nav-indicator-inner");
+
+if (navLinksContainer && navIndicator && navIndicatorInner) {
+    const navItems = navLinksContainer.querySelectorAll("li:not(.nav-indicator)");
+
+    function moveIndicator(item) {
+        const rect = item.getBoundingClientRect();
+        const containerRect = navLinksContainer.getBoundingClientRect();
+
+        navIndicatorInner.style.left = (rect.left - containerRect.left) + "px";
+        navIndicatorInner.style.top = (rect.top - containerRect.top) + "px";
+        navIndicatorInner.style.width = rect.width + "px";
+        navIndicatorInner.style.height = rect.height + "px";
+    }
+
+    navItems.forEach(item => {
+        item.addEventListener("mouseenter", () => moveIndicator(item));
+    });
+
+    // Initialize indicator position on first item
+    if (navItems.length > 0) {
+        moveIndicator(navItems[0]);
+    }
+}
+
+// ============================================
 // MOBILE MENU
 // ============================================
 
