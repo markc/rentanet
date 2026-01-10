@@ -194,7 +194,7 @@ nav.scrolled {
     font-size: 0.9rem;
     letter-spacing: 0.5px;
     position: relative;
-    padding: 1.25rem 1.25rem;
+    padding: 0.5rem 1.25rem;
     transition: color 0.15s ease;
     border-radius: 25px;
 }
