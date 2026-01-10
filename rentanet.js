@@ -108,3 +108,10 @@ const yearSpan = document.getElementById("year");
 if (yearSpan) {
     yearSpan.textContent = new Date().getFullYear();
 }
+
+// ============================================
+// LUCIDE ICONS INITIALIZATION
+// ============================================
+if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+}

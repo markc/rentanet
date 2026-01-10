@@ -1017,3 +1017,67 @@ section {
         grid-template-columns: 1fr;
     }
 }
+
+/* ============================================
+   LUCIDE ICONS
+   ============================================ */
+
+.lucide-icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.125em;
+    display: inline-block;
+    stroke-width: 2;
+}
+
+/* Footer icons */
+.footer-col h4 .lucide-icon {
+    width: 1.1em;
+    height: 1.1em;
+    margin-right: 0.3em;
+    vertical-align: -0.15em;
+    color: #DF0000;
+    stroke: #DF0000;
+}
+
+html.light .footer-col h4 .lucide-icon {
+    color: #BF0000;
+    stroke: #BF0000;
+}
+
+.contact-line .lucide-icon {
+    width: 1em;
+    height: 1em;
+    color: #DF0000;
+    stroke: #DF0000;
+    flex-shrink: 0;
+}
+
+html.light .contact-line .lucide-icon {
+    color: #BF0000;
+    stroke: #BF0000;
+}
+
+/* Service/card icons */
+.service-icon {
+    color: #DF0000;
+}
+
+.service-icon .lucide-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    color: #DF0000;
+    stroke: #DF0000;
+}
+
+html.light .service-icon .lucide-icon {
+    color: #BF0000;
+    stroke: #BF0000;
+}
+
+/* CTA button icons */
+.cta-btn .lucide-icon {
+    width: 1.2em;
+    height: 1.2em;
+    vertical-align: -0.2em;
+}
