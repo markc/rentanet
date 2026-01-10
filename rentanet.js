@@ -71,7 +71,10 @@ if (navLinksContainer && navIndicator && navIndicatorInner) {
     const navItems = navLinksContainer.querySelectorAll("li:not(.nav-indicator)");
 
     function moveIndicator(item) {
-        const rect = item.getBoundingClientRect();
+        // Measure the anchor element which has the padding
+        const anchor = item.querySelector("a");
+        const target = anchor || item;
+        const rect = target.getBoundingClientRect();
         const containerRect = navLinksContainer.getBoundingClientRect();
 
         navIndicatorInner.style.left = (rect.left - containerRect.left) + "px";
