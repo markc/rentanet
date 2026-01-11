@@ -10,7 +10,8 @@ Use this with site.txt (customizations) and ai.txt (content) to generate a compl
 ├── index.html          # Homepage
 ├── base.css            # Generic framework styles
 ├── site.css            # Site-specific theme/colors
-├── rentanet.js         # Site JavaScript (rename for your site)
+├── base.js             # Generic framework JavaScript
+├── site.js             # Site-specific JavaScript (optional)
 ├── favicon.ico         # Site favicon
 ├── [background].webp   # Hero/section background image
 ├── ai.txt              # Content for AI agents
@@ -67,7 +68,8 @@ body
 ├── section.hero.hero-bg          # Homepage hero (or section.hero.hero-bg.page-hero for subpages)
 ├── [content sections...]         # Alternating content-section and bg-image-section
 ├── footer.footer-main            # Site footer
-└── script (rentanet.js)          # Main JavaScript file
+├── script (base.js)              # Generic JavaScript
+└── script (site.js)              # Site-specific JavaScript (optional)
 ```
 
 ## Section Types
@@ -342,7 +344,7 @@ piggy-bank, user, phone, smartphone, clock, link
 
 1. Copy base.css unchanged
 2. Create site.css from site.tpl.css template
-3. Copy and rename rentanet.js, update SITE_CONFIG
+3. Copy base.js unchanged, create site.js if needed for custom functionality
 4. Create ai.txt with site content
 5. Create site.txt with customizations
 6. Generate HTML pages from this spec + site.txt + ai.txt

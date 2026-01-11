@@ -61,7 +61,7 @@ Google Fonts URL: https://fonts.googleapis.com/css2?family=Inter:wght@300;400;50
 ```
 Hero Background: /Server_Room_Dark.webp
 Favicon: /favicon.ico
-JavaScript: /rentanet.js
+JavaScript: /base.js
 Base CSS: /base.css
 Site CSS: /site.css
 ```
