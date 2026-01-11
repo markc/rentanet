@@ -1,89 +1,51 @@
 /*
- * RentaNet CSS - Refactored
- * 
+ * Base CSS Framework
+ *
+ * Generic, reusable styles for any site.
+ * Override CSS custom properties in a site-specific CSS file.
+ *
  * COLOR SYSTEM:
- * - accent: Brand red, for buttons, highlights, links on hover
+ * - accent: Brand color for buttons, highlights, links on hover
  * - text-primary: Main readable text
- * - text-secondary: Softer readable text (NOT accent colored)
+ * - text-secondary: Softer readable text
  * - text-muted: Least prominent text
- * 
- * KEY PRINCIPLE: Never use accent red for body text that needs to be read.
- * Red on dark = poor contrast. Use white/light gray for readable text.
  */
 
 /* ============================================
-   THEME TOKENS - Single source of truth
+   DEFAULT THEME TOKENS (override in site.css)
    ============================================ */
 
 :root {
-    /* Dark mode is default */
+    /* Background colors - can be overridden */
     --bg-primary: #0a0a0f;
     --bg-secondary: #12121a;
     --bg-tertiary: #1a1a24;
-    
-    /* Brand accent - for buttons, icons, hover states
-     * --accent: adapts to theme (brighter on dark, darker on light)
-     * --accent-on-dark: always bright, for sections with dark backgrounds */
-    --accent: #DF0000;
-    --accent-on-dark: #DF0000;
-    --accent-hover: #ff1a1a;
-    --accent-glow: rgba(223, 0, 0, 0.4);
-    
-    /* Text hierarchy - must be readable */
+
+    /* Brand accent - override with your brand color */
+    --accent: #0066cc;
+    --accent-on-dark: #0088ff;
+    --accent-hover: #0077dd;
+    --accent-glow: rgba(0, 102, 204, 0.4);
+
+    /* Text hierarchy */
     --text-primary: #f8fafc;
     --text-secondary: #b4b4c0;
     --text-muted: #6b6b7a;
-    
+
     /* Glass/overlay effects */
     --glass: rgba(255, 255, 255, 0.05);
     --glass-border: rgba(255, 255, 255, 0.1);
     --nav-scrolled-bg: rgba(10, 10, 15, 0.9);
-    
+
     /* Particles */
     --particle-opacity: 0.3;
-}
 
-/* Light mode override */
-html.light {
-    --bg-primary: #fefefe;
-    --bg-secondary: #f5f5f7;
-    --bg-tertiary: #eaeaef;
-    
-    /* Darker red for light backgrounds */
-    --accent: #BF0000;
-    --accent-hover: #a00000;
-    --accent-glow: rgba(191, 0, 0, 0.25);
-    /* Bright red stays the same for dark background sections */
-    --accent-on-dark: #DF0000;
-    
-    --text-primary: #1a1a2e;
-    --text-secondary: #4a4a5a;
-    --text-muted: #8a8a9a;
-    
-    --glass: rgba(0, 0, 0, 0.03);
-    --glass-border: rgba(0, 0, 0, 0.08);
-    --nav-scrolled-bg: rgba(254, 254, 254, 0.9);
-    
-    --particle-opacity: 0.15;
-}
+    /* Fonts - override with your brand fonts */
+    --font-primary: system-ui, -apple-system, sans-serif;
+    --font-heading: var(--font-primary);
 
-/* System preference (only applies if no explicit class) */
-@media (prefers-color-scheme: light) {
-    html:not(.dark):not(.light) {
-        --bg-primary: #fefefe;
-        --bg-secondary: #f5f5f7;
-        --bg-tertiary: #eaeaef;
-        --accent: #c00000;
-        --accent-hover: #a00000;
-        --accent-glow: rgba(192, 0, 0, 0.25);
-        --text-primary: #1a1a2e;
-        --text-secondary: #4a4a5a;
-        --text-muted: #8a8a9a;
-        --glass: rgba(0, 0, 0, 0.03);
-        --glass-border: rgba(0, 0, 0, 0.08);
-        --nav-scrolled-bg: rgba(254, 254, 254, 0.9);
-        --particle-opacity: 0.15;
-    }
+    /* Background images - set in site.css */
+    --hero-bg-image: none;
 }
 
 /* ============================================
@@ -149,86 +111,6 @@ html.light {
 .section-title-small { font-size: 1.8rem; }
 
 /* ============================================
-   LINUX PAGE - INSTALL GUIDE
-   ============================================ */
-
-.install-guide {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.install-step {
-    background: var(--glass);
-    border: 1px solid var(--glass-border);
-    border-radius: 16px;
-    padding: 2rem;
-    margin-bottom: 1.5rem;
-}
-
-.install-step h3 {
-    font-family: "Quicksand", sans-serif;
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
-    color: var(--accent-light);
-}
-
-.install-step ol,
-.install-step ul {
-    padding-left: 1.5rem;
-    color: var(--text-secondary);
-}
-
-.install-step li {
-    margin-bottom: 0.5rem;
-    line-height: 1.7;
-}
-
-.install-step p {
-    color: var(--text-secondary);
-    line-height: 1.7;
-    margin-bottom: 1rem;
-}
-
-.install-step code {
-    background: var(--bg-tertiary);
-    padding: 0.2rem 0.5rem;
-    border-radius: 4px;
-    font-family: monospace;
-    color: var(--accent-light);
-}
-
-.install-step strong {
-    color: var(--text-primary);
-}
-
-.warning-box {
-    background: rgba(239, 68, 68, 0.1);
-    border: 1px solid var(--accent);
-    border-radius: 12px;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-}
-
-.warning-box p {
-    color: var(--text-primary);
-    margin: 0;
-}
-
-.tip-box {
-    background: rgba(34, 197, 94, 0.1);
-    border: 1px solid #22c55e;
-    border-radius: 12px;
-    padding: 1rem 1.5rem;
-    margin-top: 1rem;
-}
-
-.tip-box p {
-    color: var(--text-secondary);
-    margin: 0;
-    font-size: 0.95rem;
-}
-
-/* ============================================
    RESET & BASE
    ============================================ */
 
@@ -243,7 +125,7 @@ html {
 }
 
 body {
-    font-family: "Inter", "Quicksand", sans-serif;
+    font-family: var(--font-primary);
     background: var(--bg-primary);
     color: var(--text-primary);
     line-height: 1.7;
@@ -296,7 +178,6 @@ nav {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-
 nav.scrolled {
     background: var(--nav-scrolled-bg);
     backdrop-filter: blur(20px);
@@ -305,7 +186,7 @@ nav.scrolled {
 }
 
 .logo {
-    font-family: "Quicksand", sans-serif;
+    font-family: var(--font-heading);
     font-size: 1.8rem;
     font-weight: 700;
     text-decoration: none;
@@ -348,7 +229,7 @@ nav.scrolled {
 }
 
 .nav-links li:not(.nav-indicator) a {
-    color: #DF0000;
+    color: var(--accent);
     text-decoration: none;
     font-weight: 500;
     font-size: 0.9rem;
@@ -357,10 +238,6 @@ nav.scrolled {
     padding: 0.5rem 1.25rem;
     transition: color 0.3s ease;
     border-radius: 25px;
-}
-
-html.light .nav-links li:not(.nav-indicator) a {
-    color: #BF0000;
 }
 
 /* Sliding nav indicator */
@@ -403,11 +280,11 @@ html.light nav:not(.scrolled) .nav-indicator-inner {
 
 /*
  * LIGHT MODE NAV OVER DARK HERO
- * 
+ *
  * The hero always has a dark background image. In dark mode,
  * --text-primary is white so nav is readable. In light mode,
  * --text-primary is dark, making nav invisible against the hero.
- * 
+ *
  * Fix: Force white nav elements in light mode when NOT scrolled.
  * Once scrolled, nav has its own light background so dark text is fine.
  */
@@ -415,17 +292,9 @@ html.light nav:not(.scrolled) .logo {
     color: #fff;
 }
 
-/* Logo "NET" span uses bright red on dark hero */
+/* Logo span uses bright accent on dark hero */
 html.light nav:not(.scrolled) .logo span {
     color: var(--accent-on-dark);
-}
-
-html.light nav:not(.scrolled) .nav-links li:not(.nav-indicator) a {
-    color: #BF0000;
-}
-
-html.light nav:not(.scrolled) .nav-links li:not(.nav-indicator) a:hover {
-    color: #000;
 }
 
 html.light nav:not(.scrolled) .theme-toggle {
@@ -515,7 +384,7 @@ html.light .theme-toggle .moon-icon {
 }
 
 .hero-bg {
-    background: url('/Server_Room_Dark.webp') center center / cover fixed;
+    background: var(--hero-bg-image) center center / cover fixed;
 }
 
 .hero-bg::before {
@@ -557,7 +426,7 @@ html.light .theme-toggle .moon-icon {
 }
 
 .hero h1 {
-    font-family: "Quicksand", sans-serif;
+    font-family: var(--font-heading);
     font-size: clamp(3rem, 10vw, 5.5rem);
     font-weight: 700;
     margin-bottom: 1.5rem;
@@ -566,12 +435,12 @@ html.light .theme-toggle .moon-icon {
     color: #fff;
 }
 
-/* Use bright red on dark hero background for better contrast */
+/* Use bright accent on dark hero background for better contrast */
 .hero h1 .gradient-text {
     color: var(--accent-on-dark);
 }
 
-/* CRITICAL: Hero paragraph must be readable - white, not red */
+/* CRITICAL: Hero paragraph must be readable - white, not accent */
 .hero p {
     font-size: 1.2rem;
     margin-bottom: 2.5rem;
@@ -609,7 +478,7 @@ html.light .theme-toggle .moon-icon {
     box-shadow: 0 4px 20px var(--accent-glow);
 }
 
-/* Bright red for CTAs on dark hero background */
+/* Bright accent for CTAs on dark hero background */
 .hero-bg .cta-btn.primary {
     background: var(--accent-on-dark);
 }
@@ -647,7 +516,7 @@ html.light .theme-toggle .moon-icon {
     color: #fff;
 }
 
-/* Bright red for tags on dark page-hero */
+/* Bright accent for tags on dark page-hero */
 .page-hero .section-tag {
     color: var(--accent-on-dark);
 }
@@ -679,7 +548,7 @@ section {
 }
 
 .section-title {
-    font-family: "Quicksand", sans-serif;
+    font-family: var(--font-heading);
     font-size: clamp(2rem, 5vw, 3rem);
     font-weight: 700;
     margin-bottom: 1rem;
@@ -702,7 +571,7 @@ section {
 /* Background image sections */
 .bg-image-section {
     position: relative;
-    background: url('/Server_Room_Dark.webp') center center / cover;
+    background: var(--hero-bg-image) center center / cover;
     background-attachment: scroll;  /* Mobile-first: no fixed for performance */
     min-height: auto;  /* Mobile-first: content-driven height */
     padding: 2rem 1rem;  /* Mobile-first: compact padding */
@@ -729,7 +598,7 @@ section {
     color: #fff;
 }
 
-/* Bright red for tags on dark background sections */
+/* Bright accent for tags on dark background sections */
 .bg-image-section .section-tag {
     color: var(--accent-on-dark);
 }
@@ -799,6 +668,7 @@ section {
     margin-bottom: 1.25rem;
     display: block;
     transition: transform 0.3s ease;
+    color: var(--accent);
 }
 
 .service-card:hover .service-icon {
@@ -808,7 +678,7 @@ section {
 .service-card h3,
 .pricing-card h3,
 .contact-card h3 {
-    font-family: "Quicksand", sans-serif;
+    font-family: var(--font-heading);
     font-size: 1.25rem;
     font-weight: 600;
     margin-bottom: 1rem;
@@ -829,7 +699,7 @@ section {
 }
 
 .service-card li::before {
-    content: "✓";
+    content: "\2713";
     position: absolute;
     left: 0;
     color: var(--accent);
@@ -881,7 +751,7 @@ section {
 }
 
 .price-big {
-    font-family: "Quicksand", sans-serif;
+    font-family: var(--font-heading);
     font-size: 4rem;
     font-weight: 700;
     color: var(--accent);
@@ -916,7 +786,7 @@ section {
 .bulk-table h4 {
     background: var(--accent);
     padding: 1rem;
-    font-family: "Quicksand", sans-serif;
+    font-family: var(--font-heading);
     font-weight: 600;
     text-align: center;
     color: #fff;
@@ -937,7 +807,7 @@ section {
 }
 
 .bulk-row:hover {
-    background: rgba(223, 0, 0, 0.1);
+    background: var(--accent-glow);
 }
 
 .bulk-row span:first-child {
@@ -1009,7 +879,7 @@ section {
 }
 
 .server-card h3 {
-    font-family: "Quicksand", sans-serif;
+    font-family: var(--font-heading);
     font-weight: 600;
     color: var(--accent);
     margin-bottom: 1rem;
@@ -1046,7 +916,7 @@ section {
 }
 
 .footer-col .footer-brand {
-    font-family: "Quicksand", sans-serif;
+    font-family: var(--font-heading);
     font-size: 2rem;
     font-weight: 700;
     margin-bottom: 1rem;
@@ -1058,7 +928,7 @@ section {
 }
 
 .footer-col h4 {
-    font-family: "Quicksand", sans-serif;
+    font-family: var(--font-heading);
     font-size: 1rem;
     font-weight: 600;
     color: var(--text-primary);
@@ -1327,7 +1197,7 @@ html.light .server-card .price {
 }
 
 /* ============================================
-   LUCIDE ICONS
+   LUCIDE ICONS (base sizing)
    ============================================ */
 
 .lucide-icon {
@@ -1338,49 +1208,30 @@ html.light .server-card .price {
     stroke-width: 2;
 }
 
-/* Footer icons */
+/* Service/card icons sizing */
+.service-icon .lucide-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    color: var(--accent);
+    stroke: var(--accent);
+}
+
+/* Footer icons sizing */
 .footer-col h4 .lucide-icon {
     width: 1.1em;
     height: 1.1em;
     margin-right: 0.3em;
     vertical-align: -0.15em;
-    color: #DF0000;
-    stroke: #DF0000;
-}
-
-html.light .footer-col h4 .lucide-icon {
-    color: #BF0000;
-    stroke: #BF0000;
+    color: var(--accent);
+    stroke: var(--accent);
 }
 
 .contact-line .lucide-icon {
     width: 1em;
     height: 1em;
-    color: #DF0000;
-    stroke: #DF0000;
+    color: var(--accent);
+    stroke: var(--accent);
     flex-shrink: 0;
-}
-
-html.light .contact-line .lucide-icon {
-    color: #BF0000;
-    stroke: #BF0000;
-}
-
-/* Service/card icons */
-.service-icon {
-    color: #DF0000;
-}
-
-.service-icon .lucide-icon {
-    width: 2.5rem;
-    height: 2.5rem;
-    color: #DF0000;
-    stroke: #DF0000;
-}
-
-html.light .service-icon .lucide-icon {
-    color: #BF0000;
-    stroke: #BF0000;
 }
 
 /* CTA button icons */
