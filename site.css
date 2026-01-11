@@ -211,9 +211,4 @@ html.light nav:not(.scrolled) .nav-links li:not(.nav-indicator) a:hover {
 .service-icon .lucide-icon {
     color: var(--accent);
     stroke: var(--accent);
-    transition: transform var(--transition-base);
-}
-
-.service-card:hover .service-icon .lucide-icon {
-    transform: scale(1.2) rotate(5deg);
 }

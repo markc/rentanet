@@ -85,9 +85,9 @@
     --font-size-xl: 1.25rem;
 
     /* Transitions */
-    --transition-fast: var(--transition-fast);
-    --transition-base: var(--transition-base);
-    --transition-slow: var(--transition-slow);
+    --transition-fast: 0.2s ease;
+    --transition-base: 0.3s ease;
+    --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     --easing-smooth: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
