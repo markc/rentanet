@@ -1056,8 +1056,9 @@ section {
     }
 }
 
-/* Pricing page 2-column detail grid */
-.pricing-details-grid {
+/* Pricing page 2-column grids */
+.pricing-details-grid,
+.pricing-tables-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
@@ -1066,8 +1067,14 @@ section {
     padding: 0 2rem;
 }
 
+.pricing-tables-grid {
+    gap: 2rem;
+    margin: 2rem auto;
+}
+
 @media (max-width: 768px) {
-    .pricing-details-grid {
+    .pricing-details-grid,
+    .pricing-tables-grid {
         grid-template-columns: 1fr;
     }
 }
