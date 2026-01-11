@@ -657,14 +657,14 @@ html.light .theme-toggle .moon-icon {
    ============================================ */
 
 section {
-    padding: 3rem 0;  /* Mobile-first: minimal padding */
+    padding: 1.5rem 0;  /* Mobile-first: tight padding */
     position: relative;
     z-index: 1;
 }
 
 .section-header {
     text-align: center;
-    margin-bottom: 2rem;  /* Mobile-first: smaller margin */
+    margin-bottom: 1rem;  /* Mobile-first: tight margin */
     padding: 0 1rem;  /* Mobile-first: text padding for readability */
 }
 
@@ -704,7 +704,8 @@ section {
     position: relative;
     background: url('/Server_Room_Dark.webp') center center / cover;
     background-attachment: scroll;  /* Mobile-first: no fixed for performance */
-    min-height: 25vh;  /* Mobile-first: shorter sections */
+    min-height: auto;  /* Mobile-first: content-driven height */
+    padding: 2rem 1rem;  /* Mobile-first: compact padding */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1220,6 +1221,7 @@ html.light .server-card .price {
 
     .bg-image-section {
         min-height: 30vh;
+        padding: 3rem 2rem;
     }
 
     /* Restore card styling */
