@@ -1091,7 +1091,12 @@ section {
     }
 
     section {
-        padding: 3rem 1rem;
+        padding: 3rem 0;
+    }
+
+    .content-section {
+        padding-left: 0;
+        padding-right: 0;
     }
 }
 
