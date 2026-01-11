@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="RentaNet Services - PHP & Static Hosting, Email Hosting, Domain Registration and Web Development for Australian businesses.">
+    <meta name="description" content="RentaNet Services - Managed Linux servers, AI-assisted web development, and Proxmox cluster hosting for businesses.">
     <title>Services - RentaNet</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="/base.css">
     <link rel="stylesheet" href="/site.css">
     <script src="https://unpkg.com/lucide@0.562.0/dist/umd/lucide.min.js"></script>
-    <!-- Theme init in head to prevent flash -->
     <script>
         (function() {
             const stored = localStorage.getItem("renta-theme");
@@ -60,8 +59,53 @@
             <div class="section-header">
                 <span class="section-tag">What We Offer</span>
                 <h1 class="section-title hero-title">Our Services</h1>
-                <p class="section-subtitle hero-subtitle">Everything you need to establish and grow your online presence</p>
+                <p class="section-subtitle hero-subtitle">Managed Linux servers, AI-assisted development, and expert support</p>
             </div>
+        </div>
+    </section>
+
+    <!-- Core Services -->
+    <section class="content-section">
+        <div class="services-grid services-grid-3col">
+            <div class="service-card reveal">
+                <span class="service-icon"><i data-lucide="server" class="lucide-icon"></i></span>
+                <h3>Managed Servers</h3>
+                <ul>
+                    <li>Alpine containers & Debian VMs</li>
+                    <li>Proxmox VE platform</li>
+                    <li>Full stack included</li>
+                    <li>From $79/year</li>
+                </ul>
+            </div>
+            <div class="service-card reveal">
+                <span class="service-icon"><i data-lucide="bot" class="lucide-icon"></i></span>
+                <h3>AI Development</h3>
+                <ul>
+                    <li>Claude Code websites</li>
+                    <li>Days instead of weeks</li>
+                    <li>Git-based workflow</li>
+                    <li>Full ownership</li>
+                </ul>
+            </div>
+            <div class="service-card reveal">
+                <span class="service-icon"><i data-lucide="terminal" class="lucide-icon"></i></span>
+                <h3>Linux Consulting</h3>
+                <ul>
+                    <li>Server administration</li>
+                    <li>Security hardening</li>
+                    <li>28+ years experience</li>
+                    <li>$60/hour support</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Software Stack -->
+    <section class="bg-image-section">
+        <div class="section-header">
+            <span class="section-tag">Full Stack</span>
+            <h2 class="section-title">What's On Your Server</h2>
+            <p class="section-subtitle">Production-ready software configured and maintained</p>
         </div>
     </section>
 
@@ -69,54 +113,113 @@
         <div class="services-grid">
             <div class="service-card reveal">
                 <span class="service-icon"><i data-lucide="globe" class="lucide-icon"></i></span>
-                <h3>PHP & Static Hosting</h3>
+                <h3>Web Server</h3>
                 <ul>
-                    <li>Managed PHP & Static</li>
-                    <li>Daily backups</li>
-                    <li>SSL certificates</li>
-                    <li>99.9% uptime</li>
+                    <li>Nginx with HTTP/2</li>
+                    <li>PHP 8.3 FPM + OPcache</li>
+                    <li>Let's Encrypt SSL</li>
+                    <li>Gzip compression</li>
+                </ul>
+            </div>
+            <div class="service-card reveal">
+                <span class="service-icon"><i data-lucide="database" class="lucide-icon"></i></span>
+                <h3>Databases</h3>
+                <ul>
+                    <li>MariaDB 10.11</li>
+                    <li>SQLite for lightweight apps</li>
+                    <li>Redis caching available</li>
+                    <li>Automated backups</li>
                 </ul>
             </div>
             <div class="service-card reveal">
                 <span class="service-icon"><i data-lucide="mail" class="lucide-icon"></i></span>
-                <h3>Email Hosting</h3>
+                <h3>Mail Server</h3>
                 <ul>
-                    <li>Custom domain email</li>
-                    <li>IMAP/POP3 access</li>
-                    <li>Spam protection</li>
-                    <li>Webmail included</li>
+                    <li>Postfix SMTP</li>
+                    <li>Dovecot IMAP/POP3</li>
+                    <li>SpamProbe filtering</li>
+                    <li>SPF/DKIM/DMARC</li>
                 </ul>
             </div>
             <div class="service-card reveal">
-                <span class="service-icon"><i data-lucide="link-2" class="lucide-icon"></i></span>
-                <h3>Domain Names</h3>
+                <span class="service-icon"><i data-lucide="shield-check" class="lucide-icon"></i></span>
+                <h3>Security</h3>
                 <ul>
-                    <li>.com.au from $12</li>
-                    <li>.com from $20</li>
-                    <li>Free DNS hosting</li>
-                    <li>Easy transfers</li>
-                </ul>
-            </div>
-            <div class="service-card reveal">
-                <span class="service-icon"><i data-lucide="monitor" class="lucide-icon"></i></span>
-                <h3>Web Development</h3>
-                <ul>
-                    <li>Custom websites</li>
-                    <li>PHP & Static themes</li>
-                    <li>E-commerce setup</li>
-                    <li>Site migrations</li>
+                    <li>SSH key authentication</li>
+                    <li>UFW firewall</li>
+                    <li>Fail2ban intrusion prevention</li>
+                    <li>Unattended security updates</li>
                 </ul>
             </div>
         </div>
     </section>
 
+    <!-- Proxmox Cluster -->
     <section class="bg-image-section">
         <div class="section-header">
-            <span class="section-tag">Ready to Start?</span>
-            <h2 class="section-title">Get In Touch Today</h2>
-            <p class="section-subtitle">We're here to help you succeed online</p>
-            <div class="cta-wrapper">
-                <a href="tel:0419530037" class="cta-btn primary">Call Us →</a>
+            <span class="section-tag">Enterprise Option</span>
+            <h2 class="section-title">Proxmox Cluster Management</h2>
+            <p class="section-subtitle">For businesses needing high availability and scale</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <span class="service-icon"><i data-lucide="boxes" class="lucide-icon"></i></span>
+                <h3>Multi-Node Clusters</h3>
+                <ul>
+                    <li>2-8 node configurations</li>
+                    <li>High availability setup</li>
+                    <li>Live VM migration</li>
+                    <li>Shared storage options</li>
+                </ul>
+            </div>
+            <div class="service-card reveal">
+                <span class="service-icon"><i data-lucide="cloud" class="lucide-icon"></i></span>
+                <h3>BinaryLane Partnership</h3>
+                <ul>
+                    <li>Australian data centres</li>
+                    <li>Hourly billing available</li>
+                    <li>NVMe SSD storage</li>
+                    <li>Direct peering</li>
+                </ul>
+            </div>
+            <div class="service-card reveal">
+                <span class="service-icon"><i data-lucide="settings" class="lucide-icon"></i></span>
+                <h3>Full Management</h3>
+                <ul>
+                    <li>Cluster maintenance</li>
+                    <li>OS and PVE updates</li>
+                    <li>Backup orchestration</li>
+                    <li>24/7 monitoring</li>
+                </ul>
+            </div>
+            <div class="service-card reveal">
+                <span class="service-icon"><i data-lucide="calculator" class="lucide-icon"></i></span>
+                <h3>Pricing</h3>
+                <ul>
+                    <li>$120/month management fee</li>
+                    <li>Plus your BinaryLane costs</li>
+                    <li>Custom configurations</li>
+                    <li>Contact for quote</li>
+                </ul>
+            </div>
+        </div>
+        <div class="text-center mt-2">
+            <p class="text-secondary mb-1">Already running Proxmox? We can take over management of your existing cluster.</p>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="bg-image-section">
+        <div class="section-header">
+            <span class="section-tag">Get Started</span>
+            <h2 class="section-title">Ready to Talk?</h2>
+            <p class="section-subtitle">Let's discuss your hosting requirements</p>
+            <div class="flex-center mt-2">
+                <a href="tel:0419530037" class="cta-btn primary"><i data-lucide="phone-call" class="lucide-icon"></i> Call 0419 530 037</a>
+                <a href="mailto:admin@renta.net" class="cta-btn secondary"><i data-lucide="mail" class="lucide-icon"></i> Email Us</a>
             </div>
         </div>
     </section>
