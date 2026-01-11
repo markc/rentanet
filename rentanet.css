@@ -1072,6 +1072,12 @@ section {
     margin: 2rem auto;
 }
 
+.pricing-tables-grid .bulk-table {
+    max-width: none;
+    margin: 0;
+    width: 100%;
+}
+
 @media (max-width: 768px) {
     .pricing-details-grid,
     .pricing-tables-grid {
