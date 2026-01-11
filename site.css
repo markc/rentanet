@@ -101,15 +101,7 @@ html.light {
    ============================================ */
 
 .nav-links li:not(.nav-indicator) a {
-    color: #DF0000;
-}
-
-html.light .nav-links li:not(.nav-indicator) a {
-    color: #BF0000;
-}
-
-html.light nav:not(.scrolled) .nav-links li:not(.nav-indicator) a {
-    color: #BF0000;
+    color: var(--accent);
 }
 
 html.light nav:not(.scrolled) .nav-links li:not(.nav-indicator) a:hover {
@@ -200,38 +192,23 @@ html.light nav:not(.scrolled) .nav-links li:not(.nav-indicator) a:hover {
    ICON BRAND COLORS
    ============================================ */
 
-/* Footer icons - brand red */
+/* Footer icons */
 .footer-col h4 .lucide-icon {
-    color: #DF0000;
-    stroke: #DF0000;
-}
-
-html.light .footer-col h4 .lucide-icon {
-    color: #BF0000;
-    stroke: #BF0000;
+    color: var(--accent);
+    stroke: var(--accent);
 }
 
 .contact-line .lucide-icon {
-    color: #DF0000;
-    stroke: #DF0000;
+    color: var(--accent);
+    stroke: var(--accent);
 }
 
-html.light .contact-line .lucide-icon {
-    color: #BF0000;
-    stroke: #BF0000;
-}
-
-/* Service/card icons - brand red */
+/* Service/card icons */
 .service-icon {
-    color: #DF0000;
+    color: var(--accent);
 }
 
 .service-icon .lucide-icon {
-    color: #DF0000;
-    stroke: #DF0000;
-}
-
-html.light .service-icon .lucide-icon {
-    color: #BF0000;
-    stroke: #BF0000;
+    color: var(--accent);
+    stroke: var(--accent);
 }
