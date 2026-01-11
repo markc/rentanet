@@ -11,20 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/rentanet.css">
     <script src="https://unpkg.com/lucide@0.562.0/dist/umd/lucide.min.js"></script>
-    <style>
-        .install-guide { max-width: 800px; margin: 0 auto; }
-        .install-step { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; }
-        .install-step h3 { font-family: "Quicksand", sans-serif; font-size: 1.3rem; margin-bottom: 1rem; color: var(--accent-light); }
-        .install-step ol, .install-step ul { padding-left: 1.5rem; color: var(--text-secondary); }
-        .install-step li { margin-bottom: 0.5rem; line-height: 1.7; }
-        .install-step p { color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem; }
-        .install-step code { background: var(--bg-tertiary); padding: 0.2rem 0.5rem; border-radius: 4px; font-family: monospace; color: var(--accent-light); }
-        .install-step strong { color: var(--text-primary); }
-        .warning-box { background: rgba(239, 68, 68, 0.1); border: 1px solid var(--accent); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; }
-        .warning-box p { color: var(--text-primary); margin: 0; }
-        .tip-box { background: rgba(34, 197, 94, 0.1); border: 1px solid #22c55e; border-radius: 12px; padding: 1rem 1.5rem; margin-top: 1rem; }
-        .tip-box p { color: var(--text-secondary); margin: 0; font-size: 0.95rem; }
-    </style>
     <!-- Theme init in head to prevent flash -->
     <script>
         (function() {
@@ -72,14 +58,14 @@
         <div class="hero-content">
             <div class="section-header">
                 <span class="section-tag">Expert Solutions</span>
-                <h1 class="section-title" style="font-size: clamp(2.5rem, 8vw, 4rem);">Linux Services</h1>
-                <p class="section-subtitle" style="color: rgba(255,255,255,0.9);">Professional server administration and desktop support with 25+ years experience</p>
+                <h1 class="section-title hero-title">Linux Services</h1>
+                <p class="section-subtitle hero-subtitle">Professional server administration and desktop support with 25+ years experience</p>
             </div>
         </div>
     </section>
 
     <section class="content-section">
-        <div class="section-header" style="margin-bottom: 3rem;">
+        <div class="section-header mb-3">
             <span class="section-tag">Server Expertise</span>
             <h2 class="section-title">Server Administration</h2>
             <p class="section-subtitle">Enterprise-grade Linux server management</p>
@@ -137,46 +123,46 @@
     </section>
 
     <section class="content-section">
-        <div style="max-width: 960px; margin: 0 auto;">
-            <div class="service-card reveal" style="margin-bottom: 2rem; padding: 2.5rem;">
-                <h3 style="display: flex; align-items: center; gap: 0.5rem;"><i data-lucide="monitor" class="lucide-icon" style="width: 1.5em; height: 1.5em; color: var(--accent);"></i> About CachyOS</h3>
-                <p style="color: var(--text-primary); font-weight: 600; margin-bottom: 0.5rem;">Ready to break free from Windows?</p>
-                <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
+        <div class="container-medium">
+            <div class="service-card reveal mb-2 p-large">
+                <h3 class="icon-header"><i data-lucide="monitor" class="lucide-icon"></i> About CachyOS</h3>
+                <p class="article-heading">Ready to break free from Windows?</p>
+                <p class="article-text">
                     CachyOS is a lightweight, Arch Linux-based distribution that emphasizes performance, security, and user-friendliness.
                     Built with optimized kernels and modern tooling, it delivers exceptional speed while maintaining full compatibility
                     with the extensive Arch User Repository (AUR). All packages are compiled with x86-64-v3/v4 instruction sets and LTO optimization,
                     with core packages further enhanced using PGO and BOLT — resulting in measurably faster performance than generic Linux distributions.
                 </p>
-                <p style="color: var(--text-primary); font-weight: 600; margin-bottom: 0.5rem;">Why make the switch?</p>
-                <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
+                <p class="article-heading">Why make the switch?</p>
+                <p class="article-text">
                     Windows 11's hardware requirements have left millions of perfectly good computers behind.
                     Microsoft's aggressive data collection, forced updates, and built-in advertising have frustrated users worldwide.
                     Meanwhile, CachyOS runs beautifully on older hardware, respects your privacy completely, and puts you in control of your own computer.
                     No telemetry, no mandatory cloud accounts, no subscriptions — just a fast, stable operating system that works for you.
                 </p>
-                <p style="color: var(--text-primary); font-weight: 600; margin-bottom: 0.5rem;">KDE Plasma: The modern desktop.</p>
-                <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
+                <p class="article-heading">KDE Plasma: The modern desktop.</p>
+                <p class="article-text">
                     We recommend the KDE Plasma edition of CachyOS — now at version 6.5, it's the most polished and feature-rich
                     Linux desktop available. Plasma offers a familiar Windows-like experience with a taskbar, start menu, and system tray, but with far greater customization.
                     Wayland is now the default display protocol, bringing smooth animations, HDR support, and excellent multi-monitor handling. Features like automatic
                     light-to-dark theme switching, fingerprint authentication, floating panels, and virtual desktops make it a joy to use daily. Over 82% of KDE users
                     now run Wayland, and the experience is rock-solid.
                 </p>
-                <p style="color: var(--text-primary); font-weight: 600; margin-bottom: 0.5rem;">Enterprise-grade ZFS filesystem.</p>
-                <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
+                <p class="article-heading">Enterprise-grade ZFS filesystem.</p>
+                <p class="article-text">
                     CachyOS is one of the few distributions offering ZFS directly from the Calamares graphical installer — no command-line required.
                     ZFS brings features previously found only in enterprise storage: built-in RAID with self-healing (RAID-Z), instant snapshots using copy-on-write,
                     transparent compression to save disk space, and the legendary ARC cache that delivers blazing-fast read times on frequently accessed files.
                     Roll back your entire system to any previous snapshot in seconds. For users who value their data, ZFS is the gold standard.
                 </p>
-                <p style="color: var(--text-primary); font-weight: 600; margin-bottom: 0.5rem;">It's easier than you think.</p>
-                <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
+                <p class="article-heading">It's easier than you think.</p>
+                <p class="article-text">
                     CachyOS installs in under an hour using the friendly Calamares installer and comes with everything you need:
                     Firefox for browsing, LibreOffice for documents, and thousands of free applications one click away. No subscriptions, no licensing fees, no bloatware.
                     Your familiar keyboard shortcuts work, your files transfer seamlessly, and the learning curve is minimal.
                 </p>
-                <p style="color: var(--text-primary); font-weight: 600; margin-bottom: 0.5rem;">We're here to help.</p>
-                <p style="color: var(--text-secondary); line-height: 1.8;">
+                <p class="article-heading">We're here to help.</p>
+                <p class="article-text">
                     We provide full support for CachyOS with KDE Plasma — from initial installation
                     to ongoing maintenance. Whether you need help migrating from Windows, setting up ZFS snapshots, configuring specific software, or just want guidance as you
                     explore your new system, we've got 25+ years of Linux experience ready to assist you.
@@ -184,8 +170,8 @@
             </div>
         </div>
 
-        <div class="section-header" style="margin: 3rem 0;">
-            <h3 class="section-title" style="font-size: 1.8rem;">Why Use a Linux Desktop?</h3>
+        <div class="section-header mt-3 mb-3">
+            <h3 class="section-title section-title-small">Why Use a Linux Desktop?</h3>
         </div>
 
         <div class="services-grid">
@@ -312,8 +298,8 @@
                 </ul>
             </div>
 
-            <div style="text-align: center; margin-top: 2rem;">
-                <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Need help with installation? We're here for you.</p>
+            <div class="text-center mt-2">
+                <p class="text-secondary mb-2">Need help with installation? We're here for you.</p>
                 <a href="tel:0419530037" class="cta-btn primary"><i data-lucide="phone-call" class="lucide-icon"></i> Call 0419 530 037</a>
             </div>
         </div>
@@ -381,7 +367,7 @@
     </section>
 
     <section class="content-section">
-        <div class="pricing-grid" style="max-width: 1280px; margin: 0 auto; grid-template-columns: repeat(3, 1fr);">
+        <div class="pricing-grid pricing-grid-3col container-wide">
             <div class="pricing-card reveal">
                 <h3>Quick Questions</h3>
                 <div class="price">Free</div>
@@ -398,7 +384,7 @@
                 <div class="period">guided setup</div>
             </div>
         </div>
-        <div style="text-align: center; margin-top: 3rem;">
+        <div class="text-center mt-3">
             <a href="mailto:admin@renta.net" class="cta-btn primary"><i data-lucide="mail" class="lucide-icon"></i> Email for Support</a>
         </div>
     </section>
@@ -408,7 +394,7 @@
             <div class="footer-col">
                 <div class="footer-brand">Renta<span>NET</span></div>
                 <p>Australian owned and operated since 1998</p>
-                <p style="margin-top: 0.5rem;">ABN: 69 851 855 459</p>
+                <p class="abn">ABN: 69 851 855 459</p>
             </div>
             <div class="footer-col">
                 <h4><i data-lucide="phone" class="lucide-icon"></i> Contact</h4>
