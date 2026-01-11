@@ -64,7 +64,7 @@ Infrastructure: Proxmox VE platform, NVMe SSD storage, daily backups, 99.9% upti
 
 Software Stack: Debian 13 or Alpine Linux, PHP 8.4 with OPcache, Laravel and Symfony ready, Git deployment.
 
-Security: Let's Encrypt SSL, SSH key authentication, nftables firewall, CrowdSec protection, Rspamd + Spamprobe spam filtering.
+Security: Let's Encrypt SSL, SSH key authentication, nftables firewall, CrowdSec protection. Spam filtering via Rspamd + Spamprobe on Debian VMs, bogofilter on Alpine containers.
 
 Support: Phone and email, 28+ years experience, migration assistance, no lock-in contracts.
 
