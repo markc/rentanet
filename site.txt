@@ -1,0 +1,218 @@
+# RentaNet Site Configuration
+
+This file defines site-specific customizations for the base framework.
+Use with base.txt (structure) and ai.txt (content) to generate the complete site.
+
+## Brand Identity
+
+```
+Brand Name: RentaNet
+Logo HTML: Renta<span>NET</span>
+Tagline: Australian Web & Email Hosting
+Established: 1998
+ABN: 69 851 855 459
+```
+
+## Theme Configuration
+
+```
+Theme Storage Key: renta-theme
+Default Theme: dark
+```
+
+## Color Palette
+
+### Dark Mode (Default)
+```css
+--bg-primary: #0a0a0f
+--bg-secondary: #12121a
+--bg-tertiary: #1a1a24
+--accent: #DF0000
+--accent-hover: #ff1a1a
+--accent-glow: rgba(223, 0, 0, 0.4)
+--text-primary: #f8fafc
+--text-secondary: #b4b4c0
+--text-muted: #6b6b7a
+```
+
+### Light Mode
+```css
+--bg-primary: #fefefe
+--bg-secondary: #f5f5f7
+--bg-tertiary: #eaeaef
+--accent: #BF0000
+--accent-hover: #a00000
+--accent-glow: rgba(191, 0, 0, 0.25)
+--text-primary: #1a1a2e
+--text-secondary: #4a4a5a
+--text-muted: #8a8a9a
+```
+
+## Typography
+
+```
+Primary Font: Inter
+Heading Font: Quicksand
+Google Fonts URL: https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Quicksand:wght@400;500;600;700&display=swap
+```
+
+## Assets
+
+```
+Hero Background: /Server_Room_Dark.webp
+Favicon: /favicon.ico
+JavaScript: /rentanet.js
+Base CSS: /base.css
+Site CSS: /site.css
+```
+
+## Navigation
+
+```yaml
+pages:
+  - label: Home
+    href: /
+  - label: Services
+    href: /services/
+  - label: Pricing
+    href: /pricing/
+  - label: Linux
+    href: /linux/
+```
+
+## Footer Links
+
+### Quick Links
+```yaml
+- label: Services
+  href: /services/
+- label: Pricing
+  href: /pricing/
+- label: Linux Support
+  href: /linux/
+```
+
+### Resources (External)
+```yaml
+- label: Client Portal
+  href: https://my.spiderweb.com.au
+  external: true
+- label: Spiderweb Cloud
+  href: https://spiderweb.com.au
+  external: true
+- label: Privacy Policy
+  href: /privacy/
+  external: true
+```
+
+## Contact Information
+
+```yaml
+phone:
+  display: "0419 530 037"
+  href: "tel:+61419530037"
+email:
+  display: "admin@renta.net"
+  href: "mailto:admin@renta.net"
+hours: "10am - 6pm AEST"
+```
+
+## Page Configurations
+
+### Homepage (index.html)
+
+```yaml
+meta:
+  title: "RentaNet | Australian Web & Email Hosting"
+  description: "Australian owned web and email hosting since 1998. WordPress hosting, business email, domain registration, and Linux consulting."
+
+hero:
+  badge_emoji: "🇦🇺"
+  badge_text: "Australian Owned Since 1998"
+  headline_gradient: "Web & Email"
+  headline_plain: "Hosting That Works"
+  cta_primary:
+    label: "View Plans"
+    href: "/pricing/"
+    icon: "rocket"
+  cta_secondary:
+    label: "Our Services"
+    href: "/services/"
+```
+
+### Services Page (/services/index.html)
+
+```yaml
+meta:
+  title: "Services | RentaNet"
+  description: "Professional web hosting, email hosting, domain registration, and Linux consulting services for Australian businesses."
+
+hero:
+  tag: "What We Offer"
+  title: "Our Services"
+  subtitle: "Everything you need for a professional web presence"
+```
+
+### Pricing Page (/pricing/index.html)
+
+```yaml
+meta:
+  title: "Pricing | RentaNet"
+  description: "Simple, transparent hosting plans. WordPress hosting from $79/year, email hosting, domain registration, and consulting rates."
+
+hero:
+  tag: "Simple Pricing"
+  title: "Hosting Plans"
+  subtitle: "No hidden fees. No surprises. Just straightforward hosting."
+```
+
+### Linux Page (/linux/index.html)
+
+```yaml
+meta:
+  title: "Linux Support | RentaNet"
+  description: "CachyOS desktop support, Linux server administration, and consulting services. 28+ years of Linux experience."
+
+hero:
+  tag: "Expert Support"
+  title: "Linux Services"
+  subtitle: "Desktop and server support from someone who knows the systems"
+```
+
+## JavaScript Configuration
+
+```javascript
+const SITE_CONFIG = {
+    themeStorageKey: "renta-theme",
+    particleCount: 20,
+    scrollThreshold: 50
+};
+```
+
+## Icon Choices
+
+Primary icons used throughout the site (Lucide):
+```
+Services: server, mail, globe, headset
+Features: shield-check, zap, lock, cpu
+Actions: rocket, phone-call, arrow-right
+Contact: phone, smartphone, mail, clock
+Navigation: link, globe
+```
+
+## Section Backgrounds
+
+```yaml
+hero_sections:
+  - image: /Server_Room_Dark.webp
+    overlay: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.5))
+
+bg_image_sections:
+  - same background with stronger overlay for readability
+```
+
+## Copyright Text
+
+```
+© {year} RentaNet. Australian Web & Email Hosting.
+```
