@@ -657,7 +657,7 @@ html.light .theme-toggle .moon-icon {
    ============================================ */
 
 section {
-    padding: 1.5rem 0;  /* Mobile-first: tight padding */
+    padding: 0;  /* Mobile-first: no padding, sections butt together */
     position: relative;
     z-index: 1;
 }
