@@ -1050,6 +1050,20 @@ section {
     .footer-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    .bg-image-section {
+        min-height: 25vh;
+    }
+
+    .bulk-row {
+        flex-direction: column;
+        gap: 0.25rem;
+        text-align: left;
+    }
+
+    .bulk-row span:last-child {
+        align-self: flex-start;
+    }
 }
 
 @media (max-width: 600px) {
