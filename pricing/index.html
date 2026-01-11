@@ -54,16 +54,18 @@
         </div>
     </nav>
 
+    <!-- Hero -->
     <section class="hero hero-bg page-hero">
         <div class="hero-content">
             <div class="section-header">
                 <span class="section-tag">Simple & Transparent</span>
-                <h1 class="section-title" style="font-size: clamp(2.5rem, 8vw, 4rem);">Pricing</h1>
-                <p class="section-subtitle" style="color: rgba(255,255,255,0.9);">Australian-hosted plans for every need</p>
+                <h1 class="section-title hero-title">Pricing</h1>
+                <p class="section-subtitle hero-subtitle">Australian-hosted plans for every need</p>
             </div>
         </div>
     </section>
 
+    <!-- Section 1: Pricing Tables -->
     <section class="content-section">
         <div class="pricing-tables-grid">
             <div class="bulk-table reveal">
@@ -116,6 +118,7 @@
         </div>
     </section>
 
+    <!-- Section 2: Plan Details -->
     <section class="bg-image-section">
         <div class="section-header">
             <span class="section-tag">Plan Details</span>
@@ -129,7 +132,7 @@
             <div class="server-card reveal">
                 <h3><i data-lucide="container" class="lucide-icon"></i> Lite Container</h3>
                 <p class="price">$79/year</p>
-                <p style="color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem;">
+                <p class="card-description">
                     Ultra-lightweight Alpine Linux LXC container on Proxmox VE. Perfect for static sites, small WordPress installations, or email-only hosting. Shares the host kernel for maximum efficiency with 1GB RAM and 10GB NVMe storage. Includes Nginx, PHP-FPM, MariaDB, Postfix/Dovecot mail stack, and automatic SSL via Let's Encrypt.
                 </p>
             </div>
@@ -137,7 +140,7 @@
             <div class="server-card reveal">
                 <h3><i data-lucide="server" class="lucide-icon"></i> Small VM</h3>
                 <p class="price">$149/year</p>
-                <p style="color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem;">
+                <p class="card-description">
                     Full Debian 12 virtual machine with dedicated kernel and complete isolation. 2GB RAM and 20GB NVMe storage. Ideal for growing WordPress sites, small web applications, or businesses needing dedicated resources. Includes the complete multi-service stack: Postfix/Dovecot/SpamProbe for email, Nginx/PHP-FPM for web, and MariaDB for databases.
                 </p>
             </div>
@@ -145,7 +148,7 @@
             <div class="server-card reveal">
                 <h3><i data-lucide="server-cog" class="lucide-icon"></i> Medium VM</h3>
                 <p class="price">$199/year</p>
-                <p style="color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem;">
+                <p class="card-description">
                     Production-ready Debian 12 VM with 4GB RAM and 40GB NVMe. Suitable for busier WordPress sites with WooCommerce, multiple domains, or applications with moderate traffic. Full root access available on request. All updates, security patches, and backups handled for you.
                 </p>
             </div>
@@ -153,7 +156,7 @@
             <div class="server-card reveal">
                 <h3><i data-lucide="database" class="lucide-icon"></i> Large VM</h3>
                 <p class="price">$249/year</p>
-                <p style="color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem;">
+                <p class="card-description">
                     High-performance Debian 12 VM with 8GB RAM and 80GB NVMe storage. Built for demanding applications, high-traffic sites, or businesses consolidating multiple services. Ample headroom for caching, large databases, and concurrent users. Includes all managed services plus priority support.
                 </p>
             </div>
@@ -161,7 +164,7 @@
             <div class="server-card reveal">
                 <h3><i data-lucide="settings" class="lucide-icon"></i> Managed BYO</h3>
                 <p class="price">$120/year + your VPS cost</p>
-                <p style="color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem;">
+                <p class="card-description">
                     Already have a VPS at BinaryLane, Vultr, DigitalOcean, or elsewhere? We'll take over management. You pay your provider directly for the VPS, and we handle all the Linux administration: OS updates, security hardening, service configuration, monitoring, backups, and troubleshooting. Perfect for developers who want to focus on code, not sysadmin.
                 </p>
             </div>
@@ -169,13 +172,14 @@
             <div class="server-card reveal">
                 <h3><i data-lucide="puzzle" class="lucide-icon"></i> Scale As You Grow</h3>
                 <p class="price">Flexible add-ons</p>
-                <p style="color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem;">
+                <p class="card-description">
                     Need more resources? Add RAM, storage, or dedicated IPs at any time without migrating. Each add-on is just $20/year: +1GB RAM for memory-hungry apps, +10GB NVMe for growing databases, or +1 dedicated IP for SSL certificates or mail reputation. Upgrades are applied within 24 hours.
                 </p>
             </div>
         </div>
     </section>
 
+    <!-- Section 3: Included Features -->
     <section class="bg-image-section">
         <div class="section-header">
             <span class="section-tag">Everything You Need</span>
@@ -229,12 +233,13 @@
         </div>
     </section>
 
+    <!-- CTA Section -->
     <section class="bg-image-section">
         <div class="section-header">
             <span class="section-tag">Ready to Start?</span>
             <h2 class="section-title">Get in Touch</h2>
             <p class="section-subtitle">No lock-in contracts. Pay annually. Cancel anytime.</p>
-            <div style="margin-top: 2rem;">
+            <div class="cta-buttons">
                 <a href="tel:0419530037" class="cta-btn primary"><i data-lucide="phone-call" class="lucide-icon"></i> Call 0419 530 037</a>
             </div>
         </div>
@@ -245,7 +250,7 @@
             <div class="footer-col">
                 <div class="footer-brand">Renta<span>NET</span></div>
                 <p>Australian owned and operated since 1998</p>
-                <p style="margin-top: 0.5rem;">ABN: 69 851 855 459</p>
+                <p class="abn">ABN: 69 851 855 459</p>
             </div>
             <div class="footer-col">
                 <h4><i data-lucide="phone" class="lucide-icon"></i> Contact</h4>
@@ -276,7 +281,7 @@
             </div>
         </div>
         <div class="footer-copyright">
-            © <span id="year"></span> RentaNet. Proudly serving businesses and individuals across Australia.
+            &copy; <span id="year"></span> RentaNet. Proudly serving businesses and individuals across Australia.
         </div>
     </footer>
 

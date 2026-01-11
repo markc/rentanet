@@ -1080,12 +1080,7 @@ section {
     width: 100%;
 }
 
-/* Pricing details cards - left-aligned body text */
-.pricing-details-grid .server-card p:last-of-type {
-    text-align: left;
-}
-
-/* Pricing card price styling */
+/* Pricing card styles */
 .server-card .price {
     font-size: 1.5rem;
     font-weight: 600;
@@ -1095,6 +1090,32 @@ section {
 
 html.light .server-card .price {
     color: #000;
+}
+
+.server-card .card-description {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    font-size: 0.95rem;
+    text-align: left;
+}
+
+/* Hero title/subtitle overrides */
+.hero-title {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+}
+
+.hero-subtitle {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* CTA buttons container */
+.cta-buttons {
+    margin-top: 2rem;
+}
+
+/* Footer ABN */
+.footer-col .abn {
+    margin-top: 0.5rem;
 }
 
 @media (max-width: 768px) {
