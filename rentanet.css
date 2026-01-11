@@ -1071,13 +1071,30 @@ section {
 
 .pricing-tables-grid {
     gap: 2rem;
-    margin: 2rem auto;
+    margin: 0 auto;
 }
 
 .pricing-tables-grid .bulk-table {
     max-width: none;
     margin: 0;
     width: 100%;
+}
+
+/* Pricing details cards - left-aligned body text */
+.pricing-details-grid .server-card p:last-of-type {
+    text-align: left;
+}
+
+/* Pricing card price styling */
+.server-card .price {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+html.light .server-card .price {
+    color: #000;
 }
 
 @media (max-width: 768px) {
