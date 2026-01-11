@@ -62,7 +62,7 @@ Hands-on support: $60/hour for assistance beyond standard email support.
 
 Infrastructure: Proxmox VE platform, NVMe SSD storage, daily backups, 99.9% uptime.
 
-Software Stack: Debian 13 or Alpine Linux, PHP 8.3 with OPcache, Laravel and Symfony ready, Git deployment.
+Software Stack: Debian 13 or Alpine Linux, PHP 8.4 with OPcache, Laravel and Symfony ready, Git deployment.
 
 Security: Let's Encrypt SSL, SSH key authentication, regular updates, firewall configured.
 
