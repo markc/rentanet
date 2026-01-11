@@ -105,6 +105,7 @@ Operating Systems: Debian 13 Trixie for VMs, Alpine Linux for containers.
 Quick questions: Free via phone or email.
 Remote support: $60/hour via Zoom.
 Installation help: $60/hour for guided setup.
+BYO VPS support: $120/year for direct SSH management of your existing VPS.
 
 ## CachyOS Desktop Support
 
