@@ -11,137 +11,103 @@ Phone: 0419 530 037
 Email: admin@renta.net
 Hours: 10am - 6pm AEST
 Client Portal: https://my.spiderweb.com.au
-Spiderweb Cloud: https://spiderweb.com.au
-
-## Services Overview
-
-RentaNet provides four core services: PHP and static web hosting with managed servers, daily backups, SSL certificates, and 99.9% uptime; email hosting with custom domain email, IMAP/POP3 access, spam protection, and webmail; domain name registration with .com.au from $12/year and .com from $20/year including free DNS hosting; and web development services including custom websites, WordPress themes, e-commerce setup, and site migrations.
 
 ## Hosting Platforms
 
 ### Alpine Linux LXC Containers
 
-Ultra-lightweight containers running on Proxmox VE. Alpine Linux provides an 8MB container base with no bloatware, fast boot times, and lower hosting costs. The security-focused design offers a minimal attack surface with musl libc hardening, regular security updates, and PaX/grsecurity readiness. Performance is near bare-metal speed with efficient resource usage, high container density, and instant scaling. Perfect for Laravel with PHP 8.3 FPM optimized, Composer pre-installed, Redis/MySQL ready, all in approximately 40MB total image size.
+Ultra-lightweight containers running on Proxmox VE. 128MB RAM minimum, instant deployment, from $79/year. Ideal for static sites, PHP applications, and lightweight workloads.
 
-Minimum requirements are just 128MB RAM with approximately 130MB disk footprint, 1-3% overhead versus bare metal, and instant deployment. Ideal for static sites, PHP applications, and email hosting.
+### Debian 13 Virtual Machines
 
-### Full Virtual Machines (Debian 13)
+Full virtual machines with dedicated kernel and complete isolation. Production-ready with Nginx, PHP-FPM, MariaDB, and Postfix/Dovecot mail stack. From $149/year.
 
-Production-ready Debian-powered virtual machines for serious workloads. Running Debian Stable provides a rock-solid foundation with 5-year LTS support, predictable updates, and industry-standard compatibility. The multi-service stack includes Postfix and Dovecot for email, Nginx and PHP-FPM for web, MariaDB or SQLite for databases, and SpamProbe for spam filtering.
+### Full Stack Included
 
-These are dedicated resources with complete isolation — not shared VPS slices. Each VM has a dedicated kernel with complete isolation, WordPress optimization, and custom OS support available. Suitable for demanding applications requiring guaranteed resources.
+Every server includes Nginx plus PHP-FPM, MariaDB or SQLite, Postfix plus Dovecot for email, and Let's Encrypt SSL certificates.
 
-### Combined Web and Email
+### Managed BYO
 
-Single server hosting both web and email services with shared SSL certificate, simplified management, and cost-effective bundling.
+Already have a VPS? We take over management for $120/year. Any provider supported — BinaryLane, Vultr, DigitalOcean, or elsewhere.
 
 ## Hosting Plans
 
 ### Lite Container - $79/year
 
-Ultra-lightweight Alpine Linux LXC container on Proxmox VE with 1GB RAM and 10GB NVMe storage. Perfect for static sites, small WordPress installations, or email-only hosting. Shares the host kernel for maximum efficiency. Includes Nginx, PHP-FPM, MariaDB, Postfix/Dovecot mail stack, and automatic SSL via Let's Encrypt.
+Alpine Linux LXC container with 1GB RAM and 10GB NVMe storage. Perfect for static sites, small WordPress installations, or email-only hosting.
 
 ### Small VM - $149/year
 
-Full Debian 13 virtual machine with dedicated kernel and complete isolation. 2GB RAM and 20GB NVMe storage. Ideal for growing WordPress sites, small web applications, or businesses needing dedicated resources. Includes the complete multi-service stack: Postfix/Dovecot/SpamProbe for email, Nginx/PHP-FPM for web, and MariaDB for databases.
+Debian 13 virtual machine with 2GB RAM and 20GB NVMe storage. Dedicated kernel, complete isolation, full multi-service stack.
 
 ### Medium VM - $199/year
 
-Production-ready Debian 13 VM with 4GB RAM and 40GB NVMe. Suitable for busier WordPress sites with WooCommerce, multiple domains, or applications with moderate traffic. Full root access available on request. All updates, security patches, and backups handled for you.
+Debian 13 VM with 4GB RAM and 40GB NVMe. Suitable for busier WordPress sites, WooCommerce, or multiple domains.
 
 ### Large VM - $249/year
 
-High-performance Debian 13 VM with 8GB RAM and 80GB NVMe storage. Built for demanding applications, high-traffic sites, or businesses consolidating multiple services. Ample headroom for caching, large databases, and concurrent users. Includes all managed services plus priority support.
+Debian 13 VM with 8GB RAM and 80GB NVMe storage. Built for demanding applications and high-traffic sites.
 
 ### Managed BYO - $120/year plus your VPS cost
 
-Already have a VPS at BinaryLane, Vultr, DigitalOcean, or elsewhere? We take over management. You pay your provider directly for the VPS, and we handle all the Linux administration: OS updates, security hardening, service configuration, monitoring, backups, and troubleshooting. Perfect for developers who want to focus on code, not sysadmin.
+Your VPS, our management. OS updates, security hardening, service configuration, monitoring, backups, and troubleshooting.
 
-### Resource Add-ons
+### Resource Add-ons - $20/year each
 
-All add-ons are $20/year each and can be added anytime without migration. Available add-ons include: +1GB RAM for memory-hungry applications, +10GB NVMe storage for growing databases, +25GB HDD storage for archives, and +1 dedicated IP for SSL certificates or mail reputation. Upgrades are applied within 24 hours.
+Add anytime without migration: +1GB RAM, +10GB NVMe storage, +25GB HDD storage, or +1 dedicated IP.
 
-Hands-on support is available at $60/hour for assistance beyond standard email support.
+Hands-on support: $60/hour for assistance beyond standard email support.
 
-## What's Included With All Plans
+## What's Included
 
-Infrastructure: Australian datacenter in Sydney, NVMe SSD storage, daily automated backups, and 99.9% uptime SLA.
+Infrastructure: Proxmox VE platform, NVMe SSD storage, daily backups, 99.9% uptime.
 
-Software Stack: Debian 13 or Alpine Linux, Nginx plus PHP-FPM with PHP 8.3 and OPcache, MariaDB/SQLite/PostgreSQL/Redis database options, Postfix plus Dovecot plus SpamProbe email stack.
+Software Stack: Debian 13 or Alpine Linux, PHP 8.3 with OPcache, Laravel and Symfony ready, Git deployment.
 
-Security and SSL: Let's Encrypt SSL certificates with automatic renewal, SSH key authentication, and regular security updates.
+Security: Let's Encrypt SSL, SSH key authentication, regular updates, firewall configured.
 
-Support: Email support included, 10am to 6pm AEST, Australian-based with 28+ years Linux experience. No lock-in contracts. Pay annually. Cancel anytime.
-
-## Email Security
-
-Enterprise-grade email protection configured by default. Authentication includes SPF records, DKIM signing, DMARC policy enforcement, and DNSSEC validation. Spam protection features server-side filtering, user-trainable filters, greylisting, and RBL checking. All connections use TLS 1.3 encryption with SSL certificates included, IMAP over port 993, and SMTP over port 465.
-
-Email features include unlimited aliases, webmail access, mobile sync readiness, and catch-all support.
+Support: Phone and email, 28+ years experience, migration assistance, no lock-in contracts.
 
 ## AI-Assisted Website Development
 
-This website was created entirely using AI-assisted development with Claude Code. The terminal-based AI assistant provides full project context for production-ready output with iterative refinement.
+This website was created entirely using AI-assisted development with Claude Code. Production-ready websites built in days instead of weeks.
 
-Benefits include rapid development in days instead of weeks, clean HTML/CSS/JS code, responsive design by default, and SEO optimization. Custom designs are tailored to your brand with dark/light themes, modern aesthetics, and accessible markup. The git-based workflow provides version control, auto-deploy on push, easy updates, and full ownership.
+Benefits: Clean HTML/CSS/JS code, responsive design by default, SEO optimized, dark/light themes, accessible markup.
+
+Workflow: Version controlled with Git, auto-deploy on push, easy updates, full ownership.
 
 Want a website like this one? We can build it for you.
 
 ## The RentaNet Difference
 
-Cost Effective: Hosting from $79/year with no hidden fees, pay-as-you-grow pricing, and no lock-in contracts.
+Cost Effective: From $79/year, no hidden fees, pay-as-you-grow, no lock-in contracts.
 
-Personal Service: Talk to real humans with direct phone support, same-day responses, and 28+ years experience.
+Personal Service: Talk to real humans, direct phone support, same-day responses, Australian-based.
 
-Performance First: NVMe SSD storage, Nginx plus PHP-FPM, OPcache enabled, all on Australian servers.
+Performance: NVMe SSD storage, Nginx plus PHP-FPM, OPcache enabled, Proxmox optimized.
 
-Full Support: Migration assistance, DNS configuration, SSL setup included, and backup management.
-
-## Who We Serve
-
-Small Business: Professional email, company website, contact forms, and simple e-commerce.
-
-Developers: Laravel applications, static site hosting, git deployment, and staging environments.
-
-Freelancers: Portfolio sites, client projects, multiple domains, and reseller-friendly options.
-
-Organizations: Non-profit websites, club newsletters, member directories, and event management.
-
-## Domain Names
-
-Domain registration with .com.au from $12/year and .com from $20/year. Free DNS hosting included with easy transfers.
-
-## Infrastructure
-
-Powered by Proxmox VE virtualization in an Australian datacenter in Sydney. BinaryLane VPS partnership available for Australian data centres with hourly billing and NVMe SSD storage.
+Fully Managed: OS updates, security patching, backup management, SSL renewals.
 
 ## Linux Consulting Services
 
 ### Server Administration
 
-Expert management of Debian, Ubuntu, Alpine, CentOS, and Rocky Linux systems. Services include VPS provisioning, cloud migration, load balancing, and high availability configuration. Security services cover hardening, firewall setup, intrusion detection, and monitoring. Additional services include SSL/TLS certificate management and backup solutions.
-
-### Mail Systems
-
-Complete email infrastructure with Postfix and Dovecot, SPF/DKIM/DMARC configuration, spam filtering, and mail migration services.
-
-### DevOps
-
-Modern development operations including Docker containers, Git workflows, CI/CD pipelines, and Ansible automation.
-
-### DNS and Networking
-
-Network services including PowerDNS, WireGuard VPN, IPv4 and IPv6 support, and BGP peering.
+Expert management of Debian, Ubuntu, Alpine, CentOS, and Rocky Linux systems. VPS provisioning, cloud migration, security hardening, firewall setup, monitoring, SSL/TLS certificates, and backup solutions.
 
 ### Technology Stack
 
 Web Servers: Nginx, Apache, Caddy, PHP-FPM
 Databases: MariaDB/MySQL, PostgreSQL, SQLite, Redis
+DevOps: Docker, Git workflows, CI/CD pipelines, Ansible
+Networking: PowerDNS, WireGuard VPN, IPv4/IPv6, BGP
+
 Operating Systems: Debian 13 Trixie for VMs, Alpine Linux for containers
 
 ## Linux Support Rates
 
-Quick questions are free via phone or email. Remote support is $60/hour via Zoom. Installation help is $60/hour for guided setup.
+Quick questions: Free via phone or email
+Remote support: $60/hour via Zoom
+Installation help: $60/hour for guided setup
 
 ## CachyOS Desktop Support
 
@@ -149,50 +115,32 @@ We recommend and support CachyOS with KDE Plasma for Linux desktop users looking
 
 ### About CachyOS
 
-CachyOS is a lightweight, Arch Linux-based distribution that emphasizes performance, security, and user-friendliness. Built with optimized kernels and modern tooling, it delivers exceptional speed while maintaining full compatibility with the extensive Arch User Repository (AUR). All packages are compiled with x86-64-v3/v4 instruction sets and LTO optimization, with core packages further enhanced using PGO and BOLT — resulting in measurably faster performance than generic Linux distributions.
+CachyOS is a lightweight, Arch Linux-based distribution emphasizing performance, security, and user-friendliness. All packages compiled with x86-64-v3/v4 instruction sets and LTO optimization, with core packages enhanced using PGO and BOLT for measurably faster performance.
 
 ### Why Switch from Windows
 
-Windows 11's hardware requirements have left millions of perfectly good computers behind. Microsoft's aggressive data collection, forced updates, and built-in advertising have frustrated users worldwide. Meanwhile, CachyOS runs beautifully on older hardware, respects your privacy completely, and puts you in control of your own computer. No telemetry, no mandatory cloud accounts, no subscriptions — just a fast, stable operating system that works for you.
+Windows 11's hardware requirements have left millions of computers behind. CachyOS runs beautifully on older hardware, respects your privacy, and puts you in control. No telemetry, no mandatory cloud accounts, no subscriptions.
 
 ### KDE Plasma Desktop
 
-We recommend the KDE Plasma edition of CachyOS. Now at version 6.5, it's the most polished and feature-rich Linux desktop available. Plasma offers a familiar Windows-like experience with a taskbar, start menu, and system tray, but with far greater customization.
-
-Wayland is now the default display protocol, bringing smooth animations, HDR support, and excellent multi-monitor handling. Features include automatic light-to-dark theme switching, fingerprint authentication, floating panels, and virtual desktops. Over 82% of KDE users now run Wayland, and the experience is rock-solid.
+KDE Plasma 6.5 offers a familiar Windows-like experience with taskbar, start menu, and system tray. Wayland default with smooth animations, HDR support, and excellent multi-monitor handling.
 
 ### ZFS Filesystem
 
-CachyOS is one of the few distributions offering ZFS directly from the Calamares graphical installer — no command-line required. ZFS brings features previously found only in enterprise storage: built-in RAID with self-healing (RAID-Z), instant snapshots using copy-on-write, transparent compression to save disk space, and the legendary ARC cache that delivers blazing-fast read times on frequently accessed files. Roll back your entire system to any previous snapshot in seconds. For users who value their data, ZFS is the gold standard.
-
-### Why Use a Linux Desktop
-
-Cost-Effective: Free to download and use, no licensing fees, runs on older hardware.
-
-Open Source: Full transparency, community-driven development, endless customization options.
-
-Security and Privacy: Built-in protections, less malware targeted, no user tracking.
-
-Performance: Efficient resource usage, optimized kernels, no bloatware.
+CachyOS offers ZFS directly from the graphical installer. Built-in RAID with self-healing, instant snapshots, transparent compression, and the legendary ARC cache. Roll back your entire system in seconds.
 
 ### Installation Guide
 
-CachyOS installs in under an hour using the friendly Calamares installer and comes with everything you need: Firefox for browsing, LibreOffice for documents, and thousands of free applications one click away. No subscriptions, no licensing fees, no bloatware. Your familiar keyboard shortcuts work, your files transfer seamlessly, and the learning curve is minimal.
+CachyOS installs in under an hour using the Calamares installer. Firefox for browsing, LibreOffice for documents, thousands of free applications.
 
-Before starting, back up everything important — photos, documents, anything you want to keep. Copy them to an external drive or cloud storage. Installing CachyOS will erase Windows. You will need a USB stick of 8GB or larger and about 30-60 minutes.
+Step 1: Download CachyOS KDE Plasma edition from cachyos.org
+Step 2: Create bootable USB with Rufus (rufus.ie)
+Step 3: Boot from USB (F12/F2/Del at startup)
+Step 4: Run installer, select Erase disk, create username/password
+Step 5: Restart and enjoy your new Linux desktop
 
-Step 1 - Download CachyOS: Visit cachyos.org, click Download, choose KDE Plasma (it's the most Windows-like), and save the .iso file.
-
-Step 2 - Create a bootable USB: Download Rufus from rufus.ie (it's free), plug in your USB stick, open Rufus, click SELECT and choose the CachyOS .iso you downloaded, click START and accept any prompts, then wait for it to finish.
-
-Step 3 - Boot from the USB: Restart your computer with the USB plugged in. As it starts, repeatedly tap F12, F2, or Del (depends on your computer) to get the boot menu. Select your USB stick from the list. CachyOS will load in a minute or two.
-
-Step 4 - Install CachyOS: Once loaded, click Install CachyOS. Choose your language, location, and keyboard layout. When asked about disk/partitioning, select Erase disk (the simple option). Create your username and password. Click through to start installation and wait 10-20 minutes. Click Restart and remove the USB when prompted.
-
-Step 5 - First boot: Your computer will restart into CachyOS. Log in with the password you created. The bottom-left corner is the start menu equivalent. Dolphin is the file manager like File Explorer. Firefox is the web browser. The software center is for installing new apps.
-
-We provide full support for CachyOS with KDE Plasma — from initial installation to ongoing maintenance. Whether you need help migrating from Windows, setting up ZFS snapshots, configuring specific software, or just want guidance as you explore your new system, we have 28+ years of Linux experience ready to assist you.
+We provide full CachyOS support from installation to ongoing maintenance.
 
 ## About
 
-RentaNet provides secure, cost-effective web and email hosting for Australian businesses and individuals. No complexity, no hidden fees — just straightforward hosting that works. With 28+ years of Linux experience, we offer expert support from someone who actually knows the systems inside and out. Personal service, enterprise reliability, startup pricing.
+RentaNet provides managed Linux servers for businesses and individuals. Dedicated VMs and containers on Proxmox VE, fully managed by experts with 28+ years of Linux experience. Personal service, enterprise reliability, startup pricing.
