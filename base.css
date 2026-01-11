@@ -441,7 +441,7 @@ html.light .theme-toggle .moon-icon {
 .hero-content {
     position: relative;
     z-index: 1;
-    max-width: var(--max-width-medium);
+    max-width: var(--max-width-wide);
     animation: fade-in-up 1s ease-out;
 }
 
