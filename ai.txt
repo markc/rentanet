@@ -25,7 +25,7 @@ Ultra-lightweight containers running on Proxmox VE. Alpine Linux provides an 8MB
 
 Minimum requirements are just 128MB RAM with approximately 130MB disk footprint, 1-3% overhead versus bare metal, and instant deployment. Ideal for static sites, PHP applications, and email hosting.
 
-### Full Virtual Machines (Debian 12)
+### Full Virtual Machines (Debian 13)
 
 Production-ready Debian-powered virtual machines for serious workloads. Running Debian Stable provides a rock-solid foundation with 5-year LTS support, predictable updates, and industry-standard compatibility. The multi-service stack includes Postfix and Dovecot for email, Nginx and PHP-FPM for web, MariaDB or SQLite for databases, and SpamProbe for spam filtering.
 
@@ -43,15 +43,15 @@ Ultra-lightweight Alpine Linux LXC container on Proxmox VE with 1GB RAM and 10GB
 
 ### Small VM - $149/year
 
-Full Debian 12 virtual machine with dedicated kernel and complete isolation. 2GB RAM and 20GB NVMe storage. Ideal for growing WordPress sites, small web applications, or businesses needing dedicated resources. Includes the complete multi-service stack: Postfix/Dovecot/SpamProbe for email, Nginx/PHP-FPM for web, and MariaDB for databases.
+Full Debian 13 virtual machine with dedicated kernel and complete isolation. 2GB RAM and 20GB NVMe storage. Ideal for growing WordPress sites, small web applications, or businesses needing dedicated resources. Includes the complete multi-service stack: Postfix/Dovecot/SpamProbe for email, Nginx/PHP-FPM for web, and MariaDB for databases.
 
 ### Medium VM - $199/year
 
-Production-ready Debian 12 VM with 4GB RAM and 40GB NVMe. Suitable for busier WordPress sites with WooCommerce, multiple domains, or applications with moderate traffic. Full root access available on request. All updates, security patches, and backups handled for you.
+Production-ready Debian 13 VM with 4GB RAM and 40GB NVMe. Suitable for busier WordPress sites with WooCommerce, multiple domains, or applications with moderate traffic. Full root access available on request. All updates, security patches, and backups handled for you.
 
 ### Large VM - $249/year
 
-High-performance Debian 12 VM with 8GB RAM and 80GB NVMe storage. Built for demanding applications, high-traffic sites, or businesses consolidating multiple services. Ample headroom for caching, large databases, and concurrent users. Includes all managed services plus priority support.
+High-performance Debian 13 VM with 8GB RAM and 80GB NVMe storage. Built for demanding applications, high-traffic sites, or businesses consolidating multiple services. Ample headroom for caching, large databases, and concurrent users. Includes all managed services plus priority support.
 
 ### Managed BYO - $120/year plus your VPS cost
 
@@ -67,7 +67,7 @@ Hands-on support is available at $60/hour for assistance beyond standard email s
 
 Infrastructure: Australian datacenter in Sydney, NVMe SSD storage, daily automated backups, and 99.9% uptime SLA.
 
-Software Stack: Debian 12 or Alpine Linux, Nginx plus PHP-FPM with PHP 8.3 and OPcache, MariaDB/SQLite/PostgreSQL/Redis database options, Postfix plus Dovecot plus SpamProbe email stack.
+Software Stack: Debian 13 or Alpine Linux, Nginx plus PHP-FPM with PHP 8.3 and OPcache, MariaDB/SQLite/PostgreSQL/Redis database options, Postfix plus Dovecot plus SpamProbe email stack.
 
 Security and SSL: Let's Encrypt SSL certificates with automatic renewal, SSH key authentication, and regular security updates.
 
@@ -137,7 +137,7 @@ Network services including PowerDNS, WireGuard VPN, IPv4 and IPv6 support, and B
 
 Web Servers: Nginx, Apache, Caddy, PHP-FPM
 Databases: MariaDB/MySQL, PostgreSQL, SQLite, Redis
-Operating Systems: Debian 12 Bookworm for VMs, Alpine Linux for containers
+Operating Systems: Debian 13 Trixie for VMs, Alpine Linux for containers
 
 ## Linux Support Rates
 
