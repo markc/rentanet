@@ -78,6 +78,14 @@ Workflow: Version controlled with Git, auto-deploy on push, easy updates, full o
 
 Want a website like this one? We can build it for you.
 
+## NetServa Management Console
+
+Web-based server management platform built on Laravel 12 and Filament 4. Database-first architecture for centralized control of domains, vhosts, and server infrastructure.
+
+Features: Domain and vhost management, automated SSL via Let's Encrypt, Postfix mail configuration, PowerDNS integration, user isolation, and comprehensive logging.
+
+Status: Work in progress. See netserva.org for details.
+
 ## The RentaNet Difference
 
 Cost Effective: From $79/year, no hidden fees, pay-as-you-grow, no lock-in contracts.
