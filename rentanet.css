@@ -283,11 +283,13 @@ html.light nav:not(.scrolled) .menu-toggle span {
     background: #fff;
 }
 
-.nav-links li:not(.nav-indicator) a:hover {
+.nav-links li:not(.nav-indicator) a:hover,
+.nav-links li:not(.nav-indicator) a.active {
     color: #fff;
 }
 
-html.light .nav-links li:not(.nav-indicator) a:hover {
+html.light .nav-links li:not(.nav-indicator) a:hover,
+html.light .nav-links li:not(.nav-indicator) a.active {
     color: #000;
 }
 

@@ -69,6 +69,23 @@ const navIndicatorInner = document.querySelector(".nav-indicator-inner");
 
 if (navLinksContainer && navIndicator && navIndicatorInner) {
     const navItems = navLinksContainer.querySelectorAll("li:not(.nav-indicator)");
+    let activeItem = null;
+
+    // Detect active page and mark it
+    const currentPath = window.location.pathname;
+    navItems.forEach(item => {
+        const anchor = item.querySelector("a");
+        if (anchor) {
+            const href = anchor.getAttribute("href");
+            // Match exact path or index page
+            if (href === currentPath ||
+                (href === "/" && (currentPath === "/" || currentPath === "/index.html")) ||
+                (href !== "/" && currentPath.startsWith(href))) {
+                anchor.classList.add("active");
+                activeItem = item;
+            }
+        }
+    });
 
     function moveIndicator(item) {
         // Measure the anchor element which has the padding
@@ -87,8 +104,10 @@ if (navLinksContainer && navIndicator && navIndicatorInner) {
         item.addEventListener("mouseenter", () => moveIndicator(item));
     });
 
-    // Initialize indicator position on first item
-    if (navItems.length > 0) {
+    // Initialize indicator position on active item, or first item as fallback
+    if (activeItem) {
+        moveIndicator(activeItem);
+    } else if (navItems.length > 0) {
         moveIndicator(navItems[0]);
     }
 }
