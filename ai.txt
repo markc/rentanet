@@ -1,6 +1,6 @@
-# RentaNet - Australian Web & Email Hosting
+# RentaNet - Managed Linux Servers
 
-Australian owned and operated since 1998. Secure, reliable PHP, static, and email hosting for Australian businesses and individuals. No complexity, no hidden fees — just straightforward hosting that works.
+Australian owned and operated since 1998. Dedicated virtual machines and lightweight containers on Proxmox VE, fully managed by Linux experts. Your own server with personal phone and email support.
 
 ABN: 69 851 855 459
 Website: https://renta.net
