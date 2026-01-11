@@ -4,6 +4,16 @@
  */
 
 // ============================================
+// SITE CONFIGURATION - Change these for different sites
+// ============================================
+
+const SITE_CONFIG = {
+    themeStorageKey: "renta-theme",  // localStorage key for theme preference
+    particleCount: 20,               // Number of floating particles
+    scrollThreshold: 50              // Pixels scrolled before nav changes
+};
+
+// ============================================
 // THEME MANAGEMENT
 // ============================================
 
@@ -13,7 +23,7 @@ function toggleTheme() {
     const current = document.documentElement.className;
     const next = current === "dark" ? "light" : "dark";
     document.documentElement.className = next;
-    localStorage.setItem("renta-theme", next);
+    localStorage.setItem(SITE_CONFIG.themeStorageKey, next);
 }
 
 // Theme toggle button
@@ -21,7 +31,7 @@ themeToggle.addEventListener("click", toggleTheme);
 
 // Listen for system preference changes (only if user hasn't set a preference)
 window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
-    if (!localStorage.getItem("renta-theme")) {
+    if (!localStorage.getItem(SITE_CONFIG.themeStorageKey)) {
         document.documentElement.className = e.matches ? "dark" : "light";
     }
 });
@@ -33,7 +43,7 @@ window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e)
 const particlesContainer = document.getElementById("particles");
 
 if (particlesContainer) {
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < SITE_CONFIG.particleCount; i++) {
         const particle = document.createElement("div");
         particle.className = "particle";
         particle.style.left = Math.random() * 100 + "%";
@@ -50,7 +60,7 @@ if (particlesContainer) {
 const navbar = document.getElementById("navbar");
 
 function handleScroll() {
-    if (window.scrollY > 50) {
+    if (window.scrollY > SITE_CONFIG.scrollThreshold) {
         navbar.classList.add("scrolled");
     } else {
         navbar.classList.remove("scrolled");
