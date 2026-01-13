@@ -114,12 +114,38 @@ if (navLinksContainer && navIndicator && navIndicatorInner) {
         item.addEventListener("mouseenter", () => moveIndicator(item));
     });
 
-    // Initialize indicator position on active item, or first item as fallback
-    if (activeItem) {
-        moveIndicator(activeItem);
-    } else if (navItems.length > 0) {
-        moveIndicator(navItems[0]);
+    // Initialize indicator position on active item without animation
+    function initializeIndicator() {
+        // Temporarily disable transition
+        navIndicatorInner.style.transition = 'none';
+
+        if (activeItem) {
+            moveIndicator(activeItem);
+        } else if (navItems.length > 0) {
+            moveIndicator(navItems[0]);
+        }
+
+        // Re-enable transition after a frame
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                navIndicatorInner.style.transition = '';
+            });
+        });
     }
+
+    // Wait for fonts and layout to settle
+    if (document.readyState === 'complete') {
+        initializeIndicator();
+    } else {
+        window.addEventListener('load', initializeIndicator);
+    }
+
+    // Return to active item when mouse leaves nav
+    navLinksContainer.addEventListener('mouseleave', () => {
+        if (activeItem) {
+            moveIndicator(activeItem);
+        }
+    });
 }
 
 // ============================================

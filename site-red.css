@@ -1,0 +1,329 @@
+/*
+ * RentaNet Red Theme
+ *
+ * Overrides SPE's blue theme with RentaNet's red branding.
+ * Loads after site.css to override default colors.
+ *
+ * Copyright (C) 2015-2025 Mark Constable <mc@netserva.org> (MIT License)
+ */
+
+/* ============================================
+   DARK THEME (Default for RentaNet)
+   ============================================ */
+
+:root {
+    /* Darker backgrounds for RentaNet */
+    --bg-primary: #0a0a0f;
+    --bg-secondary: #12121a;
+    --bg-tertiary: #1a1a24;
+
+    /* Red accent */
+    --accent: #DF0000;
+    --accent-hover: #ff1a1a;
+    --accent-subtle: rgba(223, 0, 0, 0.15);
+    --accent-glow: rgba(223, 0, 0, 0.4);
+    --accent-on-dark: #DF0000;
+
+    /* Text aliases for marketing components */
+    --text-primary: var(--fg-primary);
+    --text-secondary: var(--fg-secondary);
+    --text-muted: var(--fg-muted);
+
+    /* Brighter foregrounds for dark bg */
+    --fg-primary: #f8fafc;
+    --fg-secondary: #b4b4c0;
+    --fg-muted: #6b6b7a;
+
+    /* Borders */
+    --border: rgba(255, 255, 255, 0.1);
+    --border-muted: rgba(255, 255, 255, 0.05);
+
+    /* Semantic colors */
+    --success: #22c55e;
+    --success-subtle: rgba(34, 197, 94, 0.15);
+    --danger: #ef4444;
+    --danger-subtle: rgba(239, 68, 68, 0.15);
+    --warning: #f59e0b;
+    --warning-subtle: rgba(245, 158, 11, 0.15);
+
+    /* Glass effects */
+    --glass: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --nav-scrolled-bg: rgba(10, 10, 15, 0.9);
+
+    /* Shadows */
+    --shadow-xs: 0 1px 2px rgb(0 0 0 / 0.3);
+    --shadow-sm: 0 1px 3px rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.4), 0 8px 10px -6px rgb(0 0 0 / 0.4);
+
+    /* Particles */
+    --particle-opacity: 0.3;
+
+    /* Fonts - Inter for body, Quicksand for headings */
+    --font-sans: "Inter", "Quicksand", sans-serif;
+    --font-heading: "Quicksand", sans-serif;
+
+    /* Hero background */
+    --hero-bg: url('/Server_Room_Dark.webp');
+}
+
+/* ============================================
+   LIGHT THEME
+   ============================================ */
+
+html.light {
+    --bg-primary: #fefefe;
+    --bg-secondary: #f5f5f7;
+    --bg-tertiary: #eaeaef;
+
+    /* Darker red for light backgrounds */
+    --accent: #BF0000;
+    --accent-hover: #a00000;
+    --accent-subtle: rgba(191, 0, 0, 0.1);
+    --accent-glow: rgba(191, 0, 0, 0.25);
+    /* Bright red for dark sections (hero, bg-image-section) */
+    --accent-on-dark: #DF0000;
+
+    --fg-primary: #1a1a2e;
+    --fg-secondary: #4a4a5a;
+    --fg-muted: #8a8a9a;
+
+    --border: rgba(0, 0, 0, 0.1);
+    --border-muted: rgba(0, 0, 0, 0.05);
+
+    --glass: rgba(0, 0, 0, 0.03);
+    --glass-border: rgba(0, 0, 0, 0.08);
+    --nav-scrolled-bg: rgba(254, 254, 254, 0.9);
+
+    /* Shadows (lighter for light theme) */
+    --shadow-xs: 0 1px 2px rgb(0 0 0 / 0.05);
+    --shadow-sm: 0 1px 3px rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+    --particle-opacity: 0.15;
+}
+
+/* System preference dark mode */
+@media (prefers-color-scheme: dark) {
+    :root:not(.light) {
+        --bg-primary: #0a0a0f;
+        --bg-secondary: #12121a;
+        --bg-tertiary: #1a1a24;
+
+        --accent: #DF0000;
+        --accent-hover: #ff1a1a;
+        --accent-subtle: rgba(223, 0, 0, 0.15);
+        --accent-glow: rgba(223, 0, 0, 0.4);
+        --accent-on-dark: #DF0000;
+
+        --fg-primary: #f8fafc;
+        --fg-secondary: #b4b4c0;
+        --fg-muted: #6b6b7a;
+
+        --border: rgba(255, 255, 255, 0.1);
+        --border-muted: rgba(255, 255, 255, 0.05);
+
+        --glass: rgba(255, 255, 255, 0.05);
+        --glass-border: rgba(255, 255, 255, 0.1);
+        --nav-scrolled-bg: rgba(10, 10, 15, 0.9);
+
+        --particle-opacity: 0.3;
+    }
+}
+
+/* System preference light mode */
+@media (prefers-color-scheme: light) {
+    :root:not(.dark) {
+        --bg-primary: #fefefe;
+        --bg-secondary: #f5f5f7;
+        --bg-tertiary: #eaeaef;
+
+        --accent: #BF0000;
+        --accent-hover: #a00000;
+        --accent-subtle: rgba(191, 0, 0, 0.1);
+        --accent-glow: rgba(191, 0, 0, 0.25);
+        --accent-on-dark: #DF0000;
+
+        --fg-primary: #1a1a2e;
+        --fg-secondary: #4a4a5a;
+        --fg-muted: #8a8a9a;
+
+        --border: rgba(0, 0, 0, 0.1);
+        --border-muted: rgba(0, 0, 0, 0.05);
+
+        --glass: rgba(0, 0, 0, 0.03);
+        --glass-border: rgba(0, 0, 0, 0.08);
+        --nav-scrolled-bg: rgba(254, 254, 254, 0.9);
+
+        --particle-opacity: 0.15;
+    }
+}
+
+/* Explicit dark theme */
+html.dark {
+    --bg-primary: #0a0a0f;
+    --bg-secondary: #12121a;
+    --bg-tertiary: #1a1a24;
+
+    --accent: #DF0000;
+    --accent-hover: #ff1a1a;
+    --accent-subtle: rgba(223, 0, 0, 0.15);
+    --accent-glow: rgba(223, 0, 0, 0.4);
+    --accent-on-dark: #DF0000;
+
+    --fg-primary: #f8fafc;
+    --fg-secondary: #b4b4c0;
+    --fg-muted: #6b6b7a;
+
+    --border: rgba(255, 255, 255, 0.1);
+    --border-muted: rgba(255, 255, 255, 0.05);
+
+    --glass: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --nav-scrolled-bg: rgba(10, 10, 15, 0.9);
+
+    --particle-opacity: 0.3;
+}
+
+/* ============================================
+   HEADING FONTS
+   ============================================ */
+
+h1, h2, h3, h4, h5, h6,
+.section-title,
+.footer-brand {
+    font-family: var(--font-heading);
+}
+
+/* ============================================
+   GRADIENT TEXT EFFECT
+   ============================================ */
+
+.gradient-text {
+    color: #df0000;
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    -webkit-text-fill-color: #df0000;
+}
+
+/* ============================================
+   NAV LINK COLORS (brand-specific)
+   ============================================ */
+
+.nav-links li:not(.nav-indicator) a {
+    color: var(--accent);
+}
+
+html.light nav:not(.scrolled) .nav-links li:not(.nav-indicator) a:hover {
+    color: #000;
+}
+
+/* ============================================
+   LINUX PAGE - INSTALL GUIDE
+   ============================================ */
+
+.install-guide {
+    max-width: var(--max-width-narrow);
+    margin: 0 auto;
+}
+
+.install-step {
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-2);
+    margin-bottom: var(--spacing-1-5);
+}
+
+.install-step h3 {
+    font-family: "Quicksand", sans-serif;
+    font-size: 1.3rem;
+    margin-bottom: var(--spacing-1);
+    color: var(--accent);
+}
+
+.install-step ol,
+.install-step ul {
+    padding-left: var(--spacing-1-5);
+    color: var(--fg-secondary);
+}
+
+.install-step li {
+    margin-bottom: var(--spacing-0-5);
+    line-height: var(--line-height-normal);
+}
+
+.install-step p {
+    color: var(--fg-secondary);
+    line-height: var(--line-height-normal);
+    margin-bottom: var(--spacing-1);
+}
+
+.install-step code {
+    background: var(--bg-tertiary);
+    padding: 0.2rem 0.5rem;
+    border-radius: var(--radius-xs);
+    font-family: monospace;
+    color: var(--accent);
+}
+
+.install-step strong {
+    color: var(--fg-primary);
+}
+
+.warning-box {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid var(--accent);
+    border-radius: var(--radius-sm);
+    padding: var(--spacing-1-5);
+    margin-bottom: var(--spacing-1-5);
+}
+
+.warning-box p {
+    color: var(--fg-primary);
+    margin: 0;
+}
+
+.tip-box {
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px solid #22c55e;
+    border-radius: var(--radius-sm);
+    padding: 1rem 1.5rem;
+    margin-top: var(--spacing-1);
+}
+
+.tip-box p {
+    color: var(--fg-secondary);
+    margin: 0;
+    font-size: var(--font-size-base);
+}
+
+/* ============================================
+   ICON BRAND COLORS
+   ============================================ */
+
+/* Footer icons */
+.footer-col h4 .lucide-icon {
+    color: var(--accent);
+    stroke: var(--accent);
+}
+
+.contact-line .lucide-icon {
+    color: var(--accent);
+    stroke: var(--accent);
+}
+
+/* Service/card icons */
+.service-icon {
+    color: var(--accent);
+}
+
+.service-icon .lucide-icon {
+    color: var(--accent);
+    stroke: var(--accent);
+}

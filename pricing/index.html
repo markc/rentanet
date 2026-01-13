@@ -125,53 +125,71 @@
     </section>
 
     <section class="content-section">
-        <div class="pricing-details-grid">
-            <div class="server-card reveal">
-                <h3><i data-lucide="container" class="lucide-icon"></i> Lite Container</h3>
-                <p class="price">$79/year</p>
-                <p class="card-description">
-                    Ultra-lightweight Alpine Linux LXC container on Proxmox VE. Perfect for static sites, small WordPress installations, or email-only hosting. Shares the host kernel for maximum efficiency with 1GB RAM and 10GB NVMe storage. Includes Nginx, PHP-FPM, MariaDB, Postfix/Dovecot mail stack, and automatic SSL via Let's Encrypt.
-                </p>
+        <div class="services-grid services-grid-2col">
+            <div class="service-card reveal">
+                <h3>Lite Container</h3>
+                <ul>
+                    <li>$79/year</li>
+                    <li>1GB RAM / 10GB NVMe</li>
+                    <li>Alpine Linux LXC</li>
+                    <li>Static sites, WordPress, email</li>
+                </ul>
+                <p class="card-description">Ultra-lightweight Alpine Linux LXC container on Proxmox VE. Perfect for static sites, small WordPress installations, or email-only hosting. Shares the host kernel for maximum efficiency. Includes Nginx, PHP-FPM, MariaDB, Postfix/Dovecot mail stack, and automatic SSL via Let's Encrypt.</p>
             </div>
 
-            <div class="server-card reveal">
-                <h3><i data-lucide="server" class="lucide-icon"></i> Small VM</h3>
-                <p class="price">$149/year</p>
-                <p class="card-description">
-                    Full Debian 13 virtual machine with dedicated kernel and complete isolation. 2GB RAM and 20GB NVMe storage. Ideal for growing WordPress sites, small web applications, or businesses needing dedicated resources. Includes the complete multi-service stack: Postfix/Dovecot/Rspamd for email, Nginx/PHP-FPM for web, and MariaDB for databases.
-                </p>
+            <div class="service-card reveal">
+                <h3>Small VM</h3>
+                <ul>
+                    <li>$149/year</li>
+                    <li>2GB RAM / 20GB NVMe</li>
+                    <li>Debian 13, dedicated kernel</li>
+                    <li>Growing sites, web apps</li>
+                </ul>
+                <p class="card-description">Full Debian 13 virtual machine with dedicated kernel and complete isolation. Ideal for growing WordPress sites, small web applications, or businesses needing dedicated resources. Includes the complete multi-service stack: Postfix/Dovecot/Rspamd for email, Nginx/PHP-FPM for web, and MariaDB for databases.</p>
             </div>
 
-            <div class="server-card reveal">
-                <h3><i data-lucide="server-cog" class="lucide-icon"></i> Medium VM</h3>
-                <p class="price">$199/year</p>
-                <p class="card-description">
-                    Production-ready Debian 13 VM with 4GB RAM and 40GB NVMe. Suitable for busier WordPress sites with WooCommerce, multiple domains, or applications with moderate traffic. Full root access available on request. All updates, security patches, and backups handled for you.
-                </p>
+            <div class="service-card reveal">
+                <h3>Medium VM</h3>
+                <ul>
+                    <li>$199/year</li>
+                    <li>4GB RAM / 40GB NVMe</li>
+                    <li>WooCommerce, multi-domain</li>
+                    <li>Full root access available</li>
+                </ul>
+                <p class="card-description">Production-ready Debian 13 VM suitable for busier WordPress sites with WooCommerce, multiple domains, or applications with moderate traffic. Full root access available on request. All updates, security patches, and backups handled for you.</p>
             </div>
 
-            <div class="server-card reveal">
-                <h3><i data-lucide="database" class="lucide-icon"></i> Large VM</h3>
-                <p class="price">$249/year</p>
-                <p class="card-description">
-                    High-performance Debian 13 VM with 8GB RAM and 80GB NVMe storage. Built for demanding applications, high-traffic sites, or businesses consolidating multiple services. Ample headroom for caching, large databases, and concurrent users. Includes all managed services plus priority support.
-                </p>
+            <div class="service-card reveal">
+                <h3>Large VM</h3>
+                <ul>
+                    <li>$249/year</li>
+                    <li>8GB RAM / 80GB NVMe</li>
+                    <li>High-traffic, demanding apps</li>
+                    <li>Priority support included</li>
+                </ul>
+                <p class="card-description">High-performance Debian 13 VM built for demanding applications, high-traffic sites, or businesses consolidating multiple services. Ample headroom for caching, large databases, and concurrent users. Includes all managed services plus priority support.</p>
             </div>
 
-            <div class="server-card reveal">
-                <h3><i data-lucide="settings" class="lucide-icon"></i> Managed BYO</h3>
-                <p class="price">$120/year + your VPS cost</p>
-                <p class="card-description">
-                    Already have a VPS at BinaryLane, Vultr, DigitalOcean, or elsewhere? We'll take over management. You pay your provider directly for the VPS, and we handle all the Linux administration: OS updates, security hardening, service configuration, monitoring, backups, and troubleshooting. Perfect for developers who want to focus on code, not sysadmin.
-                </p>
+            <div class="service-card reveal">
+                <h3>Managed BYO</h3>
+                <ul>
+                    <li>$120/year + VPS cost</li>
+                    <li>Your VPS, our management</li>
+                    <li>Any provider supported</li>
+                    <li>Full Linux administration</li>
+                </ul>
+                <p class="card-description">Already have a VPS at BinaryLane, Vultr, DigitalOcean, or elsewhere? We'll take over management. You pay your provider directly for the VPS, and we handle all the Linux administration: OS updates, security hardening, service configuration, monitoring, backups, and troubleshooting.</p>
             </div>
 
-            <div class="server-card reveal">
-                <h3><i data-lucide="puzzle" class="lucide-icon"></i> Scale As You Grow</h3>
-                <p class="price">Flexible add-ons</p>
-                <p class="card-description">
-                    Need more resources? Add RAM, storage, or dedicated IPs at any time without migrating. Each add-on is just $20/year: +1GB RAM for memory-hungry apps, +10GB NVMe for growing databases, or +1 dedicated IP for SSL certificates or mail reputation. Upgrades are applied within 24 hours.
-                </p>
+            <div class="service-card reveal">
+                <h3>Scale As You Grow</h3>
+                <ul>
+                    <li>$20/year per add-on</li>
+                    <li>+1GB RAM</li>
+                    <li>+10GB NVMe storage</li>
+                    <li>+1 dedicated IP</li>
+                </ul>
+                <p class="card-description">Need more resources? Add RAM, storage, or dedicated IPs at any time without migrating. Each add-on is just $20/year: +1GB RAM for memory-hungry apps, +10GB NVMe for growing databases, or +1 dedicated IP for SSL certificates or mail reputation. Upgrades are applied within 24 hours.</p>
             </div>
         </div>
     </section>
@@ -191,7 +209,7 @@
                 <span class="service-icon"><i data-lucide="server" class="lucide-icon"></i></span>
                 <h3>Infrastructure</h3>
                 <ul>
-                    <li>Australian datacenter (Sydney)</li>
+                    <li>Australian datacenters</li>
                     <li>NVMe SSD storage</li>
                     <li>Daily automated backups</li>
                     <li>99.9% uptime SLA</li>
@@ -204,14 +222,14 @@
                     <li>Debian 13 or Alpine Linux</li>
                     <li>Nginx + PHP-FPM</li>
                     <li>MariaDB / SQLite</li>
-                    <li>Postfix + Dovecot + Rspamd</li>
+                    <li>Postfix + Dovecot</li>
                 </ul>
             </div>
             <div class="service-card reveal">
                 <span class="service-icon"><i data-lucide="shield-check" class="lucide-icon"></i></span>
                 <h3>Security & SSL</h3>
                 <ul>
-                    <li>Let's Encrypt SSL certificates</li>
+                    <li>Let's Encrypt SSL</li>
                     <li>Automatic renewals</li>
                     <li>SSH key authentication</li>
                     <li>Regular security updates</li>

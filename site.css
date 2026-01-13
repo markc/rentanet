@@ -1,214 +1,171 @@
-/*
- * RentaNet Site-Specific CSS
- *
- * Brand colors, fonts, and site-specific overrides.
- * Loads after base.css to override defaults.
- *
- * COLOR SYSTEM:
- * - accent: Brand red, for buttons, highlights, links on hover
- * - text-primary: Main readable text
- * - text-secondary: Softer readable text (NOT accent colored)
- * - text-muted: Least prominent text
- *
- * KEY PRINCIPLE: Never use accent red for body text that needs to be read.
- * Red on dark = poor contrast. Use white/light gray for readable text.
+/* SPE Theme - Color tokens and branding
+ * This file defines ALL colors - base.css is color-agnostic
+ * To create a new theme: copy this file, modify colors, load instead
+ * Copyright (C) 2015-2025 Mark Constable <mc@netserva.org> (MIT License)
  */
 
-/* ============================================
-   THEME TOKENS - Single source of truth
-   ============================================ */
-
+/* === Light Theme (Default) === */
 :root {
-    /* Dark mode is default */
-    --bg-primary: #0a0a0f;
-    --bg-secondary: #12121a;
-    --bg-tertiary: #1a1a24;
+    /* Backgrounds */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f6f8fa;
+    --bg-tertiary: #eaeef2;
 
-    /* Brand accent - RentaNet red
-     * --accent: adapts to theme (brighter on dark, darker on light)
-     * --accent-on-dark: always bright, for sections with dark backgrounds */
-    --accent: #DF0000;
-    --accent-on-dark: #DF0000;
-    --accent-hover: #ff1a1a;
-    --accent-glow: rgba(223, 0, 0, 0.4);
+    /* Foregrounds */
+    --fg-primary: #1f2328;
+    --fg-secondary: #656d76;
+    --fg-muted: #8b949e;
 
-    /* Text hierarchy - must be readable */
-    --text-primary: #f8fafc;
-    --text-secondary: #b4b4c0;
-    --text-muted: #6b6b7a;
+    /* Accent */
+    --accent: #0969da;
+    --accent-hover: #0550ae;
+    --accent-subtle: #ddf4ff;
 
-    /* Glass/overlay effects */
-    --glass: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --nav-scrolled-bg: rgba(10, 10, 15, 0.9);
+    /* Borders */
+    --border: #d0d7de;
+    --border-muted: #d8dee4;
 
-    /* Particles */
-    --particle-opacity: 0.3;
+    /* Semantic colors */
+    --success: #1a7f37;
+    --success-subtle: #dafbe1;
+    --danger: #cf222e;
+    --danger-subtle: #ffebe9;
+    --warning: #9a6700;
+    --warning-subtle: #fff8c5;
 
-    /* Fonts - Inter for body, Quicksand for headings */
-    --font-primary: "Inter", "Quicksand", sans-serif;
-    --font-heading: "Quicksand", sans-serif;
+    /* SPE brand */
+    --php: #777BB4;
 
-    /* Background image */
-    --hero-bg-image: url('/Server_Room_Dark.webp');
+    /* Glass morphism */
+    --glass: rgb(255 255 255 / 0.7);
+    --glass-border: rgb(255 255 255 / 0.3);
+    --accent-glow: rgb(9 105 218 / 0.3);
+    --accent-on-dark: #58a6ff;
 }
 
-/* Light mode override */
-html.light {
-    --bg-primary: #fefefe;
-    --bg-secondary: #f5f5f7;
-    --bg-tertiary: #eaeaef;
+/* === Dark Theme (System Preference) === */
+@media (prefers-color-scheme: dark) {
+    :root:not(.light) {
+        /* Backgrounds */
+        --bg-primary: #0d1117;
+        --bg-secondary: #161b22;
+        --bg-tertiary: #21262d;
 
-    /* Darker red for light backgrounds */
-    --accent: #BF0000;
-    --accent-hover: #a00000;
-    --accent-glow: rgba(191, 0, 0, 0.25);
-    /* Bright red stays the same for dark background sections */
-    --accent-on-dark: #DF0000;
+        /* Foregrounds */
+        --fg-primary: #e6edf3;
+        --fg-secondary: #8b949e;
+        --fg-muted: #6e7681;
 
-    --text-primary: #1a1a2e;
-    --text-secondary: #4a4a5a;
-    --text-muted: #8a8a9a;
+        /* Accent */
+        --accent: #58a6ff;
+        --accent-hover: #79b8ff;
+        --accent-subtle: #388bfd26;
 
-    --glass: rgba(0, 0, 0, 0.03);
-    --glass-border: rgba(0, 0, 0, 0.08);
-    --nav-scrolled-bg: rgba(254, 254, 254, 0.9);
+        /* Borders */
+        --border: #30363d;
+        --border-muted: #21262d;
 
-    --particle-opacity: 0.15;
-}
+        /* Semantic colors */
+        --success: #3fb950;
+        --success-subtle: #2ea04326;
+        --danger: #f85149;
+        --danger-subtle: #f8514926;
+        --warning: #d29922;
+        --warning-subtle: #bb800926;
 
-/* System preference (only applies if no explicit class) */
-@media (prefers-color-scheme: light) {
-    html:not(.dark):not(.light) {
-        --bg-primary: #fefefe;
-        --bg-secondary: #f5f5f7;
-        --bg-tertiary: #eaeaef;
-        --accent: #c00000;
-        --accent-hover: #a00000;
-        --accent-glow: rgba(192, 0, 0, 0.25);
-        --text-primary: #1a1a2e;
-        --text-secondary: #4a4a5a;
-        --text-muted: #8a8a9a;
-        --glass: rgba(0, 0, 0, 0.03);
-        --glass-border: rgba(0, 0, 0, 0.08);
-        --nav-scrolled-bg: rgba(254, 254, 254, 0.9);
-        --particle-opacity: 0.15;
+        /* Shadows (higher opacity for dark backgrounds) */
+        --shadow-xs: 0 1px 2px rgb(0 0 0 / 0.3);
+        --shadow-sm: 0 1px 3px rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4);
+        --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+        --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+        --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.4), 0 8px 10px -6px rgb(0 0 0 / 0.4);
+
+        /* Glass morphism (dark) */
+        --glass: rgb(22 27 34 / 0.8);
+        --glass-border: rgb(48 54 61 / 0.5);
+        --accent-glow: rgb(88 166 255 / 0.3);
+        --accent-on-dark: #79b8ff;
     }
 }
 
-/* ============================================
-   NAV LINK COLORS (brand-specific)
-   ============================================ */
+/* === Explicit Light Theme (Toggle Override) === */
+html.light {
+    /* Backgrounds */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f6f8fa;
+    --bg-tertiary: #eaeef2;
 
-.nav-links li:not(.nav-indicator) a {
-    color: var(--accent);
+    /* Foregrounds */
+    --fg-primary: #1f2328;
+    --fg-secondary: #656d76;
+    --fg-muted: #8b949e;
+
+    /* Accent */
+    --accent: #0969da;
+    --accent-hover: #0550ae;
+    --accent-subtle: #ddf4ff;
+
+    /* Borders */
+    --border: #d0d7de;
+    --border-muted: #d8dee4;
+
+    /* Semantic colors */
+    --success: #1a7f37;
+    --success-subtle: #dafbe1;
+    --danger: #cf222e;
+    --danger-subtle: #ffebe9;
+    --warning: #9a6700;
+    --warning-subtle: #fff8c5;
+
+    /* Glass morphism (light) */
+    --glass: rgb(255 255 255 / 0.7);
+    --glass-border: rgb(255 255 255 / 0.3);
+    --accent-glow: rgb(9 105 218 / 0.3);
+    --accent-on-dark: #58a6ff;
 }
 
-html.light nav:not(.scrolled) .nav-links li:not(.nav-indicator) a:hover {
-    color: #000;
+/* === Explicit Dark Theme (Toggle Override) === */
+html.dark {
+    /* Backgrounds */
+    --bg-primary: #0d1117;
+    --bg-secondary: #161b22;
+    --bg-tertiary: #21262d;
+
+    /* Foregrounds */
+    --fg-primary: #e6edf3;
+    --fg-secondary: #8b949e;
+    --fg-muted: #6e7681;
+
+    /* Accent */
+    --accent: #58a6ff;
+    --accent-hover: #79b8ff;
+    --accent-subtle: #388bfd26;
+
+    /* Borders */
+    --border: #30363d;
+    --border-muted: #21262d;
+
+    /* Semantic colors */
+    --success: #3fb950;
+    --success-subtle: #2ea04326;
+    --danger: #f85149;
+    --danger-subtle: #f8514926;
+    --warning: #d29922;
+    --warning-subtle: #bb800926;
+
+    /* Shadows (higher opacity for dark backgrounds) */
+    --shadow-xs: 0 1px 2px rgb(0 0 0 / 0.3);
+    --shadow-sm: 0 1px 3px rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.4), 0 8px 10px -6px rgb(0 0 0 / 0.4);
+
+    /* Glass morphism (dark) */
+    --glass: rgb(22 27 34 / 0.8);
+    --glass-border: rgb(48 54 61 / 0.5);
+    --accent-glow: rgb(88 166 255 / 0.3);
+    --accent-on-dark: #79b8ff;
 }
 
-/* ============================================
-   LINUX PAGE - INSTALL GUIDE
-   ============================================ */
-
-.install-guide {
-    max-width: var(--max-width-narrow);
-    margin: 0 auto;
-}
-
-.install-step {
-    background: var(--glass);
-    border: 1px solid var(--glass-border);
-    border-radius: var(--radius-md);
-    padding: var(--spacing-2);
-    margin-bottom: var(--spacing-1-5);
-}
-
-.install-step h3 {
-    font-family: "Quicksand", sans-serif;
-    font-size: 1.3rem;
-    margin-bottom: var(--spacing-1);
-    color: var(--accent);
-}
-
-.install-step ol,
-.install-step ul {
-    padding-left: var(--spacing-1-5);
-    color: var(--text-secondary);
-}
-
-.install-step li {
-    margin-bottom: var(--spacing-0-5);
-    line-height: var(--line-height-normal);
-}
-
-.install-step p {
-    color: var(--text-secondary);
-    line-height: var(--line-height-normal);
-    margin-bottom: var(--spacing-1);
-}
-
-.install-step code {
-    background: var(--bg-tertiary);
-    padding: 0.2rem 0.5rem;
-    border-radius: var(--radius-xs);
-    font-family: monospace;
-    color: var(--accent);
-}
-
-.install-step strong {
-    color: var(--text-primary);
-}
-
-.warning-box {
-    background: rgba(239, 68, 68, 0.1);
-    border: 1px solid var(--accent);
-    border-radius: var(--radius-sm);
-    padding: var(--spacing-1-5);
-    margin-bottom: var(--spacing-1-5);
-}
-
-.warning-box p {
-    color: var(--text-primary);
-    margin: 0;
-}
-
-.tip-box {
-    background: rgba(34, 197, 94, 0.1);
-    border: 1px solid #22c55e;
-    border-radius: var(--radius-sm);
-    padding: 1rem 1.5rem;
-    margin-top: var(--spacing-1);
-}
-
-.tip-box p {
-    color: var(--text-secondary);
-    margin: 0;
-    font-size: var(--font-size-base);
-}
-
-/* ============================================
-   ICON BRAND COLORS
-   ============================================ */
-
-/* Footer icons */
-.footer-col h4 .lucide-icon {
-    color: var(--accent);
-    stroke: var(--accent);
-}
-
-.contact-line .lucide-icon {
-    color: var(--accent);
-    stroke: var(--accent);
-}
-
-/* Service/card icons */
-.service-icon {
-    color: var(--accent);
-}
-
-.service-icon .lucide-icon {
-    color: var(--accent);
-    stroke: var(--accent);
-}
+/* === SPE Brand === */
+.btn-php { background: var(--php); }
