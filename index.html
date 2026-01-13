@@ -10,18 +10,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/base.css">
-    <link rel="stylesheet" href="/site.css">
+    <link rel="stylesheet" href="/site-red.css">
     <script src="https://unpkg.com/lucide@0.562.0/dist/umd/lucide.min.js"></script>
     <!-- Theme init in head to prevent flash -->
     <script>
         (function() {
             const stored = localStorage.getItem("renta-theme");
-            if (stored) {
-                document.documentElement.className = stored;
-            } else {
-                const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-                document.documentElement.className = prefersDark ? "dark" : "light";
-            }
+            // Default to dark mode for RentaNet brand
+            document.documentElement.className = stored || "dark";
         })();
     </script>
 </head>
@@ -225,8 +221,8 @@
                 </ul>
             </div>
         </div>
-        <div class="text-center mt-2">
-            <p class="text-secondary mb-1">Want a website like this one? We can build it for you.</p>
+        <div class="text-center" style="padding: 3rem 1rem;">
+            <p class="text-secondary" style="margin-bottom: 1.5rem;">Want a website like this one? We can build it for you.</p>
             <a href="/services/" class="cta-btn secondary">Learn More →</a>
         </div>
     </section>
@@ -322,15 +318,33 @@
             </div>
             <div class="footer-col">
                 <h4><i data-lucide="link" class="lucide-icon"></i> Quick Links</h4>
-                <a href="/services/">Services</a>
-                <a href="/pricing/">Pricing</a>
-                <a href="/linux/">Linux Support</a>
+                <div class="contact-line">
+                    <i data-lucide="briefcase" class="lucide-icon"></i>
+                    <a href="/services/">Services</a>
+                </div>
+                <div class="contact-line">
+                    <i data-lucide="credit-card" class="lucide-icon"></i>
+                    <a href="/pricing/">Pricing</a>
+                </div>
+                <div class="contact-line">
+                    <i data-lucide="terminal" class="lucide-icon"></i>
+                    <a href="/linux/">Linux Support</a>
+                </div>
             </div>
             <div class="footer-col">
                 <h4><i data-lucide="globe" class="lucide-icon"></i> Resources</h4>
-                <a href="https://my.spiderweb.com.au" target="_blank">Client Portal</a>
-                <a href="https://spiderweb.com.au" target="_blank">Spiderweb Cloud</a>
-                <a href="https://spiderweb.com.au/privacy-policy" target="_blank">Privacy Policy</a>
+                <div class="contact-line">
+                    <i data-lucide="user" class="lucide-icon"></i>
+                    <a href="https://my.spiderweb.com.au" target="_blank">Client Portal</a>
+                </div>
+                <div class="contact-line">
+                    <i data-lucide="cloud" class="lucide-icon"></i>
+                    <a href="https://spiderweb.com.au" target="_blank">Spiderweb Cloud</a>
+                </div>
+                <div class="contact-line">
+                    <i data-lucide="shield" class="lucide-icon"></i>
+                    <a href="https://spiderweb.com.au/privacy-policy" target="_blank">Privacy Policy</a>
+                </div>
             </div>
         </div>
         <div class="footer-copyright">

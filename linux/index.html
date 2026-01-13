@@ -10,18 +10,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/base.css">
-    <link rel="stylesheet" href="/site.css">
+    <link rel="stylesheet" href="/site-red.css">
     <script src="https://unpkg.com/lucide@0.562.0/dist/umd/lucide.min.js"></script>
     <!-- Theme init in head to prevent flash -->
     <script>
         (function() {
             const stored = localStorage.getItem("renta-theme");
-            if (stored) {
-                document.documentElement.className = stored;
-            } else {
-                const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-                document.documentElement.className = prefersDark ? "dark" : "light";
-            }
+            // Default to dark mode for RentaNet brand
+            document.documentElement.className = stored || "dark";
         })();
     </script>
 </head>
@@ -226,12 +222,12 @@
     </section>
 
     <section class="content-section">
-        <div class="install-guide">
-            <div class="warning-box reveal">
+        <div class="container-md mx-auto">
+            <div class="service-card reveal" style="background: rgba(239, 68, 68, 0.15); border-color: var(--accent);">
                 <p><strong><i data-lucide="alert-triangle" class="lucide-icon"></i> Back up everything important</strong> — photos, documents, anything you want to keep. Copy them to an external drive or cloud storage. Installing CachyOS will erase Windows.</p>
             </div>
 
-            <div class="install-step reveal">
+            <div class="service-card reveal" style="margin-top: var(--space-6);">
                 <h3>Before You Start</h3>
                 <p><strong>You'll need:</strong></p>
                 <ul>
@@ -240,7 +236,7 @@
                 </ul>
             </div>
 
-            <div class="install-step reveal">
+            <div class="service-card reveal" style="margin-top: var(--space-6);">
                 <h3>Step 1: Download CachyOS</h3>
                 <ol>
                     <li>Go to <strong>cachyos.org</strong></li>
@@ -248,12 +244,12 @@
                     <li>Choose <strong>KDE Plasma</strong> (it's the most Windows-like)</li>
                     <li>Save the <code>.iso</code> file somewhere easy to find</li>
                 </ol>
-                <div class="tip-box">
-                    <p><strong>Tip:</strong> The file will save to your <strong>Downloads</strong> folder. It'll be called something like <code>cachyos-kde-linux-250601.iso</code></p>
+                <div style="background: rgba(34, 197, 94, 0.15); border: 1px solid #22c55e; border-radius: 8px; padding: 1rem 1.5rem; margin-top: var(--space-4);">
+                    <p style="margin: 0;"><strong>Tip:</strong> The file will save to your <strong>Downloads</strong> folder. It'll be called something like <code style="background: var(--bg-tertiary); padding: 0.2rem 0.5rem; border-radius: 4px; color: #22c55e;">cachyos-kde-linux-250601.iso</code></p>
                 </div>
             </div>
 
-            <div class="install-step reveal">
+            <div class="service-card reveal" style="margin-top: var(--space-6);">
                 <h3>Step 2: Create a Bootable USB</h3>
                 <ol>
                     <li>Download <strong>Rufus</strong> from rufus.ie (it's free)</li>
@@ -265,7 +261,7 @@
                 </ol>
             </div>
 
-            <div class="install-step reveal">
+            <div class="service-card reveal" style="margin-top: var(--space-6);">
                 <h3>Step 3: Boot from the USB</h3>
                 <ol>
                     <li>Restart your computer with the USB plugged in</li>
@@ -275,7 +271,7 @@
                 </ol>
             </div>
 
-            <div class="install-step reveal">
+            <div class="service-card reveal" style="margin-top: var(--space-6);">
                 <h3>Step 4: Install CachyOS</h3>
                 <ol>
                     <li>Once loaded, click <strong>Install CachyOS</strong></li>
@@ -289,7 +285,7 @@
                 </ol>
             </div>
 
-            <div class="install-step reveal">
+            <div class="service-card reveal" style="margin-top: var(--space-6);">
                 <h3>Step 5: First Boot</h3>
                 <p>Your computer will restart into CachyOS. Log in with the password you created.</p>
                 <p><strong>Finding your way around:</strong></p>
@@ -301,8 +297,8 @@
                 </ul>
             </div>
 
-            <div class="text-center mt-2">
-                <p class="text-secondary mb-2">Need help with installation? We're here for you.</p>
+            <div class="text-center" style="margin-top: var(--space-8);">
+                <p class="text-secondary" style="margin-bottom: var(--space-4);">Need help with installation? We're here for you.</p>
                 <a href="tel:0419530037" class="cta-btn primary"><i data-lucide="phone-call" class="lucide-icon"></i> Call 0419 530 037</a>
             </div>
         </div>
@@ -370,29 +366,41 @@
     </section>
 
     <section class="content-section">
-        <div class="pricing-grid container-wide">
-            <div class="pricing-card reveal">
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <span class="service-icon"><i data-lucide="message-circle-question" class="lucide-icon"></i></span>
                 <h3>Quick Questions</h3>
-                <div class="price">Free</div>
-                <div class="period">Phone or email</div>
+                <ul>
+                    <li><strong style="font-size: 1.5rem;">Free</strong></li>
+                    <li>Phone or email</li>
+                </ul>
             </div>
-            <div class="pricing-card reveal">
+            <div class="service-card reveal">
+                <span class="service-icon"><i data-lucide="monitor" class="lucide-icon"></i></span>
                 <h3>Remote Support</h3>
-                <div class="price">$60/hr</div>
-                <div class="period">via Zoom</div>
+                <ul>
+                    <li><strong style="font-size: 1.5rem;">$60/hr</strong></li>
+                    <li>via Zoom</li>
+                </ul>
             </div>
-            <div class="pricing-card reveal">
+            <div class="service-card reveal">
+                <span class="service-icon"><i data-lucide="download" class="lucide-icon"></i></span>
                 <h3>Installation Help</h3>
-                <div class="price">$60/hr</div>
-                <div class="period">guided setup</div>
+                <ul>
+                    <li><strong style="font-size: 1.5rem;">$60/hr</strong></li>
+                    <li>guided setup</li>
+                </ul>
             </div>
-            <div class="pricing-card reveal">
+            <div class="service-card reveal">
+                <span class="service-icon"><i data-lucide="server" class="lucide-icon"></i></span>
                 <h3>BYO VPS Support</h3>
-                <div class="price">$120/yr</div>
-                <div class="period">Direct via SSH</div>
+                <ul>
+                    <li><strong style="font-size: 1.5rem;">$120/yr</strong></li>
+                    <li>Direct via SSH</li>
+                </ul>
             </div>
         </div>
-        <div class="text-center mt-3">
+        <div class="text-center" style="margin-top: var(--space-8);">
             <a href="mailto:admin@renta.net" class="cta-btn primary"><i data-lucide="mail" class="lucide-icon"></i> Email for Support</a>
         </div>
     </section>
@@ -421,15 +429,33 @@
             </div>
             <div class="footer-col">
                 <h4><i data-lucide="link" class="lucide-icon"></i> Quick Links</h4>
-                <a href="/services/">Services</a>
-                <a href="/pricing/">Pricing</a>
-                <a href="/linux/">Linux Support</a>
+                <div class="contact-line">
+                    <i data-lucide="briefcase" class="lucide-icon"></i>
+                    <a href="/services/">Services</a>
+                </div>
+                <div class="contact-line">
+                    <i data-lucide="credit-card" class="lucide-icon"></i>
+                    <a href="/pricing/">Pricing</a>
+                </div>
+                <div class="contact-line">
+                    <i data-lucide="terminal" class="lucide-icon"></i>
+                    <a href="/linux/">Linux Support</a>
+                </div>
             </div>
             <div class="footer-col">
                 <h4><i data-lucide="globe" class="lucide-icon"></i> Resources</h4>
-                <a href="https://my.spiderweb.com.au" target="_blank">Client Portal</a>
-                <a href="https://spiderweb.com.au" target="_blank">Spiderweb Cloud</a>
-                <a href="https://spiderweb.com.au/privacy-policy" target="_blank">Privacy Policy</a>
+                <div class="contact-line">
+                    <i data-lucide="user" class="lucide-icon"></i>
+                    <a href="https://my.spiderweb.com.au" target="_blank">Client Portal</a>
+                </div>
+                <div class="contact-line">
+                    <i data-lucide="cloud" class="lucide-icon"></i>
+                    <a href="https://spiderweb.com.au" target="_blank">Spiderweb Cloud</a>
+                </div>
+                <div class="contact-line">
+                    <i data-lucide="shield" class="lucide-icon"></i>
+                    <a href="https://spiderweb.com.au/privacy-policy" target="_blank">Privacy Policy</a>
+                </div>
             </div>
         </div>
         <div class="footer-copyright">
