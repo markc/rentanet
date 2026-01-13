@@ -2286,6 +2286,11 @@ html.light nav:not(.scrolled) .nav-links .nav-indicator-inner {
     z-index: 1;
 }
 
+/* Light mode scrolled nav - dark logo for contrast */
+html.light nav.scrolled .logo {
+    color: #000;
+}
+
 /* Light mode nav over dark hero */
 html.light nav:not(.scrolled) .logo {
     color: #fff;
