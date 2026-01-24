@@ -1,206 +1,257 @@
-/**
- * RentaNet - Main JavaScript
- * Theme management, particles, navigation, and animations
+/* Base JS - Mobile-First App Shell
+ * Copyright (C) 2015-2026 Mark Constable <mc@netserva.org> (MIT License)
  */
+if (typeof Base === 'undefined') {
+const Base = {
+    // All state in single localStorage key
+    key: 'base-state',
 
-// ============================================
-// SITE CONFIGURATION - Change these for different sites
-// ============================================
+    // Get/set persistent state
+    state(updates) {
+        const s = JSON.parse(localStorage.getItem(this.key) || '{}');
+        if (!updates) return s;
+        Object.assign(s, updates);
+        localStorage.setItem(this.key, JSON.stringify(s));
+        return s;
+    },
 
-const SITE_CONFIG = {
-    themeStorageKey: "renta-theme",  // localStorage key for theme preference
-    particleCount: 20,               // Number of floating particles
-    scrollThreshold: 50              // Pixels scrolled before nav changes
+    // Theme: toggle dark/light
+    toggleTheme() {
+        const html = document.documentElement;
+        const isDark = html.classList.contains('dark');
+        html.classList.replace(isDark ? 'dark' : 'light', isDark ? 'light' : 'dark');
+        this.state({ theme: isDark ? 'light' : 'dark' });
+        this.updateIcon();
+    },
+
+    // Update theme icon (sun/moon)
+    updateIcon() {
+        const btn = document.getElementById('theme-icon');
+        if (!btn) return;
+        const isDark = document.documentElement.classList.contains('dark');
+        btn.setAttribute('aria-label', isDark ? 'Light mode' : 'Dark mode');
+        const icon = btn.querySelector('[data-lucide], svg');
+        if (icon && typeof lucide !== 'undefined') {
+            const i = document.createElement('i');
+            i.setAttribute('data-lucide', isDark ? 'sun' : 'moon');
+            icon.replaceWith(i);
+            lucide.createIcons({ nodes: [i] });
+        } else if (!icon) {
+            btn.textContent = isDark ? '☀️' : '🌙';
+        }
+    },
+
+    // Color scheme
+    setScheme(scheme) {
+        const html = document.documentElement;
+        // Remove all scheme classes (crimson is default = no class)
+        ['stone', 'ocean', 'forest', 'sunset'].forEach(s => html.classList.remove('scheme-' + s));
+        // Normalize crimson to default (no class needed)
+        const normalized = (!scheme || scheme === 'default' || scheme === 'crimson') ? 'default' : scheme;
+        if (normalized !== 'default') html.classList.add('scheme-' + normalized);
+        this.state({ scheme: scheme || 'default' });
+        // Update active states - crimson and default are equivalent
+        document.querySelectorAll('[data-scheme]').forEach(el => {
+            const ds = el.dataset.scheme;
+            const isActive = (ds === scheme) ||
+                (ds === 'crimson' && (!scheme || scheme === 'default' || scheme === 'crimson')) ||
+                (ds === 'default' && (!scheme || scheme === 'default' || scheme === 'crimson'));
+            el.classList.toggle('active', isActive);
+        });
+    },
+
+    // Toast notification
+    toast(msg, type = 'success', ms = 3000) {
+        document.querySelector('.toast')?.remove();
+        const t = document.createElement('div');
+        t.className = `toast toast-${type}`;
+        t.textContent = msg;
+        t.setAttribute('role', 'alert');
+        document.body.appendChild(t);
+        setTimeout(() => { t.style.opacity = '0'; setTimeout(() => t.remove(), 300); }, ms);
+    },
+
+    // Sidebar: toggle open/close
+    toggleSidebar(side) {
+        const sb = document.querySelector(`.sidebar-${side}`);
+        if (!sb) return;
+        const opening = !sb.classList.contains('open');
+        // Close all non-pinned sidebars first
+        document.querySelectorAll('.sidebar.open:not(.pinned)').forEach(s => s.classList.remove('open'));
+        if (opening) {
+            sb.classList.add('open');
+            document.body.classList.add('sidebar-open');
+            this.state({ [side + 'Open']: true });
+        } else {
+            // Also unpin if pinned
+            sb.classList.remove('open', 'pinned');
+            document.body.classList.remove(side + '-pinned');
+            if (!document.querySelector('.sidebar.open')) document.body.classList.remove('sidebar-open');
+            this.state({ [side + 'Open']: false, [side + 'Pinned']: false });
+        }
+    },
+
+    // Sidebar: pin/unpin (desktop)
+    pinSidebar(side) {
+        const sb = document.querySelector(`.sidebar-${side}`);
+        if (!sb) return;
+        const pinning = !sb.classList.contains('pinned');
+        sb.classList.toggle('pinned', pinning);
+        sb.classList.toggle('open', pinning);
+        document.body.classList.toggle(side + '-pinned', pinning);
+        if (!pinning && !document.querySelector('.sidebar.open')) document.body.classList.remove('sidebar-open');
+        this.state({ [side + 'Pinned']: pinning, [side + 'Open']: pinning });
+        // Update pin icon
+        const icon = sb.querySelector('.pin-toggle [data-lucide], .pin-toggle svg');
+        if (icon && typeof lucide !== 'undefined') {
+            const i = document.createElement('i');
+            i.setAttribute('data-lucide', pinning ? 'pin-off' : 'pin');
+            icon.replaceWith(i);
+            lucide.createIcons({ nodes: [i] });
+        }
+    },
+
+    // Close all non-pinned sidebars
+    closeSidebars() {
+        document.querySelectorAll('.sidebar.open:not(.pinned)').forEach(s => s.classList.remove('open'));
+        if (!document.querySelector('.sidebar.pinned.open')) document.body.classList.remove('sidebar-open');
+        this.state({ leftOpen: false, rightOpen: false });
+    },
+
+    // Restore state on page load
+    restore() {
+        const s = this.state();
+        const desktop = window.innerWidth >= 1280;
+
+        ['left', 'right'].forEach(side => {
+            const sb = document.querySelector(`.sidebar-${side}`);
+            if (!sb) return;
+            const pinned = s[side + 'Pinned'] && desktop;
+            const open = pinned || (s[side + 'Open'] && desktop);
+            sb.classList.toggle('pinned', pinned);
+            sb.classList.toggle('open', open);
+            document.body.classList.toggle(side + '-pinned', pinned);
+            if (open) document.body.classList.add('sidebar-open');
+            // Set correct pin icon
+            const icon = sb.querySelector('.pin-toggle [data-lucide], .pin-toggle svg');
+            if (icon && pinned) icon.setAttribute('data-lucide', 'pin-off');
+        });
+    },
+
+    // Initialize
+    init() {
+        this.updateIcon();
+        this.restore();
+
+        // Scheme links - crimson and default are equivalent
+        const s = this.state();
+        const currentScheme = s.scheme || 'default';
+        document.querySelectorAll('[data-scheme]').forEach(el => {
+            const ds = el.dataset.scheme;
+            const isActive = (ds === currentScheme) ||
+                (ds === 'crimson' && (currentScheme === 'default' || currentScheme === 'crimson')) ||
+                (ds === 'default' && (currentScheme === 'default' || currentScheme === 'crimson'));
+            el.classList.toggle('active', isActive);
+        });
+
+        // Event delegation for clicks
+        document.addEventListener('click', e => {
+            const t = e.target;
+
+            // Theme toggle
+            if (t.closest('.theme-toggle')) { this.toggleTheme(); return; }
+
+            // Scheme selector
+            const scheme = t.closest('[data-scheme]');
+            if (scheme) { e.preventDefault(); this.setScheme(scheme.dataset.scheme); return; }
+
+            // Sidebar toggle
+            const menuBtn = t.closest('.menu-toggle[data-sidebar]');
+            if (menuBtn) { this.toggleSidebar(menuBtn.dataset.sidebar); return; }
+
+            // Pin toggle
+            const pinBtn = t.closest('.pin-toggle[data-sidebar]');
+            if (pinBtn) { this.pinSidebar(pinBtn.dataset.sidebar); return; }
+
+            // Overlay click
+            if (t.closest('.overlay')) { this.closeSidebars(); return; }
+
+            // Sidebar group toggle (collapsible)
+            const groupTitle = t.closest('.sidebar-group-title');
+            if (groupTitle) {
+                const group = groupTitle.closest('.sidebar-group');
+                group?.classList.toggle('collapsed');
+                return;
+            }
+
+            // Dropdown toggle
+            const dropToggle = t.closest('.dropdown-toggle');
+            if (dropToggle) {
+                e.preventDefault();
+                e.stopPropagation();
+                const dd = dropToggle.closest('.dropdown');
+                document.querySelectorAll('.dropdown.open').forEach(d => d !== dd && d.classList.remove('open'));
+                dd?.classList.toggle('open');
+                return;
+            }
+
+            // Close dropdowns on outside click
+            if (!t.closest('.dropdown')) {
+                document.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
+            }
+
+            // Close non-pinned sidebars on outside click
+            if (!t.closest('.sidebar') && !t.closest('.menu-toggle')) {
+                document.querySelectorAll('.sidebar.open:not(.pinned)').forEach(sb => sb.classList.remove('open'));
+                if (!document.querySelector('.sidebar.pinned.open')) document.body.classList.remove('sidebar-open');
+            }
+        });
+
+        // Escape key closes menus
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
+                this.closeSidebars();
+            }
+        });
+
+        // System theme change
+        matchMedia('(prefers-color-scheme:dark)').addEventListener('change', e => {
+            if (!this.state().theme) {
+                document.documentElement.classList.replace(e.matches ? 'light' : 'dark', e.matches ? 'dark' : 'light');
+                this.updateIcon();
+            }
+        });
+
+        // Responsive: hide pinned sidebars when viewport shrinks to mobile
+        matchMedia('(min-width: 1280px)').addEventListener('change', e => {
+            if (!e.matches) {
+                // Viewport went below desktop - close all sidebars
+                document.querySelectorAll('.sidebar.open').forEach(sb => {
+                    sb.classList.remove('open', 'pinned');
+                });
+                document.body.classList.remove('left-pinned', 'right-pinned', 'sidebar-open');
+            } else {
+                // Viewport went to desktop - restore pinned state
+                this.restore();
+            }
+        });
+
+        // Lucide icons
+        if (typeof lucide !== 'undefined') lucide.createIcons();
+
+        // Remove preload class to enable transitions (after state restored)
+        requestAnimationFrame(() => document.documentElement.classList.remove('preload'));
+    }
 };
 
-// ============================================
-// THEME MANAGEMENT
-// ============================================
+// Auto-init
+document.readyState === 'loading'
+    ? document.addEventListener('DOMContentLoaded', () => Base.init())
+    : Base.init();
 
-const themeToggle = document.getElementById("themeToggle");
-
-function toggleTheme() {
-    const current = document.documentElement.className;
-    const next = current === "dark" ? "light" : "dark";
-    document.documentElement.className = next;
-    localStorage.setItem(SITE_CONFIG.themeStorageKey, next);
-}
-
-// Theme toggle button
-themeToggle.addEventListener("click", toggleTheme);
-
-// Listen for system preference changes (only if user hasn't set a preference)
-window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
-    if (!localStorage.getItem(SITE_CONFIG.themeStorageKey)) {
-        document.documentElement.className = e.matches ? "dark" : "light";
-    }
-});
-
-// ============================================
-// FLOATING PARTICLES
-// ============================================
-
-const particlesContainer = document.getElementById("particles");
-
-if (particlesContainer) {
-    for (let i = 0; i < SITE_CONFIG.particleCount; i++) {
-        const particle = document.createElement("div");
-        particle.className = "particle";
-        particle.style.left = Math.random() * 100 + "%";
-        particle.style.animationDelay = Math.random() * 15 + "s";
-        particle.style.animationDuration = (10 + Math.random() * 10) + "s";
-        particlesContainer.appendChild(particle);
-    }
-}
-
-// ============================================
-// NAVBAR SCROLL EFFECT
-// ============================================
-
-const navbar = document.getElementById("navbar");
-
-function handleScroll() {
-    if (window.scrollY > SITE_CONFIG.scrollThreshold) {
-        navbar.classList.add("scrolled");
-    } else {
-        navbar.classList.remove("scrolled");
-    }
-}
-
-window.addEventListener("scroll", handleScroll);
-
-// ============================================
-// SLIDING NAV INDICATOR
-// ============================================
-
-const navLinksContainer = document.querySelector(".nav-links");
-const navIndicator = document.querySelector(".nav-indicator");
-const navIndicatorInner = document.querySelector(".nav-indicator-inner");
-
-if (navLinksContainer && navIndicator && navIndicatorInner) {
-    const navItems = navLinksContainer.querySelectorAll("li:not(.nav-indicator)");
-    let activeItem = null;
-
-    // Detect active page and mark it
-    const currentPath = window.location.pathname;
-    navItems.forEach(item => {
-        const anchor = item.querySelector("a");
-        if (anchor) {
-            const href = anchor.getAttribute("href");
-            // Match exact path or index page
-            if (href === currentPath ||
-                (href === "/" && (currentPath === "/" || currentPath === "/index.html")) ||
-                (href !== "/" && currentPath.startsWith(href))) {
-                anchor.classList.add("active");
-                activeItem = item;
-            }
-        }
-    });
-
-    function moveIndicator(item) {
-        // Measure the anchor element which has the padding
-        const anchor = item.querySelector("a");
-        const target = anchor || item;
-        const rect = target.getBoundingClientRect();
-        const containerRect = navLinksContainer.getBoundingClientRect();
-
-        navIndicatorInner.style.left = (rect.left - containerRect.left) + "px";
-        navIndicatorInner.style.top = (rect.top - containerRect.top) + "px";
-        navIndicatorInner.style.width = rect.width + "px";
-        navIndicatorInner.style.height = rect.height + "px";
-    }
-
-    navItems.forEach(item => {
-        item.addEventListener("mouseenter", () => moveIndicator(item));
-    });
-
-    // Initialize indicator position on active item without animation
-    function initializeIndicator() {
-        // Temporarily disable transition
-        navIndicatorInner.style.transition = 'none';
-
-        if (activeItem) {
-            moveIndicator(activeItem);
-        } else if (navItems.length > 0) {
-            moveIndicator(navItems[0]);
-        }
-
-        // Re-enable transition after a frame
-        requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-                navIndicatorInner.style.transition = '';
-            });
-        });
-    }
-
-    // Wait for fonts and layout to settle
-    if (document.readyState === 'complete') {
-        initializeIndicator();
-    } else {
-        window.addEventListener('load', initializeIndicator);
-    }
-
-    // Return to active item when mouse leaves nav
-    navLinksContainer.addEventListener('mouseleave', () => {
-        if (activeItem) {
-            moveIndicator(activeItem);
-        }
-    });
-}
-
-// ============================================
-// MOBILE MENU
-// ============================================
-
-const menuToggle = document.querySelector(".menu-toggle");
-const navLinks = document.querySelector(".nav-links");
-
-if (menuToggle && navLinks) {
-    menuToggle.addEventListener("click", () => {
-        navLinks.classList.toggle("active");
-    });
-
-    // Close menu when clicking a link
-    document.querySelectorAll(".nav-links a").forEach(link => {
-        link.addEventListener("click", () => {
-            navLinks.classList.remove("active");
-        });
-    });
-}
-
-// ============================================
-// SCROLL REVEAL ANIMATION
-// ============================================
-
-const revealElements = document.querySelectorAll(".reveal");
-
-function revealOnScroll() {
-    revealElements.forEach(el => {
-        const elementTop = el.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight;
-        if (elementTop < windowHeight - 100) {
-            el.classList.add("active");
-        }
-    });
-}
-
-if (revealElements.length > 0) {
-    window.addEventListener("scroll", revealOnScroll);
-    revealOnScroll(); // Initial check
-}
-
-// ============================================
-// DYNAMIC YEAR IN FOOTER
-// ============================================
-
-const yearSpan = document.getElementById("year");
-if (yearSpan) {
-    yearSpan.textContent = new Date().getFullYear();
-}
-
-// ============================================
-// LUCIDE ICONS INITIALIZATION
-// ============================================
-if (typeof lucide !== 'undefined') {
-    lucide.createIcons();
+// Global exports
+window.Base = Base;
+window.showToast = (m, t) => Base.toast(m, t);
+window.toggleTheme = () => Base.toggleTheme();
 }

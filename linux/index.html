@@ -10,47 +10,52 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/base.css">
-    <link rel="stylesheet" href="/site-red.css">
+    <link rel="stylesheet" href="/site.css">
     <script src="https://unpkg.com/lucide@0.562.0/dist/umd/lucide.min.js"></script>
-    <!-- Theme init in head to prevent flash -->
-    <script>
-        (function() {
-            const stored = localStorage.getItem("renta-theme");
-            // Default to dark mode for RentaNet brand
-            document.documentElement.className = stored || "dark";
-        })();
-    </script>
+    <script>(function(){var s=JSON.parse(localStorage.getItem('base-state')||'{}'),t=s.theme,c=s.scheme,h=document.documentElement;h.className='preload '+(t||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'))+(c&&c!=='default'&&c!=='crimson'?' scheme-'+c:'');})()</script>
 </head>
 <body>
-    <div class="particles" id="particles"></div>
+<div class="particles" id="particles"></div>
 
-    <nav id="navbar">
-        <a href="/" class="logo">Renta<span>NET</span></a>
-        <div class="nav-right">
-            <ul class="nav-links">
-                <li class="nav-indicator"><div class="nav-indicator-inner"></div></li>
-                <li><a href="/">Home</a></li>
-                <li><a href="/services/">Services</a></li>
-                <li><a href="/pricing/">Pricing</a></li>
-                <li><a href="/linux/">Linux</a></li>
-            </ul>
-            <button class="theme-toggle" id="themeToggle" title="Toggle theme" aria-label="Toggle dark/light mode">
-                <svg class="sun-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12" cy="12" r="5"/>
-                    <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-                </svg>
-                <svg class="moon-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-                </svg>
-            </button>
-            <div class="menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
+<nav class="topnav">
+    <button class="menu-toggle" data-sidebar="left"><i data-lucide="menu"></i></button>
+    <h1><a class="brand" href="/">Renta<span>NET</span></a></h1>
+    <button class="menu-toggle" data-sidebar="right"><i data-lucide="menu"></i></button>
+</nav>
+
+<aside class="sidebar sidebar-left">
+    <div class="sidebar-header">
+        <span><i data-lucide="compass"></i> Navigate</span>
+        <button class="pin-toggle" data-sidebar="left" title="Pin sidebar"><i data-lucide="pin"></i></button>
+    </div>
+    <nav>
+        <a href="/" data-icon="home"><i data-lucide="home"></i> Home</a>
+        <a href="/services/" data-icon="briefcase"><i data-lucide="briefcase"></i> Services</a>
+        <a href="/pricing/" data-icon="credit-card"><i data-lucide="credit-card"></i> Pricing</a>
+        <a href="/linux/" class="active" data-icon="terminal"><i data-lucide="terminal"></i> Linux Support</a>
+        <div class="sidebar-divider"></div>
+        <a href="tel:0419530037" data-icon="phone"><i data-lucide="phone"></i> 0419 530 037</a>
+        <a href="mailto:admin@renta.net" data-icon="mail"><i data-lucide="mail"></i> admin@renta.net</a>
     </nav>
+</aside>
 
+<aside class="sidebar sidebar-right">
+    <div class="sidebar-header">
+        <span><i data-lucide="palette"></i> Theme</span>
+        <button class="pin-toggle" data-sidebar="right" title="Pin sidebar"><i data-lucide="pin"></i></button>
+    </div>
+    <nav>
+        <a href="#" data-scheme="crimson" data-icon="flame"><i data-lucide="flame"></i> Crimson</a>
+        <a href="#" data-scheme="stone" data-icon="circle"><i data-lucide="circle"></i> Stone</a>
+        <a href="#" data-scheme="ocean" data-icon="waves"><i data-lucide="waves"></i> Ocean</a>
+        <a href="#" data-scheme="forest" data-icon="trees"><i data-lucide="trees"></i> Forest</a>
+        <a href="#" data-scheme="sunset" data-icon="sunset"><i data-lucide="sunset"></i> Sunset</a>
+        <div class="sidebar-divider"></div>
+        <a href="#" onclick="Base.toggleTheme();return false" data-icon="moon"><i data-lucide="moon"></i> Toggle Theme</a>
+    </nav>
+</aside>
+
+<main id="content">
     <section class="hero hero-bg page-hero">
         <div class="hero-content">
             <div class="section-header">
@@ -117,22 +122,22 @@
     <section class="content-section">
         <div class="container-md mx-auto">
             <div class="service-card reveal mb-2 p-large">
-                <h3 class="icon-header"><i data-lucide="monitor" class="lucide-icon" style="color: #df0000;"></i> About CachyOS</h3>
-                <p class="article-heading"><strong style="color: #df0000;">Ready to break free from Windows?</strong></p>
+                <h3 class="icon-header"><i data-lucide="monitor" class="lucide-icon" style="color: var(--accent);"></i> About CachyOS</h3>
+                <p class="article-heading"><strong style="color: var(--accent);">Ready to break free from Windows?</strong></p>
                 <p class="article-text">
                     CachyOS is a lightweight, Arch Linux-based distribution that emphasizes performance, security, and user-friendliness.
                     Built with optimized kernels and modern tooling, it delivers exceptional speed while maintaining full compatibility
                     with the extensive Arch User Repository (AUR). All packages are compiled with x86-64-v3/v4 instruction sets and LTO optimization,
                     with core packages further enhanced using PGO and BOLT — resulting in measurably faster performance than generic Linux distributions.
                 </p>
-                <p class="article-heading"><strong style="color: #df0000;">Why make the switch?</strong></p>
+                <p class="article-heading"><strong style="color: var(--accent);">Why make the switch?</strong></p>
                 <p class="article-text">
                     Windows 11's hardware requirements have left millions of perfectly good computers behind.
                     Microsoft's aggressive data collection, forced updates, and built-in advertising have frustrated users worldwide.
                     Meanwhile, CachyOS runs beautifully on older hardware, respects your privacy completely, and puts you in control of your own computer.
                     No telemetry, no mandatory cloud accounts, no subscriptions — just a fast, stable operating system that works for you.
                 </p>
-                <p class="article-heading"><strong style="color: #df0000;">KDE Plasma: The modern desktop</strong></p>
+                <p class="article-heading"><strong style="color: var(--accent);">KDE Plasma: The modern desktop</strong></p>
                 <p class="article-text">
                     We recommend the KDE Plasma edition of CachyOS — now at version 6.5, it's the most polished and feature-rich
                     Linux desktop available. Plasma offers a familiar Windows-like experience with a taskbar, start menu, and system tray, but with far greater customization.
@@ -140,20 +145,20 @@
                     light-to-dark theme switching, fingerprint authentication, floating panels, and virtual desktops make it a joy to use daily. Over 82% of KDE users
                     now run Wayland, and the experience is rock-solid.
                 </p>
-                <p class="article-heading"><strong style="color: #df0000;">Enterprise-grade ZFS filesystem</strong></p>
+                <p class="article-heading"><strong style="color: var(--accent);">Enterprise-grade ZFS filesystem</strong></p>
                 <p class="article-text">
                     CachyOS is one of the few distributions offering ZFS directly from the Calamares graphical installer — no command-line required.
                     ZFS brings features previously found only in enterprise storage: built-in RAID with self-healing (RAID-Z), instant snapshots using copy-on-write,
                     transparent compression to save disk space, and the legendary ARC cache that delivers blazing-fast read times on frequently accessed files.
                     Roll back your entire system to any previous snapshot in seconds. For users who value their data, ZFS is the gold standard.
                 </p>
-                <p class="article-heading"><strong style="color: #df0000;">It's easier than you think</strong></p>
+                <p class="article-heading"><strong style="color: var(--accent);">It's easier than you think</strong></p>
                 <p class="article-text">
                     CachyOS installs in under an hour using the friendly Calamares installer and comes with everything you need:
                     Firefox for browsing, LibreOffice for documents, and thousands of free applications one click away. No subscriptions, no licensing fees, no bloatware.
                     Your familiar keyboard shortcuts work, your files transfer seamlessly, and the learning curve is minimal.
                 </p>
-                <p class="article-heading"><strong style="color: #df0000;">We're here to help</strong></p>
+                <p class="article-heading"><strong style="color: var(--accent);">We're here to help</strong></p>
                 <p class="article-text">
                     We provide full support for CachyOS with KDE Plasma — from initial installation
                     to ongoing maintenance. Whether you need help migrating from Windows, setting up ZFS snapshots, configuring specific software, or just want guidance as you
@@ -462,7 +467,10 @@
             © <span id="year"></span> RentaNet. Proudly serving businesses and individuals across Australia.
         </div>
     </footer>
+</main>
 
-    <script src="/base.js"></script>
+<div class="overlay"></div>
+<script src="/base.js"></script>
+<script src="/site.js"></script>
 </body>
 </html>
