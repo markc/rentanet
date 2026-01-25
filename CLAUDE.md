@@ -192,7 +192,7 @@ All sizing, spacing, and colors use custom properties:
 
 ### Shared Components
 - Navigation, footer, particles duplicated in each HTML file
-- All pages link to `/base.css`, `/site.css`, and `/base.js`
+- All pages link to `base.css`, `site.css`, and `base.js` (relative paths — see "Relative Path Strategy" below)
 
 ## Development
 
@@ -202,6 +202,64 @@ python -m http.server 8080
 # or
 npx serve -p 8080
 ```
+
+## Relative Path Strategy (Dual-Context Serving)
+
+The site uses relative paths throughout, allowing it to work correctly when served from:
+1. **Directly** at `~/Dev/rentanet/` (e.g., `localhost:8080/`)
+2. **As a subdirectory** from `~/Dev/` (e.g., `localhost:8000/rentanet/`)
+
+### Root Level (index.html)
+
+Uses simple relative paths without `../`:
+
+```html
+<!-- Assets at same level -->
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="site.css">
+<script src="base.js"></script>
+
+<!-- Links to subdirectories -->
+<a href="./">Home</a>
+<a href="services/">Services</a>
+<a href="pricing/">Pricing</a>
+<a href="linux/">Linux Support</a>
+```
+
+### Subpages (services/, pricing/, linux/)
+
+Use `../` prefix to reach root-level assets:
+
+```html
+<!-- Assets one level up -->
+<link rel="stylesheet" href="../base.css">
+<link rel="stylesheet" href="../site.css">
+<script src="../base.js"></script>
+
+<!-- Navigation back to root and siblings -->
+<a href="../">Home</a>
+<a href="../services/">Services</a>
+<a href="../pricing/">Pricing</a>
+<a href="../linux/">Linux Support</a>
+```
+
+### Why This Works
+
+Relative paths resolve based on the current document's location, not the server root:
+
+| Context | Request | Document Location | `../base.css` Resolves To |
+|---------|---------|-------------------|---------------------------|
+| Direct serve | `/services/` | `/services/index.html` | `/base.css` |
+| Subdirectory | `/rentanet/services/` | `/rentanet/services/index.html` | `/rentanet/base.css` |
+
+This avoids absolute paths like `/base.css` which would break when served as a subdirectory.
+
+### Pattern Summary
+
+| From | To Root | To Sibling Dir | To Asset |
+|------|---------|----------------|----------|
+| `index.html` | `./` | `services/` | `base.css` |
+| `services/index.html` | `../` | `../pricing/` | `../base.css` |
 
 ## Deployment
 
