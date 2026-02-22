@@ -380,6 +380,8 @@
 
     /* Topnav styling */
     .topnav {
+        z-index: auto;
+        justify-content: center;
         background: var(--glass);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
@@ -395,6 +397,16 @@
     .topnav .brand span {
         color: var(--accent);
     }
+
+    /* Hamburger buttons — outside topnav so they paint above its stacking context */
+    body > .menu-toggle {
+        position: fixed;
+        top: 0;
+        height: var(--topnav-height);
+        z-index: var(--z-fixed);
+    }
+    body > .menu-toggle[data-sidebar="left"] { left: var(--space-4); }
+    body > .menu-toggle[data-sidebar="right"] { right: var(--space-4); }
 
     /* ============================================
        GLOBAL BACKGROUND IMAGE
