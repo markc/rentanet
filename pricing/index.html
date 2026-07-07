@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="RentaNet Pricing - Australian VPS and managed hosting from $79/year. Debian VMs, Alpine containers, WordPress hosting, and expert Linux support.">
+    <meta name="description" content="RentaNet Pricing - Australian managed Cosmix containers from $79/year. One linear price formula: web, mail, DNS and CMS in every container, fully managed by Claude Code.">
     <title>Pricing - RentaNet</title>
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <link rel="prefetch" href="../ai.txt">
@@ -62,7 +62,7 @@
             <div class="section-header">
                 <span class="section-tag">Simple & Transparent</span>
                 <h1 class="section-title hero-title">Pricing</h1>
-                <p class="section-subtitle hero-subtitle">Australian-hosted plans for every need</p>
+                <p class="section-subtitle hero-subtitle">One container. The whole stack. One linear price formula.</p>
             </div>
         </div>
     </section>
@@ -72,28 +72,24 @@
         <div class="pricing-tables-grid">
             <div class="pricing-table reveal">
                 <div class="pricing-table-header" style="font-size: var(--text-2xl); display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
-                    <i data-lucide="server" style="width:24px;height:24px"></i>
-                    VM/CT HOSTING
+                    <i data-lucide="container" style="width:24px;height:24px"></i>
+                    COSMIX CONTAINERS
                 </div>
                 <div class="pricing-table-row">
-                    <span><strong>Lite</strong> — 1 CPU / 1GB / 10GB NVMe</span>
+                    <span><strong>Lite</strong> — 1 vCPU / 1GB / 10GB NVMe</span>
                     <span>$79/year</span>
                 </div>
                 <div class="pricing-table-row">
-                    <span><strong>Small</strong> — 2 CPU / 2GB / 20GB NVMe</span>
-                    <span>$149/year</span>
+                    <span><strong>Standard</strong> — 2 vCPU / 2GB / 20GB NVMe</span>
+                    <span>$139/year</span>
                 </div>
                 <div class="pricing-table-row">
-                    <span><strong>Medium</strong> — 3 CPU / 4GB / 40GB NVMe</span>
-                    <span>$199/year</span>
+                    <span><strong>Plus</strong> — 3 vCPU / 4GB / 40GB NVMe</span>
+                    <span>$239/year</span>
                 </div>
                 <div class="pricing-table-row">
-                    <span><strong>Large</strong> — 4 CPU / 8GB / 80GB NVMe</span>
-                    <span>$249/year</span>
-                </div>
-                <div class="pricing-table-row">
-                    <span><strong>Managed BYO</strong> — Your VPS</span>
-                    <span>$120/year</span>
+                    <span><strong>Max</strong> — 4 vCPU / 8GB / 80GB NVMe</span>
+                    <span>$419/year</span>
                 </div>
                 <div class="pricing-table-row">
                     <span><strong>Questions</strong> — via <a href="mailto:ai@motd.com">ai@motd.com</a></span>
@@ -107,11 +103,11 @@
                     ADD-ONS
                 </div>
                 <div class="pricing-table-row">
-                    <span>+1GB RAM</span>
+                    <span>+1 vCPU</span>
                     <span>$20/year</span>
                 </div>
                 <div class="pricing-table-row">
-                    <span>+1 Dedicated IP</span>
+                    <span>+1GB RAM</span>
                     <span>$20/year</span>
                 </div>
                 <div class="pricing-table-row">
@@ -119,7 +115,11 @@
                     <span>$20/year</span>
                 </div>
                 <div class="pricing-table-row">
-                    <span>+25GB HDD Storage</span>
+                    <span>+25GB Bulk Storage</span>
+                    <span>$20/year</span>
+                </div>
+                <div class="pricing-table-row">
+                    <span>+1 Dedicated IPv4</span>
                     <span>$20/year</span>
                 </div>
                 <div class="pricing-table-row">
@@ -132,88 +132,121 @@
                 </div>
             </div>
         </div>
+        <p class="callout reveal"><strong>Every price above is the same formula:</strong> $19/year base + $20/year per resource unit — one vCPU, 1GB of RAM, or 10GB of NVMe. The plans are just convenient shapes. Grow one unit at a time, whenever you like, no migration and no tier games: Lite is 3 units, Standard is 6, Plus is 11, Max is 20.</p>
     </section>
 
     <!-- Section 2: Plan Details -->
     <section class="bg-image-section">
         <div class="section-header">
             <span class="section-tag">Plan Details</span>
-            <h2 class="section-title">What You Get</h2>
-            <p class="section-subtitle">Dedicated resources with full management included</p>
+            <h2 class="section-title">Every Container Is the Whole Stack</h2>
+            <p class="section-subtitle">Web, mail, DNS, CMS and PIM in every tier — the only thing that changes is capacity</p>
         </div>
     </section>
 
     <section class="content-section">
         <div class="services-grid services-grid-2col">
             <div class="service-card reveal">
-                <h3>Lite Container</h3>
+                <h3>Lite</h3>
                 <ul>
-                    <li>$79/year</li>
-                    <li>1 CPU / 1GB RAM / 10GB NVMe</li>
-                    <li>Alpine Linux LXC</li>
-                    <li>Static sites, WordPress, email</li>
+                    <li>$79/year — about $6.60/month</li>
+                    <li>1 vCPU / 1GB RAM / 10GB NVMe</li>
+                    <li>Your domain, done properly</li>
+                    <li>Site + real mail + DNS</li>
                 </ul>
-                <p class="card-description">Ultra-lightweight Alpine Linux LXC container on Proxmox VE. Perfect for static sites, small WordPress installations, or email-only hosting. Shares the host kernel for maximum efficiency. Includes Nginx, PHP-FPM, MariaDB, Postfix/Dovecot mail stack, and automatic SSL via Let's Encrypt.</p>
+                <p class="card-description">The full Cosmix stack for a personal domain or side project: your website and blog, real mailboxes at your own domain, authoritative DNS, contacts and calendar. The all-Rust stack idles in a few hundred megabytes, so 1GB is genuinely comfortable — this is a complete online presence, not a starter compromise.</p>
             </div>
 
             <div class="service-card reveal">
-                <h3>Small VM</h3>
+                <h3>Standard</h3>
                 <ul>
-                    <li>$149/year</li>
-                    <li>2 CPU / 2GB RAM / 20GB NVMe</li>
-                    <li>Debian 13, dedicated kernel</li>
-                    <li>Growing sites, web apps</li>
+                    <li>$139/year — about $11.60/month</li>
+                    <li>2 vCPU / 2GB RAM / 20GB NVMe</li>
+                    <li>Small business daily driver</li>
+                    <li>A few domains, a small team</li>
                 </ul>
-                <p class="card-description">Full Debian 13 virtual machine with dedicated kernel and complete isolation. Ideal for growing WordPress sites, small web applications, or businesses needing dedicated resources. Includes the complete multi-service stack: Postfix/Dovecot/Rspamd for email, Nginx/PHP-FPM for web, and MariaDB for databases.</p>
+                <p class="card-description">Headroom for a small business: several domains, mailboxes for the whole team, a busier site with the built-in CMS and blog, shared contacts and calendars. The sweet spot for most customers moving off cPanel-era hosting or a tangle of SaaS subscriptions.</p>
             </div>
 
             <div class="service-card reveal">
-                <h3>Medium VM</h3>
+                <h3>Plus</h3>
                 <ul>
-                    <li>$199/year</li>
-                    <li>3 CPU / 4GB RAM / 40GB NVMe</li>
-                    <li>WooCommerce, multi-domain</li>
-                    <li>Full root access available</li>
+                    <li>$239/year — about $19.90/month</li>
+                    <li>3 vCPU / 4GB RAM / 40GB NVMe</li>
+                    <li>Multi-domain, heavier mail</li>
+                    <li>Forum and file sharing</li>
                 </ul>
-                <p class="card-description">Production-ready Debian 13 VM suitable for busier WordPress sites with WooCommerce, multiple domains, or applications with moderate traffic. Full root access available on request. All updates, security patches, and backups handled for you.</p>
+                <p class="card-description">For agencies and busy operators: a stable of client domains, heavier mail flow, the forum and file-manager surfaces in real use, and room for large mail archives. Add $20 units as individual domains grow instead of re-platforming anything.</p>
             </div>
 
             <div class="service-card reveal">
-                <h3>Large VM</h3>
+                <h3>Max</h3>
                 <ul>
-                    <li>$249/year</li>
-                    <li>4 CPU / 8GB RAM / 80GB NVMe</li>
-                    <li>High-traffic, demanding apps</li>
+                    <li>$419/year — about $34.90/month</li>
+                    <li>4 vCPU / 8GB RAM / 80GB NVMe</li>
+                    <li>Consolidate everything</li>
                     <li>Priority support included</li>
                 </ul>
-                <p class="card-description">High-performance Debian 13 VM built for demanding applications, high-traffic sites, or businesses consolidating multiple services. Ample headroom for caching, large databases, and concurrent users. Includes all managed services plus priority support.</p>
-            </div>
-
-            <div class="service-card reveal">
-                <h3>Managed BYO</h3>
-                <ul>
-                    <li>$120/year + VPS cost</li>
-                    <li>Your VPS, our management</li>
-                    <li>Any provider supported</li>
-                    <li>Full Linux administration</li>
-                </ul>
-                <p class="card-description">Already have a VPS at BinaryLane, Vultr, DigitalOcean, or elsewhere? We'll take over management. You pay your provider directly for the VPS, and we handle all the Linux administration: OS updates, security hardening, service configuration, monitoring, backups, and troubleshooting.</p>
-            </div>
-
-            <div class="service-card reveal">
-                <h3>Scale As You Grow</h3>
-                <ul>
-                    <li>$20/year per add-on</li>
-                    <li>+1GB RAM</li>
-                    <li>+10GB NVMe storage</li>
-                    <li>+1 dedicated IP</li>
-                </ul>
-                <p class="card-description">Need more resources? Add RAM, storage, or dedicated IPs at any time without migrating. Each add-on is just $20/year: +1GB RAM for memory-hungry apps, +10GB NVMe for growing databases, or +1 dedicated IP for SSL certificates or mail reputation. Upgrades are applied within 24 hours.</p>
+                <p class="card-description">One container that replaces a rack's worth of subscriptions: every domain, every mailbox, all your sites and archives in a single managed place with serious headroom. Compare it to an unmanaged 4-core/8GB VPS at around $470/year — Max costs less and includes full Claude Code management.</p>
             </div>
         </div>
     </section>
 
-    <!-- Section 3: Included Features -->
+    <!-- Section 3: The Cosmix Stack -->
+    <section class="bg-image-section">
+        <div class="section-header">
+            <span class="section-tag">The Cosmix Stack</span>
+            <h2 class="section-title">Why a 1GB Container Does All This</h2>
+            <p class="section-subtitle">A single all-Rust service stack, built from the ground up to be operated by AI agents — no PHP, no MySQL, no cPanel overhead</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <span class="service-icon"><i data-lucide="globe" class="lucide-icon"></i></span>
+                <h3>Web & Publishing</h3>
+                <ul>
+                    <li>Server-rendered website</li>
+                    <li>CMS pages and blog built in</li>
+                    <li>Forum and file manager</li>
+                    <li>Automatic TLS certificates</li>
+                </ul>
+            </div>
+            <div class="service-card reveal">
+                <span class="service-icon"><i data-lucide="mail" class="lucide-icon"></i></span>
+                <h3>Mail & PIM</h3>
+                <ul>
+                    <li>Full mail server, your domain</li>
+                    <li>JMAP + IMAP in one daemon</li>
+                    <li>Webmail, contacts, calendar</li>
+                    <li>SPF/DKIM/DMARC configured</li>
+                </ul>
+            </div>
+            <div class="service-card reveal">
+                <span class="service-icon"><i data-lucide="network" class="lucide-icon"></i></span>
+                <h3>DNS</h3>
+                <ul>
+                    <li>Authoritative DNS included</li>
+                    <li>API-driven zone management</li>
+                    <li>Changes live in seconds</li>
+                    <li>No third-party DNS bills</li>
+                </ul>
+            </div>
+            <div class="service-card reveal">
+                <span class="service-icon"><i data-lucide="bot" class="lucide-icon"></i></span>
+                <h3>Agent Mesh</h3>
+                <ul>
+                    <li>Every service agent-addressable</li>
+                    <li>Fleet monitoring and health</li>
+                    <li>Audit trail for every change</li>
+                    <li>Operated by Claude Code</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Included Features -->
     <section class="bg-image-section">
         <div class="section-header">
             <span class="section-tag">Everything You Need</span>
@@ -228,43 +261,48 @@
                 <span class="service-icon"><i data-lucide="server" class="lucide-icon"></i></span>
                 <h3>Infrastructure</h3>
                 <ul>
-                    <li>Australian datacenters</li>
+                    <li>Australian datacenter (Sydney)</li>
                     <li>NVMe SSD storage</li>
-                    <li>Daily automated backups</li>
+                    <li>Daily backups, verified restores</li>
                     <li>99.9% uptime SLA</li>
                 </ul>
             </div>
             <div class="service-card reveal">
-                <span class="service-icon"><i data-lucide="layers" class="lucide-icon"></i></span>
-                <h3>Software Stack</h3>
+                <span class="service-icon"><i data-lucide="sparkles" class="lucide-icon"></i></span>
+                <h3>Managed by Claude Code</h3>
                 <ul>
-                    <li>Debian 13 or Alpine Linux</li>
-                    <li>Nginx + PHP-FPM</li>
-                    <li>MariaDB / SQLite</li>
-                    <li>Postfix + Dovecot</li>
+                    <li>Updates and patches applied</li>
+                    <li>Certificates renewed on time</li>
+                    <li>Monitored around the clock</li>
+                    <li>Human-verified, 28+ years</li>
                 </ul>
             </div>
             <div class="service-card reveal">
                 <span class="service-icon"><i data-lucide="shield-check" class="lucide-icon"></i></span>
-                <h3>Security & SSL</h3>
+                <h3>Security</h3>
                 <ul>
-                    <li>Let's Encrypt SSL</li>
-                    <li>Automatic renewals</li>
-                    <li>SSH key authentication</li>
-                    <li>Regular security updates</li>
+                    <li>SSH key access, no passwords</li>
+                    <li>nftables + CrowdSec</li>
+                    <li>Let's Encrypt, auto-renewed</li>
+                    <li>Static binaries, tiny surface</li>
                 </ul>
             </div>
             <div class="service-card reveal">
-                <span class="service-icon"><i data-lucide="headphones" class="lucide-icon"></i></span>
-                <h3>Support</h3>
+                <span class="service-icon"><i data-lucide="terminal" class="lucide-icon"></i></span>
+                <h3>Agent-Friendly</h3>
                 <ul>
-                    <li>Email support included</li>
-                    <li>10am – 6pm AEST</li>
-                    <li>Australian-based</li>
-                    <li>28+ years experience</li>
+                    <li>ai.txt on every site</li>
+                    <li>Git auto-deploy on push</li>
+                    <li>Run your own Claude Code</li>
+                    <li>Predictable, documented layout</li>
                 </ul>
             </div>
         </div>
+    </section>
+
+    <!-- Small print: VMs and BYO -->
+    <section class="tagline-strip reveal">
+        <h5>Need something that isn't a container? We also offer <strong>managed Debian VMs</strong> on dedicated resources, and <strong>managed BYO</strong> — Claude Code operations on your existing BinaryLane, Vultr or DigitalOcean VPS. Email <a href="mailto:admin@renta.net">admin@renta.net</a> for a quote.</h5>
     </section>
 
     <!-- CTA Section -->

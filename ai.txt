@@ -5,7 +5,7 @@ scope: /
 
 # RentaNet - Managed Linux Servers, Fully Managed by Claude Code
 
-Australian owned and operated since 1998. Dedicated virtual machines and lightweight containers on Proxmox VE, administered end-to-end by Claude Code under the supervision of Linux experts with 28+ years experience. Built by Claude Code users, for Claude Code users. Your own server with personal phone and email support.
+Australian owned and operated since 1998. Cosmix containers on Proxmox VE — web, mail, DNS, CMS and PIM in one lightweight container — administered end-to-end by Claude Code under the supervision of Linux experts with 28+ years experience. Built by Claude Code users, for Claude Code users. Your own server with personal phone and email support.
 
 ## Managed by Claude Code
 
@@ -31,7 +31,7 @@ Client Portal: https://my.spiderweb.com.au
 
 ## Core Services
 
-**Managed Servers**: Alpine and Debian servers on Proxmox VE with full stack included. From $79/year fully managed.
+**Cosmix Containers**: Proxmox containers running the all-Rust Cosmix stack — web, mail, DNS, CMS and PIM in every container. From $79/year fully managed.
 
 **Claude Coding**: AI-assisted development using Claude Code. Production-ready websites, scripts, and applications. $120/hour.
 
@@ -39,58 +39,55 @@ Client Portal: https://my.spiderweb.com.au
 
 **AI Questions**: Free hosting questions answered via ai@motd.com - our AI email service.
 
-## VM/CT Hosting Plans
+## Cosmix Container Plans
 
-All plans include full management: OS updates, security patches, SSL certificates, backups, and email support.
+All plans are Proxmox containers running the full Cosmix stack (web, mail, DNS, CMS, PIM)
+and include full management: updates, security patches, SSL certificates, backups, and
+email support. The only difference between tiers is capacity.
 
-### Lite Container — $79/year
+**Pricing is a linear formula**: $19/year base + $20/year per resource unit, where one
+unit is 1 vCPU, 1GB RAM, or 10GB NVMe. Plans are convenient preset shapes; customers can
+grow one unit at a time without migration.
 
-- 1 CPU / 1GB RAM / 10GB NVMe
-- Alpine Linux LXC on Proxmox VE
-- Perfect for static sites, small WordPress, email-only
-- Shares host kernel for maximum efficiency
-- Includes Nginx, PHP-FPM, MariaDB, Postfix/Dovecot
+### Lite — $79/year (3 units)
 
-### Small VM — $149/year
+- 1 vCPU / 1GB RAM / 10GB NVMe (about $6.60/month)
+- A complete online presence for one domain: site, blog, real mailboxes, DNS, contacts, calendar
+- The all-Rust stack idles in a few hundred MB, so 1GB is comfortable
 
-- 2 CPU / 2GB RAM / 20GB NVMe
-- Debian 13 with dedicated kernel
-- Full isolation and complete multi-service stack
-- Ideal for growing WordPress sites, small web apps
-- Postfix/Dovecot/Rspamd for email, Nginx/PHP-FPM for web
+### Standard — $139/year (6 units)
 
-### Medium VM — $199/year
+- 2 vCPU / 2GB RAM / 20GB NVMe (about $11.60/month)
+- Small business daily driver: several domains, team mailboxes, busier site
+- The sweet spot for customers leaving cPanel-era hosting
 
-- 3 CPU / 4GB RAM / 40GB NVMe
-- Debian 13 production-ready
-- WooCommerce, multi-domain hosting
-- Full root access available on request
-- All updates, security patches, and backups handled
+### Plus — $239/year (11 units)
 
-### Large VM — $249/year
+- 3 vCPU / 4GB RAM / 40GB NVMe (about $19.90/month)
+- Agencies and busy operators: many domains, heavier mail flow, forum and file sharing
 
-- 4 CPU / 8GB RAM / 80GB NVMe
-- High-performance Debian 13
-- High-traffic sites, demanding applications
-- Priority support included
-- Ample headroom for caching and large databases
+### Max — $419/year (20 units)
 
-### Managed BYO — $120/year
+- 4 vCPU / 8GB RAM / 80GB NVMe (about $34.90/month)
+- Consolidates every domain, mailbox and site in one managed container; priority support
+- Costs less than a comparable unmanaged 4-core/8GB VPS (~$470/year) and includes management
 
-- Your VPS at any provider (BinaryLane, Vultr, DigitalOcean, etc.)
-- We handle all Linux administration
-- OS updates, security hardening, service configuration
-- Monitoring, backups, troubleshooting
-- You pay your provider directly for the VPS
+### Also available (contact admin@renta.net)
+
+- **Managed Debian VMs** on dedicated resources, for workloads that need a full VM
+- **Managed BYO** — Claude Code operations on your existing BinaryLane, Vultr or
+  DigitalOcean VPS; you pay your provider for the box, we run it
 
 ## Resource Add-ons
 
-All add-ons are $20/year each. Add anytime without migration.
+All add-ons are $20/year each — the same unit price the plans are built from. Add anytime
+without migration.
 
+- +1 vCPU — for busier sites and heavier builds
 - +1GB RAM — for memory-hungry applications
-- +10GB NVMe Storage — for growing databases
-- +25GB HDD Storage — for archives and backups
-- +1 Dedicated IP — for SSL or mail reputation
+- +10GB NVMe Storage — for growing mail archives and databases
+- +25GB Bulk Storage — for archives and backups
+- +1 Dedicated IPv4 — for SSL or mail reputation
 
 ## Support Services
 
@@ -147,19 +144,19 @@ All add-ons are $20/year each. Add anytime without migration.
 - 99.9% uptime SLA
 - Daily automated backups with 7-day retention
 
-## Proxmox CT + Cosmix (New — Early Access)
+## The Cosmix Stack
 
-Our next-generation hosting system: a lightweight Proxmox container running cosmix, an all-Rust service stack designed from the ground up to be operated by AI agents.
+Every hosting plan is a lightweight Proxmox container running Cosmix, an all-Rust service
+stack designed from the ground up to be operated by AI agents.
 
 - JMAP + IMAP mail server in a single Rust daemon
-- Built-in web serving with automatic TLS
+- Built-in web serving with automatic TLS; CMS pages, blog, forum, file manager
+- Webmail, contacts and calendar (PIM) included
 - Authoritative DNS, API-driven
 - AMP agent mesh — every service is agent-addressable
 - Mix shell — scripting built for AI operators
 - Static binaries: tiny footprint, instant restarts
 - Administered end-to-end by Claude Code
-
-Contact admin@renta.net to ask about a pilot container.
 
 ## Proxmox Cluster Management
 
@@ -234,7 +231,7 @@ We provide full support from installation to ongoing maintenance.
 
 **Personal Service**: Talk to real humans. Direct phone support. Same-day email responses. Australian-based.
 
-**Performance**: NVMe SSD, Nginx + PHP-FPM, OPcache enabled, Proxmox optimised.
+**Performance**: NVMe SSD, all-Rust static binaries, no interpreter overhead, Proxmox optimised.
 
 **Fully Managed**: OS updates, security patching, backup management, SSL renewals—all handled for you.
 
@@ -242,7 +239,7 @@ We provide full support from installation to ongoing maintenance.
 
 ## About
 
-RentaNet provides managed Linux servers for businesses and individuals across Australia. Dedicated VMs and containers on Proxmox VE, fully managed by experts with 28+ years of Linux experience.
+RentaNet provides managed Linux hosting for businesses and individuals across Australia. Cosmix containers on Proxmox VE (managed VMs and BYO VPS by arrangement), fully managed by experts with 28+ years of Linux experience.
 
 Personal service. Enterprise reliability. Startup pricing.
 
