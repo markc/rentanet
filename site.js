@@ -51,6 +51,31 @@ const Site = {
     },
 
     // ============================================
+    // TABS
+    // ============================================
+
+    initTabs() {
+        const titles = document.querySelectorAll(".tab-title");
+        if (titles.length === 0) return;
+
+        titles.forEach(btn => {
+            btn.addEventListener("click", () => {
+                document.querySelectorAll(".tab-title").forEach(b => {
+                    b.classList.remove("active");
+                    b.setAttribute("aria-selected", "false");
+                });
+                document.querySelectorAll(".tab-panel").forEach(p => {
+                    p.hidden = true;
+                });
+                btn.classList.add("active");
+                btn.setAttribute("aria-selected", "true");
+                const panel = document.getElementById(btn.getAttribute("aria-controls"));
+                if (panel) panel.hidden = false;
+            });
+        });
+    },
+
+    // ============================================
     // DYNAMIC YEAR IN FOOTER
     // ============================================
 
@@ -68,6 +93,7 @@ const Site = {
     init() {
         this.initParticles();
         this.initScrollReveal();
+        this.initTabs();
         this.initFooterYear();
     }
 };

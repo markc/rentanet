@@ -1,11 +1,19 @@
 ---
-updated: 2026-01-29
+updated: 2026-07-07
 scope: /
 ---
 
-# RentaNet - Managed Linux Servers
+# RentaNet - Managed Linux Servers, Fully Managed by Claude Code
 
-Australian owned and operated since 1998. Dedicated virtual machines and lightweight containers on Proxmox VE, fully managed by Linux experts with 28+ years experience. Your own server with personal phone and email support.
+Australian owned and operated since 1998. Dedicated virtual machines and lightweight containers on Proxmox VE, administered end-to-end by Claude Code under the supervision of Linux experts with 28+ years experience. Built by Claude Code users, for Claude Code users. Your own server with personal phone and email support.
+
+## Managed by Claude Code
+
+This website and the servers behind it are administered by Claude Code under human supervision. Routine operations — package updates, certificate renewals, DNS changes, deployments, monitoring — are executed by AI agents and verified by an experienced Linux engineer. Faster turnaround, fewer mistakes, an audit trail for every change.
+
+## For Claude Code Users
+
+RentaNet hosting is agent-friendly by design: SSH key access your agent can use, git-based auto-deploy on push, an ai.txt content file on every site, and a predictable single-purpose server layout that agents reason about easily. Customers are welcome to run Claude Code against their own rented server.
 
 Website: https://renta.net
 Pricing: https://renta.net/pricing/
@@ -138,6 +146,20 @@ All add-ons are $20/year each. Add anytime without migration.
 - Australian datacenter (Sydney)
 - 99.9% uptime SLA
 - Daily automated backups with 7-day retention
+
+## Proxmox CT + Cosmix (New — Early Access)
+
+Our next-generation hosting system: a lightweight Proxmox container running cosmix, an all-Rust service stack designed from the ground up to be operated by AI agents.
+
+- JMAP + IMAP mail server in a single Rust daemon
+- Built-in web serving with automatic TLS
+- Authoritative DNS, API-driven
+- AMP agent mesh — every service is agent-addressable
+- Mix shell — scripting built for AI operators
+- Static binaries: tiny footprint, instant restarts
+- Administered end-to-end by Claude Code
+
+Contact admin@renta.net to ask about a pilot container.
 
 ## Proxmox Cluster Management
 
