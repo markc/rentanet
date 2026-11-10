@@ -1,0 +1,42 @@
+#!/opt/mixos/bin/mix
+-- version: 2.0.0
+-- Build and publish the site.
+--   mix deploy.mix
+-- Reads ./deploy.conf.mix (not in git; copy deploy.conf.example.mix). The
+-- docroot is synced with rsync --delete, so never edit files on the server.
+$root = dirname(realpath(script_path()))
+$conf_path = $root .. "/deploy.conf.mix"
+if not is_file($conf_path) then
+  raise("NO_DEPLOY_CONF", "copy deploy.conf.example.mix to deploy.conf.mix and fill it in")
+end
+$conf = validate(load_data($conf_path), {
+  host: {type: "string", nonblank: true}, docroot: {type: "string", nonblank: true},
+  handler: {type: "string", nonblank: true}, owner: {type: "string", nonblank: true},
+  keep: {type: "list", items: {type: "string"}}, purge: {type: "list", items: {type: "string"}}
+})
+
+print(trim(run_argv_must(["/opt/mixos/bin/mix", $root .. "/build.mix"])))
+
+$argv = ["rsync", "-a", "--delete", "--checksum", "--itemize-changes", "--chown=" .. $conf.owner, "--chmod=D755,F644"]
+for $k in $conf.keep
+  push($argv, "--exclude=" .. $k)
+end
+push($argv, $root .. "/dist/")
+push($argv, $conf.host .. ":" .. $conf.docroot .. "/")
+$r = run_argv_must($argv)
+print "rsync:", len(lines($r)), "items changed"
+
+-- The site root is served by a webd handler so it can send security headers.
+$tmp = $root .. "/dist/.home.mix"
+write_file($tmp, replace_must(read_file($root .. "/webd/home.mix"), "@DOCROOT@", $conf.docroot))
+run_argv_must(["rsync", "-a", "--checksum", "--chown=" .. $conf.owner, "--chmod=F644", $tmp, $conf.host .. ":" .. $conf.handler])
+remove($tmp)
+print "handler: updated"
+
+if len($conf.purge) > 0 then
+  $p = run_argv($conf.purge)
+  print(trim($p.stdout .. $p.stderr))
+  if $p.exit_code != 0 then
+    raise("PURGE_FAILED", "cache purge failed; the new files are published but an edge cache may serve old ones")
+  end
+end

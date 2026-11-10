@@ -1,0 +1,984 @@
+#!/opt/mixos/bin/mix
+-- version: 2.0.0
+-- Static site generator for renta.net.
+--   mix build.mix          writes ./dist
+-- Page copy lives in this file; assets/ holds css, js and fonts (published
+-- under /rn/, because webd serves its own shared files at /assets/); static/ is
+-- copied to the web root as is. No inline scripts or styles are emitted, so
+-- the pages work under a strict Content-Security-Policy.
+
+$root = dirname(realpath(script_path()))
+$dist = $root .. "/dist"
+$site = "https://renta.net"
+$phone = "0419 530 037"
+$tel = "tel:+61419530037"
+$mail = "mailto:admin@renta.net"
+$year = date_format(time(), "%Y")
+$today = date_format(time(), "%Y-%m-%d")
+
+remove_dir($dist)
+copy_tree($root .. "/static", $dist)
+copy_tree($root .. "/assets", $dist .. "/rn")
+$vcss = left(hash_file($root .. "/assets/site.css"), 10)
+$vjs = left(hash_file($root .. "/assets/site.js"), 10)
+$vth = left(hash_file($root .. "/assets/theme.js"), 10)
+$urls = []
+
+-- ---------------------------------------------------------------- icons
+
+fn svg($paths)
+  return "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">" .. $paths .. "</svg>"
+end
+
+$ico = {
+  server: svg("<rect x=\"3\" y=\"4\" width=\"18\" height=\"7\" rx=\"2\" pathLength=\"100\"/><rect x=\"3\" y=\"13\" width=\"18\" height=\"7\" rx=\"2\" pathLength=\"100\"/><path d=\"M7 7.5h.01M7 16.5h.01M11 7.500h6M11 16.500h6\" pathLength=\"100\"/>"),
+  mail: svg("<rect x=\"3\" y=\"5\" width=\"18\" height=\"14\" rx=\"2.5\" pathLength=\"100\"/><path d=\"M3.5 7.5l8.5 6 8.5-6\" pathLength=\"100\"/>"),
+  code: svg("<path d=\"M8.5 7l-5 5 5 5\" pathLength=\"100\"/><path d=\"M15.5 7l5 5-5 5\" pathLength=\"100\"/><path d=\"M13.500 4.500l-3 15\" pathLength=\"100\"/>"),
+  terminal: svg("<rect x=\"3\" y=\"4\" width=\"18\" height=\"16\" rx=\"2.5\" pathLength=\"100\"/><path d=\"M7.5 9.5l3 2.500-3 2.500\" pathLength=\"100\"/><path d=\"M12.500 15h4\" pathLength=\"100\"/>"),
+  globe: svg("<circle cx=\"12\" cy=\"12\" r=\"9\" pathLength=\"100\"/><path d=\"M3 12h18\" pathLength=\"100\"/><path d=\"M12 3c2.600 2.500 3.800 5.500 3.800 9s-1.200 6.500-3.800 9c-2.600-2.500-3.800-5.500-3.800-9S9.400 5.500 12 3z\" pathLength=\"100\"/>"),
+  shield: svg("<path d=\"M12 3l7.500 2.800v5.700c0 4.400-3 8-7.500 9.500-4.500-1.500-7.500-5.100-7.500-9.500V5.800L12 3z\" pathLength=\"100\"/><path d=\"M8.800 12.200l2.300 2.300 4.200-4.400\" pathLength=\"100\"/>"),
+  database: svg("<ellipse cx=\"12\" cy=\"6\" rx=\"8\" ry=\"3\" pathLength=\"100\"/><path d=\"M4 6v6c0 1.700 3.600 3 8 3s8-1.300 8-3V6\" pathLength=\"100\"/><path d=\"M4 12v6c0 1.700 3.600 3 8 3s8-1.300 8-3v-6\" pathLength=\"100\"/>"),
+  cluster: svg("<rect x=\"9\" y=\"3\" width=\"6\" height=\"5\" rx=\"1.200\" pathLength=\"100\"/><rect x=\"3\" y=\"16\" width=\"6\" height=\"5\" rx=\"1.200\" pathLength=\"100\"/><rect x=\"15\" y=\"16\" width=\"6\" height=\"5\" rx=\"1.200\" pathLength=\"100\"/><path d=\"M12 8v4M6 16v-2.500h12V16\" pathLength=\"100\"/>"),
+  desktop: svg("<rect x=\"3\" y=\"4\" width=\"18\" height=\"12\" rx=\"2\" pathLength=\"100\"/><path d=\"M8.500 20h7M12 16v4\" pathLength=\"100\"/>"),
+  network: svg("<circle cx=\"5\" cy=\"6\" r=\"2\" pathLength=\"100\"/><circle cx=\"19\" cy=\"6\" r=\"2\" pathLength=\"100\"/><circle cx=\"12\" cy=\"18\" r=\"2\" pathLength=\"100\"/><path d=\"M7 6h10M6 7.700l5 8.600M18 7.700l-5 8.600\" pathLength=\"100\"/>"),
+  lock: svg("<rect x=\"5\" y=\"10.500\" width=\"14\" height=\"9.500\" rx=\"2\" pathLength=\"100\"/><path d=\"M8 10.500V8a4 4 0 0 1 8 0v2.500\" pathLength=\"100\"/>"),
+  wallet: svg("<path d=\"M4 7.500A2.500 2.500 0 0 1 6.500 5H18v3\" pathLength=\"100\"/><rect x=\"4\" y=\"8\" width=\"16\" height=\"11\" rx=\"2\" pathLength=\"100\"/><path d=\"M16 13.500h.01\" pathLength=\"100\"/>"),
+  eye: svg("<path d=\"M2.500 12s3.500-6.500 9.500-6.500 9.500 6.500 9.500 6.500-3.500 6.500-9.500 6.500S2.500 12 2.500 12z\" pathLength=\"100\"/><circle cx=\"12\" cy=\"12\" r=\"2.700\" pathLength=\"100\"/>"),
+  bolt: svg("<path d=\"M13 3L5 13.500h6L10 21l8-10.500h-6L13 3z\" pathLength=\"100\"/>"),
+  chat: svg("<path d=\"M4 5.500h16v10.500H10l-4.500 3.500V16H4V5.500z\" pathLength=\"100\"/>"),
+  wrench: svg("<path d=\"M14.500 6.200a4 4 0 0 0-5.300 5.300L3.500 17.200l3.300 3.300 5.700-5.700a4 4 0 0 0 5.300-5.300l-2.600 2.600-2.300-.600-.600-2.300 2.200-3z\" pathLength=\"100\"/>"),
+  arrow: "<svg class=\"arrow\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg>",
+  phone: "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 4h3.500l1.700 4.300-2.200 1.500a11 11 0 0 0 6.200 6.200l1.500-2.200L20 15.500V19a2 2 0 0 1-2 2A15 15 0 0 1 3 6a2 2 0 0 1 2-2z\"/></svg>",
+  ext: "<svg viewBox=\"0 0 12 12\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 2h6v6M10 2L2 10\"/></svg>",
+  chev: "<svg viewBox=\"0 0 12 12\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"M2 4l4 4 4-4\"/></svg>",
+  tick: "<svg viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"10\" cy=\"10\" r=\"8\"/><path d=\"M6.300 10.300l2.500 2.500 4.900-5.100\"/></svg>",
+  logo: "<svg viewBox=\"0 0 32 32\" aria-hidden=\"true\"><rect width=\"32\" height=\"32\" rx=\"8\" fill=\"#0d2030\"/><rect x=\".5\" y=\".5\" width=\"31\" height=\"31\" rx=\"7.500\" fill=\"none\" stroke=\"#57c1ff\" stroke-opacity=\".45\"/><path d=\"M9 10.500L23 10.500M9 10.500L16 22M23 10.500L16 22\" stroke=\"#57c1ff\" stroke-width=\"1.400\" fill=\"none\"/><circle class=\"n\" cx=\"9\" cy=\"10.500\" r=\"3\" fill=\"#fff\"/><circle class=\"n n2\" cx=\"23\" cy=\"10.500\" r=\"3\" fill=\"#fff\"/><circle class=\"n n3\" cx=\"16\" cy=\"22\" r=\"3.400\" fill=\"#ff5263\"/></svg>"
+}
+
+-- ---------------------------------------------------------------- data
+
+$plans = [
+  {name: "Lite", cpu: 1, ram: 1, disk: 10, price: 79, month: "6.58", blurb: "A focused home for your first site and email.", pick: false,
+   fit: "A complete online presence for one domain: your website, real mailboxes at your own address and DNS. A good fit for a personal domain or a side project."},
+  {name: "Standard", cpu: 2, ram: 2, disk: 20, price: 139, month: "11.58", blurb: "Room for a small business to make its next move.", pick: true,
+   fit: "Headroom for a small business: several domains, mailboxes for the team and a busier site. The usual choice for customers moving away from older shared hosting."},
+  {name: "Plus", cpu: 3, ram: 4, disk: 40, price: 239, month: "19.92", blurb: "More capacity for growing sites and busy teams.", pick: false,
+   fit: "For agencies and busy operators: a stable of client domains, heavier mail flow and room for larger mail archives. Add units as individual domains grow."},
+  {name: "Max", cpu: 4, ram: 8, disk: 80, price: 419, month: "34.92", blurb: "Bring your sites and mail together in one place.", pick: false,
+   fit: "One managed place for every domain, mailbox and site you run, with serious headroom for archives and traffic."}
+]
+
+$tech = ["Proxmox VE", "Debian", "Alpine Linux", "NVMe storage", "nginx", "PHP-FPM", "MariaDB", "SQLite", "Postfix", "Dovecot", "Rspamd", "SPF", "DKIM", "DMARC", "PowerDNS", "WireGuard", "nftables", "CrowdSec", "Let&rsquo;s Encrypt", "IPv4 &amp; IPv6", "Git", "CachyOS", "KDE Plasma", "ZFS"]
+
+-- ---------------------------------------------------------------- helpers
+
+fn current($path, $href)
+  if $path == $href then
+    return " aria-current=\"page\""
+  end
+  return ""
+end
+
+fn nav_html($path)
+  $svc_here = ""
+  if $path == "/services/" or $path == "/email/" or $path == "/development/" or $path == "/linux/" then
+    $svc_here = " class=\"here\""
+  end
+  $c_home = current($path, "/")
+  $c_svc = current($path, "/services/")
+  $c_email = current($path, "/email/")
+  $c_dev = current($path, "/development/")
+  $c_linux = current($path, "/linux/")
+  $c_price = current($path, "/pricing/")
+  $c_about = current($path, "/about/")
+  $h = <<EOF
+<ul class="nav" id="nav">
+<li><a href="/"${c_home}>Home</a></li>
+<li${svc_here}><button class="sub" type="button" aria-haspopup="true">Services ${ico.chev}</button><ul class="drop">
+<li><a href="/services/"${c_svc}>All services</a></li>
+<li><a href="/pricing/">Managed hosting</a></li>
+<li><a href="/email/"${c_email}>Email &amp; domains</a></li>
+<li><a href="/development/"${c_dev}>Development</a></li>
+<li><a href="/linux/"${c_linux}>Linux support</a></li>
+</ul></li>
+<li><a href="/pricing/"${c_price}>Pricing</a></li>
+<li><a href="/about/"${c_about}>About</a></li>
+<li><a class="ext" href="https://my.spiderweb.com.au" target="_blank" rel="noopener">Client portal ${ico.ext}</a></li>
+</ul>
+EOF
+  return $h
+end
+
+fn layout($o)
+  $nav = nav_html($o.path)
+  $canon = $site .. $o.path
+  $desc = html_escape($o.desc)
+  $extra = $o.head ?? ""
+  $h = <<EOF
+<!doctype html>
+<html lang="en-AU" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${o.title}</title>
+<meta name="description" content="${desc}">
+<link rel="canonical" href="${canon}">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0d2030">
+<script src="/rn/theme.js?v=${vth}"></script>
+<link rel="preload" href="/rn/fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/rn/fonts/dmsans.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/rn/site.css?v=${vcss}">
+<link rel="icon" href="/favicon.ico">
+<meta property="og:site_name" content="RentaNet">
+<meta property="og:type" content="website">
+<meta property="og:title" content="${o.title}">
+<meta property="og:description" content="${desc}">
+<meta property="og:url" content="${canon}">
+${extra}
+<script defer src="/rn/site.js?v=${vjs}"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"></div>
+<header class="site-head">
+<div class="wrap">
+<a class="logo" href="/" aria-label="RentaNet home">${ico.logo}<span>Renta<b>NET</b></span></a>
+<nav aria-label="Main">
+${nav}
+</nav>
+<a class="btn primary small head-cta" href="${mail}">Let&rsquo;s talk ${ico.arrow}</a>
+<button class="icon-btn menu-btn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav"><div><span></span><span></span><span></span></div></button>
+<button class="icon-btn theme-toggle" type="button" aria-label="Switch colour mode" title="Light / dark mode">
+<svg viewBox="0 0 24 24" aria-hidden="true"><mask id="moon"><rect width="24" height="24" fill="#fff"/><circle class="moon-mask" cx="17" cy="7" r="7" fill="#000"/></mask><circle class="sun-core" cx="12" cy="12" r="5" fill="currentColor" mask="url(#moon)"/><g class="sun-rays" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.900 4.900l1.400 1.400M17.700 17.700l1.400 1.400M4.900 19.100l1.400-1.400M17.700 6.300l1.400-1.400"/></g></svg>
+</button>
+</div>
+</header>
+<main id="main">
+${o.body}
+</main>
+<footer class="site-foot">
+<div class="wrap">
+<div class="foot-grid">
+<div>
+<a class="logo" href="/">${ico.logo}<span>Renta<b>NET</b></span></a>
+<p>Independent Australian hosting. Experienced people. Personal service. Since 1998.</p>
+</div>
+<div>
+<h4>Explore</h4>
+<ul>
+<li><a href="/services/">Our services</a></li>
+<li><a href="/pricing/">Hosting plans</a></li>
+<li><a href="/email/">Email &amp; domains</a></li>
+<li><a href="/development/">Development</a></li>
+<li><a href="/linux/">Linux support</a></li>
+<li><a href="/about/">About RentaNet</a></li>
+</ul>
+</div>
+<div>
+<h4>Customers</h4>
+<ul>
+<li><a href="https://my.spiderweb.com.au" target="_blank" rel="noopener">Client portal</a></li>
+<li><a href="/login">Site sign in</a></li>
+<li><a href="https://spiderweb.com.au/privacy-policy/" target="_blank" rel="noopener">Privacy policy</a></li>
+<li><a href="https://spiderweb.com.au" target="_blank" rel="noopener">Spiderweb</a></li>
+</ul>
+</div>
+<div>
+<h4>Get in touch</h4>
+<ul>
+<li><a href="${tel}">${phone}</a></li>
+<li><a href="${mail}">admin@renta.net</a></li>
+<li>10am &ndash; 6pm AEST, 7 days</li>
+</ul>
+</div>
+</div>
+<div class="wordmark" aria-hidden="true">RentaNET</div>
+<div class="foot-base">
+<span>&copy; ${year} RentaNet. Australian owned and operated.</span>
+<span><a href="https://www.abr.business.gov.au/SearchByAbn.aspx?SearchText=69851855459" target="_blank" rel="noreferrer noopener">ABN 69 851 855 459</a></span>
+</div>
+</div>
+</footer>
+</body>
+</html>
+EOF
+  return $h
+end
+
+fn write_page($path, $o)
+  $o.path = $path
+  $html = layout($o)
+  $file = $dist .. $path
+  if ends_with($path, "/") then
+    $file = $file .. "index.html"
+  end
+  mkdir(dirname($file))
+  write_file($file, $html)
+  push($urls, $path)
+end
+
+fn page_head($eyebrow, $title, $lead, $more)
+  $h = <<EOF
+<section class="page-head">
+<canvas class="mesh" data-mesh="corner" aria-hidden="true"></canvas>
+<div class="wrap">
+<div class="eyebrow fade-up d1">${eyebrow}</div>
+<h1 class="fade-up d2">${title}</h1>
+<p class="lead fade-up d3">${lead}</p>
+${more}
+</div>
+</section>
+EOF
+  return $h
+end
+
+fn head_actions($a_href, $a_label, $b_href, $b_label)
+  $h = <<EOF
+<div class="hero-cta fade-up d4">
+<a class="btn primary" data-magnetic href="${a_href}">${a_label} ${ico.arrow}</a>
+<a class="btn" href="${b_href}">${b_label}</a>
+</div>
+EOF
+  return $h
+end
+
+fn cta_band()
+  $h = <<EOF
+<section class="section">
+<div class="wrap">
+<div class="cta" data-reveal="scale">
+<canvas class="mesh" data-mesh="band" data-thread="rgba(170,210,240,.3)" data-net="#7fd0ff" aria-hidden="true"></canvas>
+<div>
+<span class="eyebrow">Your next step</span>
+<h2>Good hosting starts with a real conversation.</h2>
+<p>Tell us what you&rsquo;re running and where you want to go. We&rsquo;ll help you choose the right setup.</p>
+</div>
+<div class="cta-actions">
+<a class="btn white big" data-magnetic href="${tel}">${ico.phone} ${phone}</a>
+<a class="btn" href="${mail}">${ico.mail} admin@renta.net</a>
+<small>10am &ndash; 6pm AEST, 7 days</small>
+</div>
+</div>
+</div>
+</section>
+EOF
+  return $h
+end
+
+fn plan_cards()
+  $h = ""
+  for $p in $plans
+    $cls = if $p.pick then "plan featured" else "plan" end
+    $tag = if $p.pick then "<span class=\"tagline\">Small business pick</span>" else "" end
+    $btn = if $p.pick then "btn primary" else "btn" end
+    $n = $p.name
+    $card = <<EOF
+<article class="${cls}" data-reveal>
+${tag}
+<h3>${n}</h3>
+<p>${p.blurb}</p>
+<div class="price">$<span data-count="${p.price}">${p.price}</span><small> / year</small></div>
+<div class="monthly">about $${p.month} a month</div>
+<ul class="specs">
+<li><b>${p.cpu} vCPU</b><span>processor</span><div class="bar"><i class="w${p.cpu}"></i></div></li>
+<li><b>${p.ram} GB</b><span>memory</span><div class="bar"><i class="w${p.ram}"></i></div></li>
+<li><b>${p.disk} GB</b><span>NVMe storage</span><div class="bar"><i class="w${p.ram}"></i></div></li>
+<li><b>Fully managed</b><span>container</span></li>
+</ul>
+<a class="${btn}" href="mailto:admin@renta.net?subject=${n}%20hosting%20enquiry">Enquire about ${n} ${ico.arrow}</a>
+</article>
+EOF
+    $h = $h .. $card
+  end
+  return "<div class=\"plans\" data-stagger>" .. $h .. "</div>"
+end
+
+fn included()
+  return "<div class=\"included\" data-reveal><span>Security updates</span><span>SSL certificates</span><span>Daily backups</span><span>Monitoring</span><span>Email support</span></div>"
+end
+
+-- tiles: list of {ico, title, text?, items?}
+fn tiles($cls, $list)
+  $h = ""
+  for $t in $list
+    $body = ""
+    if has_key($t, "text") then
+      $body = "<p>" .. $t.text .. "</p>"
+    end
+    if has_key($t, "rate") then
+      $body = "<div class=\"rate\">" .. $t.rate .. "</div>" .. $body
+    end
+    if has_key($t, "items") then
+      $body = $body .. "<ul>" .. join(map($t.items, fn($i) = "<li>" .. $i .. "</li>"), "") .. "</ul>"
+    end
+    $h = $h .. "<article class=\"tile\"><div class=\"ico\">" .. $ico[$t.ico] .. "</div><h3>" .. $t.title .. "</h3>" .. $body .. "</article>"
+  end
+  return "<div class=\"" .. $cls .. "\" data-stagger>" .. $h .. "</div>"
+end
+
+-- ticks: list of [bold, detail]
+fn ticks($cls, $list)
+  $h = join(map($list, fn($t) = "<li><div><b>" .. $t[0] .. "</b><span>" .. $t[1] .. "</span></div></li>"), "")
+  return "<ul class=\"" .. $cls .. "\" data-stagger>" .. $h .. "</ul>"
+end
+
+-- faqs: list of [question, answer]
+fn faqs($list)
+  $h = join(map($list, fn($f) = "<details class=\"faq\"><summary>" .. $f[0] .. "</summary><p>" .. $f[1] .. "</p></details>"), "")
+  return "<div class=\"faqs\" data-stagger>" .. $h .. "</div>"
+end
+
+fn lede($eyebrow, $title, $text)
+  return "<div class=\"lede\" data-reveal><span class=\"eyebrow\">" .. $eyebrow .. "</span><h2>" .. $title .. "</h2><p>" .. $text .. "</p></div>"
+end
+
+$cta = cta_band()
+$strip = join(map($tech, fn($t) = "<span>" .. $t .. "</span>"), "")
+$marquee = "<div class=\"marquee\" aria-hidden=\"true\"><div>" .. $strip .. $strip .. "</div></div>"
+
+$faq_pricing = [
+  ["What&rsquo;s included in management?", "OS updates, security patches, SSL certificate renewals, monitoring, daily backups and email support. Contact us about application work, migrations or hands-on support outside routine management."],
+  ["How does extra capacity work?", "Plans use a $19/year base plus $20/year per resource unit. A unit is 1 vCPU, 1 GB RAM or 10 GB NVMe storage. The four plans are convenient preset shapes: Lite is 3 units, Standard is 6, Plus is 11 and Max is 20. Ask us about bulk storage and dedicated IPv4 requirements."],
+  ["Can I grow a plan later?", "Yes. Capacity is added one unit at a time, so a plan can grow with you without moving to a different product. Tell us what you need and we&rsquo;ll confirm the new annual price before changing anything."],
+  ["Can you manage an existing server?", "Yes. Managed Debian virtual machines and management of an existing BinaryLane, Vultr or DigitalOcean VPS are available by arrangement. We&rsquo;ll quote for your workload."],
+  ["How do I order or move an existing site?", "Email admin@renta.net or call 0419 530 037. We&rsquo;ll confirm the right plan, review compatibility and agree on any migration work before making changes."],
+  ["What do hands-on support and development cost?", "Hands-on support and Linux consulting are $60/hour. AI-assisted application development is $120/hour. We agree on scope and costs before starting."]
+]
+
+-- ---------------------------------------------------------------- home
+
+$plan_html = plan_cards()
+$inc = included()
+$home_services = <<EOF
+<div class="cards" data-stagger>
+<article class="card"><span class="num">01 / Hosting</span><div class="ico">${ico.server}</div><h3>Your business. A dependable home.</h3><p>Managed Linux containers with fast NVMe storage, web hosting, email and DNS. We take care of the server so you can get on with your work.</p><span class="go">Explore hosting plans ${ico.arrow}</span><a class="cover" href="/pricing/" aria-label="Hosting plans"></a></article>
+<article class="card"><span class="num">02 / Email &amp; domains</span><div class="ico">${ico.mail}</div><h3>Make the right connection.</h3><p>Business email, domain registration, DNS and mail migration, with help on SPF, DKIM, DMARC and spam filtering.</p><span class="go">Email and domains ${ico.arrow}</span><a class="cover" href="/email/" aria-label="Email and domains"></a></article>
+<article class="card"><span class="num">03 / Development</span><div class="ico">${ico.code}</div><h3>Turn your next idea into something useful.</h3><p>Websites, applications and automation built with AI-assisted development, expert oversight and full ownership of your code.</p><span class="go">See what we can build ${ico.arrow}</span><a class="cover" href="/development/" aria-label="Development"></a></article>
+<article class="card"><span class="num">04 / Linux support</span><div class="ico">${ico.terminal}</div><h3>Experience when you need it.</h3><p>From a stubborn email problem to a Proxmox migration. Practical help with Linux servers, security, networking and desktops.</p><span class="go">Meet your support options ${ico.arrow}</span><a class="cover" href="/linux/" aria-label="Linux support"></a></article>
+</div>
+EOF
+$home_stack = tiles("grid4", [
+  {ico: "globe", title: "Web", text: "Your site and applications, served over HTTPS with certificates renewed for you."},
+  {ico: "mail", title: "Mail", text: "Business email at your own domain, with SPF, DKIM and DMARC set up properly."},
+  {ico: "network", title: "DNS", text: "Your domain services looked after in the same place as your site and mail."},
+  {ico: "shield", title: "Care", text: "Security updates, daily backups and monitoring, handled as routine."}
+])
+$home_faq = faqs(take($faq_pricing, 3))
+$ld = "<script type=\"application/ld+json\">{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"RentaNet\",\"url\":\"https://renta.net/\",\"foundingDate\":\"1998\",\"telephone\":\"+61419530037\",\"email\":\"admin@renta.net\",\"areaServed\":\"AU\",\"description\":\"Managed Linux hosting, business email, Linux support and AI-assisted development. Australian owned since 1998.\"}</script>"
+
+$body = <<EOF
+<section class="hero">
+<canvas class="mesh" data-mesh="hero" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+<div class="wrap hero-grid">
+<div class="hero-copy">
+<div class="eyebrow fade-up d1">Australian hosting. Personal service.</div>
+<h1><span class="w"><span>Your servers.</span></span><span class="w"><span>Our expertise.</span></span><span class="w"><span><i class="accent">One less thing</i></span></span><span class="w"><span><i class="accent">to worry about.</i></span></span></h1>
+<p class="lead fade-up d5">Managed Linux hosting for people who want to get things done. Reliable infrastructure, straightforward pricing and an expert who answers the phone.</p>
+<div class="hero-cta fade-up d6">
+<a class="btn primary" data-magnetic href="/pricing/">Find your hosting plan ${ico.arrow}</a>
+<a class="btn" href="/services/">Explore services</a>
+</div>
+<div class="hero-meta fade-up d7"><span><i class="pulse"></i> Hosting from $79/year</span><span>Australian owned since 1998</span></div>
+</div>
+<div class="board" role="img" aria-label="Illustration: a managed server with web, mail and DNS online and routine care completed">
+<div class="board-top"><span>Your server</span><span class="live"><i class="pulse"></i> Fully managed</span></div>
+<div class="board-body">
+<div class="svc"><i>${ico.globe}</i><div><b>Web</b><small>Your site &amp; applications</small></div><span class="pill">Online</span></div>
+<div class="svc"><i>${ico.mail}</i><div><b>Mail</b><small>Your business email</small></div><span class="pill">Online</span></div>
+<div class="svc"><i>${ico.network}</i><div><b>DNS</b><small>Your domain services</small></div><span class="pill">Online</span></div>
+<ul class="care">
+<li>${ico.tick} Security updates</li>
+<li>${ico.tick} SSL certificates</li>
+<li>${ico.tick} Daily backups</li>
+<li>${ico.tick} Monitoring</li>
+</ul>
+<div class="pulse-line"><svg viewBox="0 0 400 46" preserveAspectRatio="none"><path d="M0 23h30l6-12 8 26 7-20 5 6h44l6-14 8 28 7-22 5 8h44l6-10 8 22 7-18 5 6h4 30l6-12 8 26 7-20 5 6h44l6-14 8 28 7-22 5 8h44l6-10 8 22 7-18 5 6h4"/></svg><span>Less admin. More possibility.</span></div>
+</div>
+</div>
+</div>
+<a class="scroll-cue" href="#services" aria-label="Scroll to services"></a>
+</section>
+
+<div class="wrap"><div class="trust" data-stagger>
+<div><strong>Australian owned</strong><span>Independent since 1998</span></div>
+<div><strong>Personal support</strong><span>Phone &amp; email, 7 days</span></div>
+<div><strong>Fully managed</strong><span>Updates, security &amp; backups</span></div>
+<div><strong>Built on Linux</strong><span>28+ years of experience</span></div>
+</div></div>
+
+<section class="section" id="services">
+<div class="wrap">
+<div class="section-head">
+<div data-reveal><span class="eyebrow">A little less complexity</span><h2>Everything you need. People you can talk to.</h2></div>
+<p data-reveal>A single point of contact for your hosting, email, Linux support and next development project.</p>
+</div>
+${home_services}
+</div>
+</section>
+
+${marquee}
+
+<section class="section alt">
+<div class="wrap">
+<div class="section-head">
+<div data-reveal><span class="eyebrow">Straightforward by design</span><h2>Small start. Room to grow.</h2></div>
+<p data-reveal>Four managed hosting plans. Choose the capacity you need, with the same care behind every one.</p>
+</div>
+${plan_html}
+${inc}
+<p class="note" data-reveal>Annual prices in AUD. Need more capacity? Add 1 vCPU, 1 GB RAM or 10 GB NVMe for $20/year per unit. Contact us to confirm your requirements, total cost and any migration work before ordering.</p>
+<p class="mt" data-reveal><a class="more" href="/pricing/#calculator">Work out your own capacity ${ico.arrow}</a></p>
+</div>
+</section>
+
+<section class="section">
+<div class="wrap">
+<div class="stats" data-reveal>
+<div class="stat"><b><span data-count="1998" data-from="1960">1998</span></b><span>Helping Australians get online since</span></div>
+<div class="stat"><b><span data-count="28">28</span><i>+</i></b><span>Years of Linux experience</span></div>
+<div class="stat"><b><i>$</i><span data-count="79">79</span></b><span>A year for a fully managed container</span></div>
+<div class="stat"><b><span data-count="7">7</span><i>.</i></b><span>Days a week, 10am to 6pm AEST</span></div>
+</div>
+</div>
+</section>
+
+<section class="section alt">
+<div class="wrap split2">
+<div data-reveal="left">
+<span class="eyebrow">Technology with accountability</span>
+<h2>Modern tools. Experienced hands.</h2>
+<p>We&rsquo;ve been helping Australians get online since 1998. Today, we combine that experience with AI-assisted operations to handle routine work efficiently, under expert human supervision.</p>
+<p>You get a direct relationship with someone who understands your systems, from the first conversation to the next upgrade.</p>
+<a class="more" href="/about/">How we work ${ico.arrow}</a>
+</div>
+<div class="steps" data-stagger>
+<div class="step"><div><h3>We listen first.</h3><p>Tell us about your website, email or server. We&rsquo;ll work out what fits.</p></div></div>
+<div class="step"><div><h3>We handle the setup.</h3><p>Agree on the scope, then leave the provisioning and migration details to us.</p></div></div>
+<div class="step"><div><h3>We stay involved.</h3><p>Ongoing management, practical advice and personal support as your needs change.</p></div></div>
+</div>
+</div>
+</section>
+
+<section class="section">
+<div class="wrap">
+<div class="section-head">
+<div data-reveal><span class="eyebrow">Built for your business</span><h2>A complete home for your online world.</h2></div>
+<p data-reveal>Web, mail and DNS in one managed place, so there is one setup to understand and one person to call.</p>
+</div>
+${home_stack}
+</div>
+</section>
+
+<section class="section alt">
+<div class="wrap">
+<div class="section-head">
+<div data-reveal><span class="eyebrow">Good to know</span><h2>A few useful details.</h2></div>
+<a class="more" data-reveal href="/pricing/#faq">More questions answered ${ico.arrow}</a>
+</div>
+${home_faq}
+</div>
+</section>
+${cta}
+EOF
+write_page("/", {title: "Managed Linux Hosting &amp; Personal Support | RentaNet",
+  desc: "Australian owned since 1998. Fully managed Linux hosting from $79/year, business email, Linux support and AI-assisted development. Call 0419 530 037.",
+  body: $body, head: $ld})
+
+-- ---------------------------------------------------------------- services
+
+$head = page_head("Services", "One experienced partner. Your whole online world.",
+  "Hosting, email, development and Linux expertise, with a direct line to someone who knows your setup.",
+  head_actions("/pricing/", "Plans from $79/year", $mail, "Let&rsquo;s talk"))
+$t1 = ticks("ticks", [
+  ["Proxmox containers", "Your own managed Linux container, not a shared account"],
+  ["NVMe storage", "Fast solid-state storage on every plan"],
+  ["Web, mail and DNS", "The native MixOS service stack in one place"],
+  ["Content management", "Publish and update pages without touching the server"],
+  ["Managed for you", "Updates, SSL certificates, monitoring and daily backups"],
+  ["Debian VMs", "Available for workloads that need a full virtual machine"]
+])
+$t2 = ticks("ticks", [
+  ["Business email", "Mailboxes at your own domain"],
+  ["Domain registration", "Register and renew through us"],
+  ["DNS management", "Records kept correct as things change"],
+  ["Mail migration", "Move existing mailboxes without losing mail"],
+  ["SPF, DKIM, DMARC", "Authentication set up and explained"],
+  ["Spam filtering", "Sensible defaults, tuned to your mail"]
+])
+$t3 = ticks("ticks", [
+  ["Responsive websites", "Built to work on every screen"],
+  ["Applications", "Tools shaped around how you work"],
+  ["Scripts and automation", "Routine jobs done reliably"],
+  ["Git-based delivery", "A clear history of every change"],
+  ["Full ownership", "The code is yours to keep"],
+  ["Scope agreed first", "$120/hour, with no work before we agree"]
+])
+$t4 = ticks("ticks", [
+  ["Server administration", "Debian, Ubuntu, Alpine and Rocky Linux"],
+  ["Proxmox clusters", "Virtual machines, containers and migrations"],
+  ["Security", "Hardening, firewalls and certificates"],
+  ["Networking", "DNS, WireGuard VPNs, IPv4 and IPv6"],
+  ["CachyOS desktops", "Installation and ongoing support"],
+  ["Remote assistance", "Over SSH or a call, from $60/hour"]
+])
+$also = tiles("grid3", [
+  {ico: "server", title: "Managed Debian VMs", text: "A full virtual machine on dedicated resources for workloads that need one, managed the same way as our containers. By arrangement."},
+  {ico: "wrench", title: "Your existing VPS", text: "Already have a server with BinaryLane, Vultr or DigitalOcean? You keep paying your provider for the box and we look after it. By arrangement."},
+  {ico: "cluster", title: "Proxmox cluster management", text: "Multi-node clusters, high availability planning, live migration and backup orchestration. Already running Proxmox? We can take over management of your existing cluster."}
+])
+$vmstack = tiles("grid4", [
+  {ico: "globe", title: "Web server", items: ["nginx with HTTP/2", "PHP 8.4 FPM with OPcache", "Let&rsquo;s Encrypt certificates", "Compression enabled"]},
+  {ico: "database", title: "Databases", items: ["MariaDB", "SQLite for lightweight apps", "Redis caching available", "Automated backups"]},
+  {ico: "mail", title: "Mail server", items: ["Postfix SMTP with TLS", "Dovecot IMAP", "Postscreen and Rspamd", "SPF, DKIM and DMARC"]},
+  {ico: "shield", title: "Security", items: ["SSH key authentication", "nftables firewall", "CrowdSec intrusion prevention", "Regular security updates"]}
+])
+$l1 = lede("Also available", "When a container isn&rsquo;t the right shape.", "Most customers are well served by a managed container. For everything else, tell us what you&rsquo;re running and we&rsquo;ll quote for your workload.")
+$l2 = lede("On a managed Debian server", "Production software, configured and maintained.", "What a traditional managed virtual machine typically runs. You don&rsquo;t need to know any of it to use it, but it helps to know it&rsquo;s there.")
+$body = <<EOF
+${head}
+<section class="section tight">
+<div class="wrap">
+<div class="feature" id="hosting" data-reveal>
+<div><span class="num">01 / Managed hosting</span><h2>A home for your website and email.</h2><p>Proxmox containers with NVMe storage and the native MixOS service stack. Web, mail, DNS and content management, maintained under expert supervision.</p><p>Managed Debian VMs are available for workloads that need them.</p><a class="more" href="/pricing/">Plans from $79/year ${ico.arrow}</a></div>
+${t1}
+</div>
+<div class="feature" id="email" data-reveal>
+<div><span class="num">02 / Email &amp; domains</span><h2>Make the right connection.</h2><p>Business email hosting, domain registration, DNS management, mail migration and help with SPF, DKIM, DMARC and spam filtering.</p><p>We&rsquo;ll help you make sense of delivery problems and choose the right setup.</p><a class="more" href="/email/">Email and domains ${ico.arrow}</a></div>
+${t2}
+</div>
+<div class="feature" id="development" data-reveal>
+<div><span class="num">03 / AI-assisted development</span><h2>Make your next idea happen.</h2><p>Responsive websites, applications, scripts and automation built using AI-assisted tools and experienced human oversight.</p><p>Git-based delivery and full ownership of the code. Development is $120/hour, with scope agreed before work starts.</p><a class="more" href="/development/">How development works ${ico.arrow}</a></div>
+${t3}
+</div>
+<div class="feature" id="linux" data-reveal>
+<div><span class="num">04 / Linux &amp; infrastructure</span><h2>Expert help, without the runaround.</h2><p>Server administration, Proxmox clusters, security, networking and CachyOS desktops.</p><p>Practical troubleshooting and remote assistance via SSH or a call, from $60/hour.</p><a class="more" href="/linux/">Explore Linux support ${ico.arrow}</a></div>
+${t4}
+</div>
+</div>
+</section>
+<section class="section alt">
+<div class="wrap">
+${l1}
+${also}
+</div>
+</section>
+<section class="section">
+<div class="wrap">
+${l2}
+${vmstack}
+</div>
+</section>
+${marquee}
+${cta}
+EOF
+write_page("/services/", {title: "Services | RentaNet",
+  desc: "Managed Linux hosting, business email and domains, AI-assisted development and Linux support from one experienced Australian partner.",
+  body: $body})
+
+-- ---------------------------------------------------------------- pricing
+
+$head = page_head("Managed hosting plans", "The capacity you need. The care you expect.",
+  "Annual plans for managed Linux containers. Web, mail and DNS in one place, with updates, SSL, monitoring and backups handled for you.",
+  head_actions("#calculator", "Work out your capacity", $mail, "Ask a question"))
+$fit = tiles("grid4", map($plans, fn($p) = {ico: "server", title: $p.name, rate: "$" .. to_string($p.price) .. "<small> / year</small>", text: $p.fit}))
+$l_fit = lede("Which plan fits?", "The same stack at every size.", "Every container runs the same services. The only thing that changes between plans is capacity.")
+$l_calc = lede("Capacity calculator", "One base. One unit price.", "Every plan follows the same sum: a $19/year base plus $20/year for each resource unit. A unit is 1 vCPU, 1 GB of memory or 10 GB of NVMe storage. Move the sliders to see what your setup would cost.")
+$l_rates = lede("Add-ons and rates", "No tiers to decode.", "Grow one unit at a time, and pay by the hour only for work outside routine management.")
+$l_faq = lede("Questions", "A few useful details.", "If yours isn&rsquo;t here, call or email and ask.")
+$pfaq = faqs($faq_pricing)
+$body = <<EOF
+${head}
+<section class="section tight">
+<div class="wrap">
+${plan_html}
+${inc}
+<p class="note" data-reveal>Annual prices in AUD. Contact us to confirm your requirements, total cost and any migration work before ordering.</p>
+</div>
+</section>
+
+<section class="section alt" id="calculator">
+<div class="wrap">
+${l_calc}
+<div class="calc" data-reveal="scale">
+<div class="calc-controls">
+<div class="presets" role="group" aria-label="Start from a plan">
+<button type="button" data-set="1,1,10">Lite</button>
+<button type="button" data-set="2,2,20">Standard</button>
+<button type="button" data-set="3,4,40">Plus</button>
+<button type="button" data-set="4,8,80">Max</button>
+</div>
+<div class="slider"><label for="c-cpu">Processor <output id="o-cpu" for="c-cpu">2 vCPU</output></label><input type="range" id="c-cpu" min="1" max="8" step="1" value="2"><small>$20/year per vCPU</small></div>
+<div class="slider"><label for="c-ram">Memory <output id="o-ram" for="c-ram">2 GB</output></label><input type="range" id="c-ram" min="1" max="16" step="1" value="2"><small>$20/year per GB</small></div>
+<div class="slider"><label for="c-disk">NVMe storage <output id="o-disk" for="c-disk">20 GB</output></label><input type="range" id="c-disk" min="10" max="160" step="10" value="20"><small>$20/year per 10 GB</small></div>
+</div>
+<div class="calc-out">
+<span class="eyebrow">Your estimate</span>
+<div class="total">$<span id="o-total">139</span><small> / year</small></div>
+<div class="per">about $<span id="o-month">11.58</span> a month</div>
+<ul>
+<li><span>Base</span><span>$19</span></li>
+<li><span>Resource units</span><span><span id="o-units">6</span> &times; $20</span></li>
+</ul>
+<div class="units" aria-hidden="true"></div>
+<div class="unit-key" aria-hidden="true"><span><i class="c"></i> vCPU</span><span><i class="r"></i> memory</span><span><i></i> storage</span></div>
+<a class="btn mt" id="o-mail" href="${mail}">Enquire about this setup ${ico.arrow}</a>
+</div>
+</div>
+<p class="note" data-reveal>An estimate for a fully managed container in AUD. We&rsquo;ll confirm the total and any migration work before you order. Need more than the sliders allow? Ask us.</p>
+</div>
+</section>
+
+<section class="section">
+<div class="wrap">
+${l_fit}
+${fit}
+</div>
+</section>
+
+<section class="section alt">
+<div class="wrap">
+${l_rates}
+<div class="grid2" data-stagger>
+<div class="table-wrap"><table>
+<thead><tr><th>Add capacity</th><th>Per year</th></tr></thead>
+<tbody>
+<tr><td>+1 vCPU<small>For busier sites</small></td><td>$20</td></tr>
+<tr><td>+1 GB memory<small>For memory-hungry applications</small></td><td>$20</td></tr>
+<tr><td>+10 GB NVMe storage<small>For growing mail archives and databases</small></td><td>$20</td></tr>
+<tr><td>Bulk storage<small>For archives and backups</small></td><td>Ask us</td></tr>
+<tr><td>Dedicated IPv4<small>When a workload needs its own address</small></td><td>Ask us</td></tr>
+</tbody></table></div>
+<div class="table-wrap"><table>
+<thead><tr><th>Support and development</th><th>Rate</th></tr></thead>
+<tbody>
+<tr><td>Routine management<small>Updates, SSL, monitoring, daily backups, email support</small></td><td>Included</td></tr>
+<tr><td>Hands-on support<small>Remote help over SSH or a call</small></td><td>$60/hour</td></tr>
+<tr><td>Linux consulting<small>Administration, security, networking</small></td><td>$60/hour</td></tr>
+<tr><td>AI-assisted development<small>Websites, applications, scripts, automation</small></td><td>$120/hour</td></tr>
+<tr><td>Managed VMs and existing servers<small>Debian VMs, or your BinaryLane, Vultr or DigitalOcean VPS</small></td><td>By quote</td></tr>
+</tbody></table></div>
+</div>
+</div>
+</section>
+
+<section class="section" id="faq">
+<div class="wrap">
+${l_faq}
+${pfaq}
+</div>
+</section>
+${cta}
+EOF
+write_page("/pricing/", {title: "Hosting Plans &amp; Pricing | RentaNet",
+  desc: "Managed Linux containers from $79/year. Four plans built from one formula: $19 base plus $20 per vCPU, GB of memory or 10 GB of NVMe. Work out your own capacity.",
+  body: $body})
+
+-- ---------------------------------------------------------------- email
+
+$head = page_head("Email &amp; domains", "Make the right connection.",
+  "Business email hosting, domain registration, DNS management and mail migration, with help on SPF, DKIM, DMARC and spam filtering.",
+  head_actions($mail .. "?subject=Email%20enquiry", "Discuss your email needs", "/pricing/", "Hosting plans"))
+$e1 = tiles("grid3", [
+  {ico: "mail", title: "Business email", text: "Mailboxes at your own domain, readable from your phone, your laptop and the web, and kept in step across all of them."},
+  {ico: "globe", title: "Domain registration", text: "Register a new name or bring an existing one. We keep renewals and name server settings in order."},
+  {ico: "network", title: "DNS management", text: "The records that point your domain at your website and mail, kept correct as things change."},
+  {ico: "wrench", title: "Mail migration", text: "Moving from another provider? We plan the move, copy existing mail across and agree the timing with you first."},
+  {ico: "shield", title: "Spam filtering", text: "Server-side filtering that stops the obvious junk before it reaches you, with a Junk folder you can check and correct."},
+  {ico: "eye", title: "Delivery problems", text: "Mail landing in someone&rsquo;s junk folder, or not arriving at all? We&rsquo;ll find out why and explain it in plain language."}
+])
+$e2 = tiles("grid3", [
+  {ico: "lock", title: "SPF", text: "A public list of the servers allowed to send mail for your domain. Receivers check it to spot mail sent from somewhere it shouldn&rsquo;t be."},
+  {ico: "shield", title: "DKIM", text: "A signature added to every message you send. It lets the receiver confirm the mail really came from your domain and was not altered on the way."},
+  {ico: "eye", title: "DMARC", text: "Your instruction to receivers on what to do with mail that fails those checks, and a way to get reports on who is sending as you."}
+])
+$le1 = lede("What we look after", "Email that works, at your own address.", "Email is the part of being online that people notice first when it goes wrong. We set it up properly and stay on the other end of the phone.")
+$le2 = lede("Authentication, explained", "Three records that decide whether your mail is trusted.", "Large mail providers increasingly expect all three. Getting them right is one of the most effective things you can do for delivery, and we set them up as part of the job.")
+$le3 = lede("Questions", "Help that fits the job.", "")
+$efaq = faqs([
+  ["My mail is going to the recipient&rsquo;s junk folder. Can you fix it?", "Usually, yes. We start by checking your SPF, DKIM and DMARC records and how the sending server is set up, then explain what we found and what will change. Some causes sit with the receiving provider, and we&rsquo;ll tell you when that is the case."],
+  ["Can you move my existing mailboxes?", "Yes. Mail migration is part of what we do. We agree on the scope and timing first, then copy the existing mail across so nothing is lost in the move."],
+  ["Do I need a hosting plan to get email?", "Email is part of every managed hosting plan, alongside your website and DNS. If you only need help with an existing mail setup, that is covered by hands-on support at $60/hour."],
+  ["Can you register or transfer my domain?", "Yes. Tell us the name you have or the one you want and we&rsquo;ll take it from there."]
+])
+$body = <<EOF
+${head}
+<section class="section tight">
+<div class="wrap">
+${le1}
+${e1}
+</div>
+</section>
+<section class="section alt">
+<div class="wrap">
+${le2}
+${e2}
+</div>
+</section>
+<section class="section">
+<div class="wrap">
+${le3}
+${efaq}
+</div>
+</section>
+${cta}
+EOF
+write_page("/email/", {title: "Business Email &amp; Domains | RentaNet",
+  desc: "Business email hosting, domain registration, DNS management and mail migration, with SPF, DKIM, DMARC and spam filtering set up properly.",
+  body: $body})
+
+-- ---------------------------------------------------------------- development
+
+$head = page_head("AI-assisted development", "Make your next idea happen.",
+  "Responsive websites, applications, scripts and automation built using AI-assisted tools and experienced human oversight. You own the code.",
+  head_actions($mail .. "?subject=Development%20enquiry", "Tell us what you have in mind", "/services/", "All services"))
+$d1 = tiles("grid4", [
+  {ico: "desktop", title: "Websites", text: "Responsive sites that load quickly and read well on a phone."},
+  {ico: "code", title: "Applications", text: "Small tools and web applications shaped around how you work."},
+  {ico: "terminal", title: "Scripts", text: "The repetitive job you keep doing by hand, written down once."},
+  {ico: "bolt", title: "Automation", text: "Systems that talk to each other so you don&rsquo;t have to copy and paste."}
+])
+$d2 = ticks("ticks", [
+  ["Clean HTML, CSS and JavaScript", "Code another developer can read"],
+  ["Responsive by default", "One site for every screen size"],
+  ["Search-friendly structure", "Sensible markup and metadata"],
+  ["Light and dark themes", "Like the one you&rsquo;re looking at"],
+  ["Accessible markup", "Usable with a keyboard and a screen reader"],
+  ["Git-based workflow", "Every change recorded and reversible"]
+])
+$ld1 = lede("What we build", "Useful things, delivered in days rather than weeks.", "AI-assisted tools do the typing. An experienced person decides what gets built, checks the result and answers for it.")
+$dfaq = faqs([
+  ["What does development cost?", "AI-assisted application development is $120/hour. We agree on scope and costs before starting, so there are no surprises."],
+  ["Who owns the code?", "You do. Delivery is Git-based, and you get full ownership of everything we build for you."],
+  ["Do I have to host it with you?", "No. Your project can be hosted on RentaNet or on your own server."],
+  ["Is the work done by a person or by AI?", "Both. AI-assisted tools speed up the building, and an experienced person oversees the work, reviews what is produced and is the one you talk to."]
+])
+$body = <<EOF
+${head}
+<section class="section tight">
+<div class="wrap">
+${ld1}
+${d1}
+</div>
+</section>
+<section class="section alt">
+<div class="wrap split2">
+<div data-reveal="left">
+<span class="eyebrow">How it works</span>
+<h2>You describe it. We build it. You own it.</h2>
+<p>Start with a conversation about what you need. We&rsquo;ll agree on the scope and the cost before any work begins.</p>
+<p>This website was built the same way.</p>
+</div>
+<div class="steps" data-stagger>
+<div class="step"><div><h3>You describe what you need.</h3><p>A site, a tool, a script. Plain language is fine.</p></div></div>
+<div class="step"><div><h3>We agree on the scope.</h3><p>What gets built, what it costs, and when.</p></div></div>
+<div class="step"><div><h3>We build it.</h3><p>AI-assisted development with experienced human oversight.</p></div></div>
+<div class="step"><div><h3>You own the code.</h3><p>Hosted on RentaNet or on your own server.</p></div></div>
+</div>
+</div>
+</section>
+<section class="section">
+<div class="wrap">
+<div class="feature" data-reveal>
+<div><span class="num">What you get</span><h2>Work you can keep building on.</h2><p>Every project is delivered as code you can read, move and extend, with a history of how it got there.</p><div class="tile mt"><div class="rate">$120<small> / hour</small></div><p>Scope and cost agreed before work starts.</p></div></div>
+${d2}
+</div>
+</div>
+</section>
+<section class="section alt">
+<div class="wrap">
+<div class="lede" data-reveal><span class="eyebrow">Questions</span><h2>Before you ask.</h2></div>
+${dfaq}
+</div>
+</section>
+${cta}
+EOF
+write_page("/development/", {title: "AI-Assisted Development | RentaNet",
+  desc: "Websites, applications, scripts and automation built with AI-assisted tools and experienced human oversight. $120/hour, scope agreed first, and you own the code.",
+  body: $body})
+
+-- ---------------------------------------------------------------- linux
+
+$head = page_head("Linux support", "When the problem is technical, the support should be personal.",
+  "28+ years of Linux experience. Practical help with servers, mail, security, networking and desktops, from $60/hour.",
+  head_actions($tel, "Call " .. $phone, $mail .. "?subject=Linux%20support", "Email for support"))
+$x1 = tiles("grid4", [
+  {ico: "server", title: "Keep your systems moving.", text: "Debian, Ubuntu, Alpine and Rocky Linux administration. Provisioning, troubleshooting, security hardening, certificates, backups and monitoring."},
+  {ico: "cluster", title: "Make infrastructure work for you.", text: "Proxmox cluster management, virtual machines and containers, migrations and high availability planning. Existing cluster management is available by arrangement."},
+  {ico: "network", title: "Get connected. Stay connected.", text: "Mail server troubleshooting, delivery and authentication, DNS, PowerDNS, WireGuard VPNs, IPv4 and IPv6. Clear advice grounded in your actual setup."},
+  {ico: "desktop", title: "A fresh start for your desktop.", text: "CachyOS installation and ongoing support, including KDE Plasma, getting familiar with Linux and making better use of existing hardware."}
+])
+$x2 = tiles("grid4", [
+  {ico: "globe", title: "Web", items: ["nginx", "PHP-FPM", "Let&rsquo;s Encrypt", "HTTP/2"]},
+  {ico: "database", title: "Data", items: ["MariaDB and MySQL", "PostgreSQL", "SQLite", "Redis"]},
+  {ico: "mail", title: "Mail", items: ["Postfix and Dovecot", "Rspamd", "SPF, DKIM, DMARC", "Mail migration"]},
+  {ico: "network", title: "Network", items: ["PowerDNS", "WireGuard VPN", "IPv4 and IPv6", "nftables and CrowdSec"]}
+])
+$x3 = tiles("grid4", [
+  {ico: "wallet", title: "Cost-effective", items: ["Free to download and use", "No licensing fees", "Runs on older hardware"]},
+  {ico: "code", title: "Open source", items: ["Full transparency", "Community-driven", "Endless customisation"]},
+  {ico: "shield", title: "Security &amp; privacy", items: ["Built-in protections", "Less malware targets it", "No user tracking"]},
+  {ico: "bolt", title: "Performance", items: ["Efficient use of resources", "Optimised kernels", "No bloatware"]}
+])
+$x4 = tiles("grid3", [
+  {ico: "chat", title: "Quick questions", rate: "Free", text: "A simple question by phone or email. Ask before you spend an afternoon on it."},
+  {ico: "wrench", title: "Hands-on support", rate: "$60<small> / hour</small>", text: "Remote assistance over SSH or a call. Server administration, troubleshooting and Linux consulting."},
+  {ico: "code", title: "AI-assisted development", rate: "$120<small> / hour</small>", text: "Scripts, automation and applications when the fix is something that needs building."}
+])
+$lx1 = lede("What we work on", "Practical help, grounded in your actual setup.", "Servers, clusters, networks and desktops. If it runs Linux, there is a good chance we have fixed one like it.")
+$lx2 = lede("Technologies", "Open source tools we work with every day.", "")
+$lx3 = lede("Linux on the desktop", "CachyOS with KDE Plasma.", "Ready to break free from Windows? This is the desktop we recommend and support.")
+$lx4 = lede("Make the switch", "Why use a Linux desktop?", "Freedom, privacy and performance.")
+$lx5 = lede("Step by step", "How to install CachyOS.", "A simple guide to replacing Windows with CachyOS. Allow 30 to 60 minutes and have a USB stick of 8 GB or larger.")
+$lx6 = lede("Support options", "Help that fits the job.", "From a quick question to full remote assistance. We agree on scope and costs before starting.")
+$xfaq = faqs([
+  ["What does support cost?", "Hands-on support and Linux consulting are $60/hour. AI-assisted application development is $120/hour. We&rsquo;ll agree on scope and costs before starting."],
+  ["Can you help remotely?", "Yes. We work over SSH or a remote call as appropriate. Contact us first to describe the issue and arrange access."],
+  ["When can I contact you?", "10am to 6pm AEST, seven days. Call 0419 530 037 or email admin@renta.net."],
+  ["Can you take over a server someone else set up?", "Yes. Managed Debian virtual machines and management of an existing VPS or Proxmox cluster are available by arrangement. We start by looking at what is there and tell you what we find."]
+])
+$body = <<EOF
+${head}
+<section class="section tight">
+<div class="wrap">
+${lx1}
+${x1}
+</div>
+</section>
+${marquee}
+<section class="section">
+<div class="wrap">
+${lx2}
+${x2}
+</div>
+</section>
+<section class="section alt" id="cachyos">
+<div class="wrap">
+${lx3}
+<div class="longform" data-stagger>
+<div><h3>About CachyOS</h3><p><a class="more" href="https://cachyos.org" target="_blank" rel="noopener nofollow">CachyOS</a> is a lightweight, Arch Linux-based distribution that emphasises performance, security and user-friendliness. Built with optimised kernels and modern tooling, it stays fully compatible with the Arch User Repository, which gives you access to thousands of community-maintained packages.</p></div>
+<div><h3>Why make the switch?</h3><p>Windows 11&rsquo;s hardware requirements have left a great many perfectly good computers behind. CachyOS runs well on older hardware, respects your privacy and puts you in control of your own computer. No telemetry, no mandatory cloud accounts and no subscriptions.</p></div>
+<div><h3>KDE Plasma: the modern desktop</h3><p>We recommend the <a class="more" href="https://kde.org/plasma-desktop" target="_blank" rel="noopener nofollow">KDE Plasma</a> edition. It offers a familiar Windows-like experience with a taskbar, start menu and system tray, but with far greater customisation. Virtual desktops, floating panels and automatic light-to-dark theme switching make it a pleasure to use every day.</p></div>
+<div><h3>ZFS, straight from the installer</h3><p>CachyOS is one of the few distributions that offers ZFS from the graphical installer. ZFS brings instant snapshots, transparent compression and self-healing storage, so you can roll your whole system back to an earlier snapshot if an update goes wrong.</p></div>
+<div><h3>It&rsquo;s easier than you think</h3><p>The installer is friendly, and the system comes with what you need: Firefox for browsing, LibreOffice for documents and thousands of free applications a click away. Your files transfer across and the learning curve is small.</p></div>
+<div><h3>We&rsquo;re here to help</h3><p>We provide full support for CachyOS with KDE Plasma, from the first installation to ongoing maintenance: migrating from Windows, setting up ZFS snapshots, configuring particular software, or simply some guidance while you find your way around.</p></div>
+</div>
+</div>
+</section>
+<section class="section">
+<div class="wrap">
+${lx4}
+${x3}
+</div>
+</section>
+<section class="section alt" id="install">
+<div class="wrap">
+${lx5}
+<div class="callout" data-reveal><b>Back up first</b><p>Copy your photos, documents and anything else you want to keep to an external drive or cloud storage. Installing CachyOS this way erases Windows and everything on the disk.</p></div>
+<ol class="guide" data-stagger>
+<li><div><h3>Download CachyOS</h3><ul><li>Go to cachyos.org and choose Download</li><li>Pick the KDE Plasma edition, the most Windows-like</li><li>Save the .iso file somewhere easy to find</li></ul></div></li>
+<li><div><h3>Create a bootable USB</h3><ul><li>Download a free tool such as Rufus on Windows or balenaEtcher on a Mac</li><li>Plug in your USB stick and open the tool</li><li>Select the CachyOS .iso and start writing</li><li>Wait a few minutes for it to finish</li></ul></div></li>
+<li><div><h3>Boot from the USB</h3><ul><li>Restart your computer with the USB plugged in</li><li>As it starts, tap F12, F2 or Del to reach the boot menu (it depends on your computer)</li><li>Select your USB stick from the list</li><li>CachyOS loads in a minute or two</li></ul></div></li>
+<li><div><h3>Install CachyOS</h3><ul><li>Choose Install CachyOS, then your language, location and keyboard</li><li>When asked about the disk, select Erase disk, the simple option</li><li>Create your username and password</li><li>Wait 10 to 20 minutes, then restart and remove the USB when prompted</li></ul></div></li>
+<li><div><h3>First boot</h3><ul><li>Log in with the password you created</li><li>The bottom-left corner is your start menu</li><li>Dolphin is the file manager, like File Explorer</li><li>Firefox is your browser, and the software centre installs new apps</li></ul><p>Need help with the installation? Call ${phone}.</p></div></li>
+</ol>
+</div>
+</section>
+<section class="section">
+<div class="wrap">
+${lx6}
+${x4}
+</div>
+</section>
+<section class="section alt">
+<div class="wrap">
+<div class="lede" data-reveal><span class="eyebrow">Questions</span><h2>Good to know.</h2></div>
+${xfaq}
+</div>
+</section>
+${cta}
+EOF
+write_page("/linux/", {title: "Linux Support | RentaNet",
+  desc: "28+ years of Linux experience. Server administration, Proxmox, mail, networking and CachyOS desktop support from $60/hour, with a step-by-step CachyOS install guide.",
+  body: $body})
+
+-- ---------------------------------------------------------------- about
+
+$head = page_head("About RentaNet", "Independent since 1998.",
+  "We&rsquo;ve been helping Australians get online since 1998. Reliable infrastructure, straightforward pricing and an expert who answers the phone.",
+  head_actions($tel, "Call " .. $phone, $mail, "admin@renta.net"))
+$a1 = tiles("grid4", [
+  {ico: "globe", title: "Australian owned", text: "Owned and operated in Australia, and independent since the day we started."},
+  {ico: "chat", title: "Personal support", text: "Phone and email, seven days a week. You talk to someone who knows your setup."},
+  {ico: "server", title: "Fully managed", text: "Updates, security and backups are our job, not another thing on your list."},
+  {ico: "terminal", title: "Built on Linux", text: "More than 28 years of Linux experience behind every server we look after."}
+])
+$a2 = ticks("ticks one", [
+  ["Routine work, done promptly", "Package updates, certificate renewals, DNS changes and monitoring are handled with AI-assisted tools"],
+  ["A person in charge", "An experienced Linux engineer supervises the work and answers for it"],
+  ["A direct relationship", "The same people from the first conversation to the next upgrade"],
+  ["Scope agreed first", "For anything beyond routine management, we agree on what and how much before starting"]
+])
+$la1 = lede("What we stand for", "Experienced people. Personal service.", "A small, independent host is a different thing from a large one. You get fewer layers, plainer answers and someone who remembers what you run.")
+$body = <<EOF
+${head}
+<section class="section tight">
+<div class="wrap">
+${la1}
+${a1}
+</div>
+</section>
+<section class="section alt">
+<div class="wrap">
+<div class="stats" data-reveal>
+<div class="stat"><b><span data-count="1998" data-from="1960">1998</span></b><span>The year we started</span></div>
+<div class="stat"><b><span data-count="28">28</span><i>+</i></b><span>Years of Linux experience</span></div>
+<div class="stat"><b><span data-count="7">7</span><i>.</i></b><span>Days a week, 10am to 6pm AEST</span></div>
+<div class="stat"><b><span data-count="4">4</span></b><span>Hosting plans from one simple formula</span></div>
+</div>
+</div>
+</section>
+<section class="section">
+<div class="wrap">
+<div class="feature" data-reveal>
+<div><span class="num">How we work</span><h2>Modern tools. Experienced hands.</h2><p>We combine decades of experience with AI-assisted operations to handle routine work efficiently, under expert human supervision.</p><p>You get a direct relationship with someone who understands your systems, from the first conversation to the next upgrade.</p><a class="more" href="/services/">See our services ${ico.arrow}</a></div>
+${a2}
+</div>
+</div>
+</section>
+<section class="section alt">
+<div class="wrap split2">
+<div data-reveal="left">
+<span class="eyebrow">The details</span>
+<h2>Who you&rsquo;re dealing with.</h2>
+<p>RentaNet provides managed Linux hosting, business email, Linux support and development for businesses and individuals across Australia.</p>
+<p>Billing and support tickets run through the same client portal as our related service, <a class="more" href="https://spiderweb.com.au" target="_blank" rel="noopener">Spiderweb</a>, which offers WordPress and email hosting.</p>
+</div>
+<div class="table-wrap" data-reveal><table>
+<tbody>
+<tr><td>Trading name</td><td>RentaNet</td></tr>
+<tr><td>Established</td><td>1998</td></tr>
+<tr><td>ABN</td><td><a href="https://www.abr.business.gov.au/SearchByAbn.aspx?SearchText=69851855459" target="_blank" rel="noreferrer noopener">69 851 855 459</a></td></tr>
+<tr><td>Phone</td><td><a href="${tel}">${phone}</a></td></tr>
+<tr><td>Email</td><td><a href="${mail}">admin@renta.net</a></td></tr>
+<tr><td>Hours</td><td>10am &ndash; 6pm AEST, 7 days</td></tr>
+<tr><td>Client portal</td><td><a href="https://my.spiderweb.com.au" target="_blank" rel="noopener">my.spiderweb.com.au</a></td></tr>
+</tbody></table></div>
+</div>
+</section>
+${cta}
+EOF
+write_page("/about/", {title: "About | RentaNet",
+  desc: "RentaNet is an independent Australian host, helping people get online since 1998. Managed Linux hosting with personal phone and email support, seven days a week.",
+  body: $body})
+
+-- ---------------------------------------------------------------- sitemap
+
+$smap = ""
+for $u in $urls
+  $smap = $smap .. "<url><loc>" .. $site .. $u .. "</loc><lastmod>" .. $today .. "</lastmod></url>\n"
+end
+write_file($dist .. "/sitemap.xml", "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n" .. $smap .. "</urlset>\n")
+
+print "built", len($urls), "pages into", $dist

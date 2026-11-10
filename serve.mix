@@ -1,0 +1,8 @@
+#!/opt/mixos/bin/mix
+-- version: 1.0.0
+-- Local preview of ./dist on http://127.0.0.1:8099 (run build.mix first).
+--   mix serve.mix [seconds]     default: until Ctrl-C
+$root = dirname(realpath(script_path()))
+$a = args()
+$secs = if len($a) > 0 then to_number($a[0]) else 0 end
+http_serve($root .. "/dist", {port: 8099, duration: $secs})

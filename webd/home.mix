@@ -1,0 +1,15 @@
+-- Per-vhost public marketing entry. Shared CMS/admin handlers remain untouched.
+-- Native webd handler, no external application or server.
+-- Deployed by deploy.mix; @DOCROOT@ is filled in from deploy.conf.mix.
+return {
+  status: 200,
+  headers: {
+    "Content-Type": "text/html; charset=utf-8",
+    "Cache-Control": "no-transform",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Content-Security-Policy": "default-src 'self'; img-src 'self' data:; style-src 'self'; font-src 'self'; script-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+  },
+  body: read_file("@DOCROOT@/index.html")
+}

@@ -1,0 +1,9 @@
+-- Copy to deploy.conf.mix (ignored by git) and fill in.
+{
+  host: "web1",                                       -- ssh alias of the web server
+  docroot: "/srv/example.net/web/app/public",         -- static web root
+  handler: "/srv/example.net/web/app/home.mix",       -- webd handler for "/"
+  owner: "webd:webd",                                 -- owner for published files
+  keep: ["img/"],                                     -- paths in the docroot that rsync must not delete
+  purge: []                                           -- argv of a CDN purge command, or empty
+}
