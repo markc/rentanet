@@ -1,4 +1,4 @@
-#!/opt/mixos/bin/mix
+#!/opt/mix/bin/mix
 -- version: 2.0.0
 -- Static site generator for renta.net.
 --   mix build.mix          writes ./dist

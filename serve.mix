@@ -1,4 +1,4 @@
-#!/opt/mixos/bin/mix
+#!/opt/mix/bin/mix
 -- version: 1.0.0
 -- Local preview of ./dist on http://127.0.0.1:8099 (run build.mix first).
 --   mix serve.mix [seconds]     default: until Ctrl-C

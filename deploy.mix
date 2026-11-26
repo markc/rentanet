@@ -1,4 +1,4 @@
-#!/opt/mixos/bin/mix
+#!/opt/mix/bin/mix
 -- version: 2.0.0
 -- Build and publish the site.
 --   mix deploy.mix
@@ -15,7 +15,7 @@ $conf = validate(load_data($conf_path), {
   keep: {type: "list", items: {type: "string"}}, purge: {type: "list", items: {type: "string"}}
 })
 
-print(trim(run_argv_must(["/opt/mixos/bin/mix", $root .. "/build.mix"])))
+print(trim(run_argv_must(["/opt/mix/bin/mix", $root .. "/build.mix"])))
 
 $argv = ["rsync", "-a", "--delete", "--checksum", "--itemize-changes", "--chown=" .. $conf.owner, "--chmod=D755,F644"]
 for $k in $conf.keep
